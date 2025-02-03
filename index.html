@@ -6,40 +6,122 @@
     <title>Jerin Peter | Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            background-color: #f4f4f4;
+            animation: fadeIn 1.5s ease-in;
+        }
+        header {
+            background: #333;
+            color: white;
+            padding: 10px 0;
+            animation: slideDown 1s ease-in-out;
+        }
+        section {
+            padding: 20px;
+            background: white;
+            margin: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        section:hover {
+            transform: scale(1.02);
+        }
+        footer {
+            background: #333;
+            color: white;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1 class="fade-in">Jerin Peter</h1>
-        <p class="slide-up">Robotics | AI | Computer Vision</p>
+        <h1>Jerin Peter</h1>
+        <p>Robotics | AI | Computer Vision | Embedded Systems</p>
         <nav>
             <ul>
                 <li><a href="#about">About</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#publications">Publications</a></li>
+                <li><a href="#awards">Awards</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
     </header>
-    <section id="about" class="fade-in">
+    
+    <section id="about">
         <h2>About Me</h2>
         <p>MS in Robotics at UC Riverside. Passionate about AI, Computer Vision, and Autonomous Systems.</p>
+        <p>Skills: C++, Python, ROS (1 & 2), Embedded Systems, AI/ML, Sensor Fusion, Control Systems.</p>
         <a href="https://www.linkedin.com/in/jerinpeter">LinkedIn</a> | <a href="https://github.com/jerinpeter">GitHub</a>
     </section>
-    <section id="projects" class="fade-in">
+    
+    <section id="projects">
         <h2>Projects</h2>
-        <div class="project">
-            <img src="project1.jpg" alt="Project 1" class="hover-zoom">
-            <p>Multimodal Calibration Dataset for Camera-LiDAR Systems</p>
-        </div>
-        <div class="project">
-            <img src="project2.jpg" alt="Project 2" class="hover-zoom">
-            <p>Autonomous Indoor Delivery Robot</p>
-        </div>
+        <ul>
+            <li>Multimodal Calibration Dataset for Camera-LiDAR Systems</li>
+            <li>Plate Cleaning Robot using ABB IRB 120</li>
+            <li>Autonomous Indoor Delivery Robot</li>
+            <li>Autonomous Docking System for Charging</li>
+            <li>4WD Outdoor Navigation Robot</li>
+            <li>All Terrain Medical Security Rover</li>
+        </ul>
     </section>
-    <section id="contact" class="fade-in">
+    
+    <section id="experience">
+        <h2>Experience</h2>
+        <p><strong>Project Engineer - Mobile Robotics</strong>, IIT Palakkad (Jul 2023 - Feb 2024)</p>
+        <p>Researched mobile robot kinematics, developed PID control for holonomic robots, and designed an outdoor autonomous robot.</p>
+        
+        <p><strong>Software Intern</strong>, Asimov Robotics (Aug 2022 - Jun 2022)</p>
+        <p>Updated software stack to Ubuntu 20.04, developed differential drive code, and integrated odometry computation.</p>
+        
+        <p><strong>Research Assistant</strong>, TiHAN IIT Hyderabad (Aug 2021 - Oct 2021)</p>
+        <p>Worked on sensor fusion for odometry, developed navigation algorithms, and conducted community outreach.</p>
+    </section>
+    
+    <section id="publications">
+        <h2>Publications</h2>
+        <ul>
+            <li>Development of a Low-Cost Multipurpose Autonomous Navigation Robot (IEEE AIC 2022)</li>
+            <li>Development of an Autonomous Ground Robot Using RTAB Algorithm for Enhanced Spatial Mapping (AIR 2023)</li>
+            <li>Development of an Intuitive Autonomous Ground Robot for Indoor Delivery Applications (IPDIMS 2024)</li>
+        </ul>
+    </section>
+    
+    <section id="awards">
+        <h2>Awards & Honors</h2>
+        <ul>
+            <li>Best Paper Award - IEEE AIC 2022</li>
+            <li>Best Paper Presentation - AIR 2023</li>
+            <li>Finalist - ARTPARK Robotics Challenge, IISc Bangalore (2022)</li>
+            <li>Best Performing Team - European Rover Challenge (2022)</li>
+            <li>First Place - IEEE IAS CMD International Robotics Contest (2020)</li>
+        </ul>
+    </section>
+    
+    <section id="contact">
         <h2>Contact</h2>
         <p>Email: jerinpeter@gmail.com</p>
     </section>
+    
     <footer>
         <p>&copy; 2024 Jerin Peter</p>
     </footer>
