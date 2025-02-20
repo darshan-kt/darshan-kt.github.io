@@ -1,129 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jerin Peter | Portfolio</title>
-    <link rel="stylesheet" href="style.css">
-    <script defer src="script.js"></script>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-            background-color: #f4f4f4;
-            animation: fadeIn 1.5s ease-in;
-        }
-        header {
-            background: #333;
-            color: white;
-            padding: 10px 0;
-            animation: slideDown 1s ease-in-out;
-        }
-        section {
-            padding: 20px;
-            background: white;
-            margin: 20px;
-            border-radius: 8px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s;
-        }
-        section:hover {
-            transform: scale(1.02);
-        }
-        footer {
-            background: #333;
-            color: white;
-            padding: 10px;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-        @keyframes slideDown {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jerin Peter - Robotics Portfolio</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Jerin Peter</h1>
-        <p>Robotics | AI | Computer Vision | Embedded Systems</p>
-        <nav>
-            <ul>
-                <li><a href="#about">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#publications">Publications</a></li>
-                <li><a href="#awards">Awards</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-    
-    <section id="about">
-        <h2>About Me</h2>
-        <p>MS in Robotics at UC Riverside. Passionate about AI, Computer Vision, and Autonomous Systems.</p>
-        <p>Skills: C++, Python, ROS (1 & 2), Embedded Systems, AI/ML, Sensor Fusion, Control Systems.</p>
-        <a href="https://www.linkedin.com/in/jerinpeter">LinkedIn</a> | <a href="https://github.com/jerinpeter">GitHub</a>
-    </section>
-    
-    <section id="projects">
-        <h2>Projects</h2>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="container">
+      <a href="#home" class="logo">Jerin Peter</a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Home Section -->
+  <section id="home" class="home-section">
+    <div class="container">
+      <h1 class="animated-text">Hi, I'm Jerin Peter</h1>
+      <p class="animated-text">Robotics Engineer | Control & Navigation Specialist</p>
+      <div class="social-links animated-text">
+        <a href="https://linkedin.com/in/jerinpeter" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/jerinpeter" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:jerinpeter@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I am a Robotics Engineer with a Master's degree from the University of California, Riverside, specializing in control and navigation. I have a strong background in robotics, automation, and sensor fusion, with hands-on experience in ROS, Python, C++, and embedded systems.
+      </p>
+      <div class="skills">
+        <h3>Skills</h3>
         <ul>
-            <li>Multimodal Calibration Dataset for Camera-LiDAR Systems</li>
-            <li>Plate Cleaning Robot using ABB IRB 120</li>
-            <li>Autonomous Indoor Delivery Robot</li>
-            <li>Autonomous Docking System for Charging</li>
-            <li>4WD Outdoor Navigation Robot</li>
-            <li>All Terrain Medical Security Rover</li>
+          <li>C++, Python, Embedded C</li>
+          <li>ROS1 & ROS2, Git, Docker</li>
+          <li>Linux, FreeRTOS, Windows</li>
         </ul>
-    </section>
-    
-    <section id="experience">
-        <h2>Experience</h2>
-        <p><strong>Project Engineer - Mobile Robotics</strong>, IIT Palakkad (Jul 2023 - Feb 2024)</p>
-        <p>Researched mobile robot kinematics, developed PID control for holonomic robots, and designed an outdoor autonomous robot.</p>
-        
-        <p><strong>Software Intern</strong>, Asimov Robotics (Aug 2022 - Jun 2022)</p>
-        <p>Updated software stack to Ubuntu 20.04, developed differential drive code, and integrated odometry computation.</p>
-        
-        <p><strong>Research Assistant</strong>, TiHAN IIT Hyderabad (Aug 2021 - Oct 2021)</p>
-        <p>Worked on sensor fusion for odometry, developed navigation algorithms, and conducted community outreach.</p>
-    </section>
-    
-    <section id="publications">
-        <h2>Publications</h2>
-        <ul>
-            <li>Development of a Low-Cost Multipurpose Autonomous Navigation Robot (IEEE AIC 2022)</li>
-            <li>Development of an Autonomous Ground Robot Using RTAB Algorithm for Enhanced Spatial Mapping (AIR 2023)</li>
-            <li>Development of an Intuitive Autonomous Ground Robot for Indoor Delivery Applications (IPDIMS 2024)</li>
-        </ul>
-    </section>
-    
-    <section id="awards">
-        <h2>Awards & Honors</h2>
-        <ul>
-            <li>Best Paper Award - IEEE AIC 2022</li>
-            <li>Best Paper Presentation - AIR 2023</li>
-            <li>Finalist - ARTPARK Robotics Challenge, IISc Bangalore (2022)</li>
-            <li>Best Performing Team - European Rover Challenge (2022)</li>
-            <li>First Place - IEEE IAS CMD International Robotics Contest (2020)</li>
-        </ul>
-    </section>
-    
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Email: jerinpeter@gmail.com</p>
-    </section>
-    
-    <footer>
-        <p>&copy; 2024 Jerin Peter</p>
-    </footer>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2>Projects</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <h3>Multimodal Calibration Dataset</h3>
+          <p>Designed a pipeline for collecting multimodal calibration datasets using robotic arms and motion capture systems.</p>
+        </div>
+        <div class="project-card">
+          <h3>Plate Cleaning Robot</h3>
+          <p>Developed an automated plate-cleaning system using ABB IRB 120 robotic arm with precise trajectory planning.</p>
+        </div>
+        <div class="project-card">
+          <h3>Autonomous Indoor Delivery Robot</h3>
+          <p>Built an autonomous delivery robot using ROS, TEB planner, and sensor fusion for high-accuracy localization.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="experience-list">
+        <div class="experience-item">
+          <h3>ITP Palakkad Technology IHub Foundation</h3>
+          <p>Project Engineer - Mobile Robotics</p>
+        </div>
+        <div class="experience-item">
+          <h3>Asimov Robotics</h3>
+          <p>Software Intern - ROS Developer</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications Section -->
+  <section id="publications" class="publications-section">
+    <div class="container">
+      <h2>Publications</h2>
+      <ul>
+        <li>Development of a Low-Cost Multipurpose Autonomous Navigation Robot - IEEE AIC 2022</li>
+        <li>Development of an Autonomous Ground Robot Using RTAB Algorithm - AIR 2023</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for collaborations or opportunities!</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:jerinpeter@gmail.com">jerinpeter@gmail.com</a></p>
+        <p>Phone: +1 (951) 275-7664</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Jerin Peter. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
