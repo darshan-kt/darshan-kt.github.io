@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
+  // === Background Slideshow ===
   const slideshowContainer = document.querySelector('.background-slideshow');
-
-  // List of background files (video file excluded)
   const files = [
     'assets/images/background/nova1.jpg',
     'assets/images/background/nova2.jpg',
@@ -11,7 +10,6 @@ document.addEventListener('DOMContentLoaded', () => {
     'assets/images/background/robot5.jpg',
     'assets/images/background/robot6.jpg'
   ];
-
   let currentImage = '';
 
   function changeBackground() {
@@ -28,65 +26,34 @@ document.addEventListener('DOMContentLoaded', () => {
       // Update the background image and fade in
       slideshowContainer.style.backgroundImage = `url('${currentImage}')`;
       slideshowContainer.style.opacity = 2.5;
-    }, 1300); // Fade-out duration: 1.5 seconds
+    }, 1300); // Fade-out duration
   }
 
   // Initialize with a random image
   currentImage = files[Math.floor(Math.random() * files.length)];
   slideshowContainer.style.backgroundImage = `url('${currentImage}')`;
 
-  // Change background periodically (adjust timing as desired)
+  // Change background periodically
   setInterval(changeBackground, 5000);
-});
 
-document.addEventListener('DOMContentLoaded', function() {
-  const projectCards = document.querySelectorAll('.project-grid .project-card');
-  const toggleBtn = document.getElementById('toggleProjects');
-  const batchSize = 3;
-
-  // Hide all cards after the first batch on load
-  for (let i = batchSize; i < projectCards.length; i++) {
-    projectCards[i].style.display = 'none';
-  }
-  
-  toggleBtn.addEventListener('click', function() {
-    // Determine the number of currently visible cards
-    const visibleCards = Array.from(projectCards).filter(card => card.style.display !== 'none');
-    
-    if (visibleCards.length < projectCards.length) {
-      // Reveal the next batch of cards
-      const nextBatch = Array.from(projectCards).slice(visibleCards.length, visibleCards.length + batchSize);
-      nextBatch.forEach(card => {
-        card.style.display = 'block';
-        card.style.opacity = 0;
-        setTimeout(() => {
-          card.style.opacity = 1;
-        }, 50);
-      });
-      // If all cards are now visible, change button text to "Show Less"
-      if (visibleCards.length + nextBatch.length >= projectCards.length) {
-        toggleBtn.textContent = "Show Less";
-      }
-    } else {
-      // Collapse the view to only the first batch
-      for (let i = batchSize; i < projectCards.length; i++) {
-        projectCards[i].style.display = 'none';
-      }
-      toggleBtn.textContent = "More Projects";
-      // Optionally, scroll back to the Projects section
-      document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
-    }
-  });
-});
-
-document.addEventListener('DOMContentLoaded', function() {
+  // === Projects "More Projects" Functionality ===
   const projectCards = document.querySelectorAll('.project-grid .project-card');
   const toggleBtn = document.getElementById('toggleProjects');
   const batchSize = 3;
   const totalProjects = projectCards.length;
   let currentBatch = 1; // Number of fully revealed batches (excluding preview)
 
-  // Set the initial state:
+  // For mobile: Show all projects without blur and hide the toggle button.
+  if (window.innerWidth <= 768) {
+    projectCards.forEach(card => {
+      card.style.display = 'block';
+      card.classList.remove('blurred');
+    });
+    toggleBtn.style.display = 'none';
+    return; // Skip the rest for mobile users
+  }
+
+  // Set the initial state for desktop:
   // - Batch 1: fully visible
   // - Batch 2: preview (blurred) if exists
   // - Remaining batches: hidden
@@ -111,20 +78,18 @@ document.addEventListener('DOMContentLoaded', function() {
     currentBatch = 1;
     toggleBtn.textContent = "More Projects";
   }
-  
   setInitialState();
-  
+
   toggleBtn.addEventListener('click', function() {
-    // If button shows "More Projects", then reveal the next batch:
+    // If button text is "More Projects", reveal the next batch:
     if (toggleBtn.textContent.trim() === "More Projects") {
-      // Remove blur from the current preview batch (indices: currentBatch*batchSize to (currentBatch+1)*batchSize-1)
+      // Remove blur from the current preview batch (indices: currentBatch*batchSize to (currentBatch+1)*batchSize - 1)
       let previewStart = currentBatch * batchSize;
       let previewEnd = Math.min((currentBatch + 1) * batchSize, totalProjects);
       for (let i = previewStart; i < previewEnd; i++) {
         projectCards[i].classList.remove('blurred');
       }
       currentBatch++;
-      
       // Check if there's a new preview batch available:
       if (currentBatch * batchSize < totalProjects) {
         let nextPreviewStart = currentBatch * batchSize;
@@ -141,7 +106,6 @@ document.addEventListener('DOMContentLoaded', function() {
     } else {
       // "Show Less" clicked; collapse back to the initial state.
       setInitialState();
-      // Optionally, scroll back to the Projects section:
       document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });
     }
   });
