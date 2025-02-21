@@ -78,6 +78,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 });
+
 document.addEventListener('DOMContentLoaded', function() {
   const projectCards = document.querySelectorAll('.project-grid .project-card');
   const toggleBtn = document.getElementById('toggleProjects');
