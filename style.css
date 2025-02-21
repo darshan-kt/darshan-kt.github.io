@@ -673,6 +673,9 @@ z-index: 1;
   transition: opacity 0.6s ease;
 }
 @media only screen and (max-width: 768px) {
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
   .more-projects-wrapper {
     max-height: none;
   }
@@ -686,7 +689,8 @@ z-index: 1;
   #toggleProjects {
     display: none;
   }
-  /* And ensure the container shows all projects */
+}
+
 
     
 }
