@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>More Projects - Jerin Peter</title>
+  <title>Jerin Peter - Robotics Portfolio</title>
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
@@ -12,21 +12,80 @@
   <!-- Navigation Bar -->
   <nav>
     <div class="container">
-      <a href="index.html" class="logo">Jerin Peter</a>
+      <a href="#home" class="logo">Jerin Peter</a>
       <ul class="nav-links">
-        <li><a href="index.html#about">About</a></li>
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#publications">Publications</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#publications">Publications</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- Projects Section -->
-  <section class="projects-section">
+  <!-- Home Section -->
+  <section id="home" class="home-section">
     <div class="container">
-      <h2>More Projects</h2>
+      <h1 class="animated-text">Hi, I'm Jerin Peter</h1>
+      <p class="animated-text">Robotics Engineer | Control & Navigation Specialist</p>
+      <div class="social-links animated-text">
+        <a href="https://linkedin.com/in/jerinpeter" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/jerinpeter" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:jerinpeter@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About Me</h2>
+      <p>
+        I am a Robotics Engineer with a Master's degree from the University of California, Riverside, specializing in control and navigation. I have a strong background in robotics, automation, and sensor fusion, with hands-on experience in ROS, Python, C++, and embedded systems.
+      </p>
+      <div class="skills">
+        <h3>Skills</h3>
+        <ul>
+          <li>C++, Python, Embedded C</li>
+          <li>ROS1 & ROS2, Git, Docker</li>
+          <li>Linux, FreeRTOS, Windows</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section id="education" class="education-section">
+    <div class="container">
+      <h2>Education</h2>
+      <div class="education-list">
+        <div class="education-item">
+          <h3>University of California, Riverside</h3>
+          <p>MS in Robotics with focus on control & navigation</p>
+          <p>CGPA: 4.0</p>
+          <p>Courses: Programming Practical Robots, Kinematics & Dynamics of Robots, Reinforcement Learning, Optimal Control & Estimation, Computational Methods for Robotics, Fundamentals of Machine Learning, Foundations of Robotics</p>
+        </div>
+        <div class="education-item">
+          <h3>Rajagiri School of Engineering & Technology</h3>
+          <p>Undergraduate in Electronics & Communication Engineering</p>
+          <p>CGPA: 3.26</p>
+          <p>Courses: Robotics and Industrial Automation, Machine Learning, Real Time Operating Systems, Control Systems, Digital Signal Processing</p>
+        </div>
+        <div class="education-item">
+          <h3>Cochin Refineries School</h3>
+          <p>High School (12th Grade) with Major in Computer Science</p>
+          <p>CGPA: 3.5</p>
+          <p>Courses: Computer Science (C++, SQL), Mathematics, Physics, Chemistry</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="projects-section">
+    <div class="container">
+      <h2>Projects</h2>
       <div class="project-grid">
         <div class="project-card">
           <img src="assets/images/project1.jpg" alt="Multimodal Calibration Dataset">
@@ -34,31 +93,86 @@
           <p>Designed a pipeline for collecting multimodal calibration datasets using robotic arms and motion capture systems.</p>
         </div>
         <div class="project-card">
-          <img src="assets/images/project2.png" alt="Plate Cleaning Robot">
+          <img src="assets/images/project2.jpg" alt="Plate Cleaning Robot">
           <h3>Plate Cleaning Robot</h3>
           <p>Developed an automated plate-cleaning system using ABB IRB 120 robotic arm with precise trajectory planning.</p>
         </div>
         <div class="project-card">
-          <img src="assets/images/project3.png" alt="Autonomous Indoor Delivery Robot">
+          <img src="assets/images/project3.jpg" alt="Autonomous Indoor Delivery Robot">
           <h3>Autonomous Indoor Delivery Robot</h3>
           <p>Built an autonomous delivery robot using ROS, TEB planner, and sensor fusion for high-accuracy localization.</p>
         </div>
-        <!-- Add more projects here -->
-        <div class="project-card">
-          <img src="assets/images/project4.png" alt="Autonomous Docking System">
-          <h3>Autonomous Docking System</h3>
-          <p>Engineered an autonomous docking robot using computer vision and Aruco markers for precise alignment.</p>
+      </div>
+      <a href="projects.html" class="more-button">More Projects</a>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experience" class="experience-section">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <img src="assets/images/iptif.png" alt="ITP Palakkad Technology IHub Foundation">
+            <h3>ITP Palakkad Technology IHub Foundation</h3>
+            <p>Project Engineer - Mobile Robotics</p>
+            <p>Aug 2022 - Present</p>
+            <ul>
+              <li>Studied forward/inverse kinematics and dynamics of wheeled mobile robots.</li>
+              <li>Implemented PID control for a Holonomic mobile robot.</li>
+              <li>Developed an autonomous outdoor navigation robot using RTK GPS and sensor fusion.</li>
+            </ul>
+          </div>
         </div>
-        <div class="project-card">
-          <img src="assets/images/project5.png" alt="4WD Outdoor Navigation Robot">
-          <h3>4WD Outdoor Navigation Robot</h3>
-          <p>Developed a 4-wheel drive robot with 3D camera for real-time appearance-based mapping and navigation.</p>
+        <div class="timeline-item right">
+          <div class="timeline-content">
+            <img src="assets/images/asimov.jpeg" alt="Asimov Robotics">
+            <h3>Asimov Robotics</h3>
+            <p>Software Intern - ROS Developer</p>
+            <p>Aug 2022 - Jun 2023</p>
+            <ul>
+              <li>Updated the software stack from Ubuntu 16.04 to Ubuntu 20.04 and ROS Noetic.</li>
+              <li>Implemented differential drive and odometry calculation for robot pose estimation.</li>
+            </ul>
+          </div>
         </div>
-        <div class="project-card">
-          <img src="assets/images/project6.png" alt="All-Terrain Medical Security Rover">
-          <h3>All-Terrain Medical Security Rover</h3>
-          <p>Designed a modular rover for disaster management with adaptive height/width adjustments and toxic gas detection.</p>
+        <div class="timeline-item left">
+          <div class="timeline-content">
+            <img src="assets/images/tihan.png" alt="THIAN">
+            <h3>THIAN</h3>
+            <p>Research Assistant & Community Development</p>
+            <p>Aug 2021 - Oct 2021</p>
+            <ul>
+              <li>Implemented sensor fusion for accurate odometry computation.</li>
+              <li>Organized workshops on ROS and agricultural drones.</li>
+            </ul>
+          </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Publications Section -->
+  <section id="publications" class="publications-section">
+    <div class="container">
+      <h2>Publications</h2>
+      <ul>
+        <li>Development of a Low-Cost Multipurpose Autonomous Navigation Robot - IEEE AIC 2022</li>
+        <li>Development of an Autonomous Ground Robot Using RTAB Algorithm - AIR 2023</li>
+        <li>Development of an Intuitive Autonomous Ground Robot for Indoor Delivery Applications - IPDIMS 2024</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2>Contact Me</h2>
+      <p>Feel free to reach out for collaborations or opportunities!</p>
+      <div class="contact-info">
+        <p>Email: <a href="mailto:jerinpeter@gmail.com">jerinpeter@gmail.com</a></p>
+        <p>Phone: +1 (951) 275-7664</p>
       </div>
     </div>
   </section>
@@ -69,5 +183,7 @@
       <p>&copy; 2024 Jerin Peter. All rights reserved.</p>
     </div>
   </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
