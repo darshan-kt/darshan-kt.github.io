@@ -342,20 +342,22 @@ footer {
   margin-bottom: 1rem;
 }
 
-/* More Button */
 .more-button {
-  display: inline-block;
-  margin-top: 2rem;
-  padding: 10px 20px;
-  background-color: #1db954; /* Spotify green */
+  display: block;           /* Makes it easier to center */
+  width: fit-content;       /* The button’s width will match its content */
+  margin: 2rem auto 0;      /* Auto left/right margins to center it */
+  padding: 1rem 2rem;       /* Larger padding for a bigger button */
+  font-size: 1.25rem;       /* Increase font size */
+  background-color: #1db954; 
   color: #fff;
   text-decoration: none;
   border-radius: 5px;
+  text-align: center;
   transition: background-color 0.3s ease;
 }
 
 .more-button:hover {
-  background-color: #169c46; /* Darker green on hover */
+  background-color: #169c46; /* Slightly darker green on hover */
 }
 
 
