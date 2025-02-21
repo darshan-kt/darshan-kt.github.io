@@ -687,4 +687,7 @@ z-index: 1;
   .more-projects-wrapper {
     max-height: none;
   }
+  .project-grid {
+    grid-template-columns: 1fr;
+}
 }
