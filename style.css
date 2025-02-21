@@ -162,19 +162,26 @@ pointer-events: none;
   color: #1db954; /* Spotify green */
 }
 
+/* Projects Section Grid - 3 columns per row */
 .project-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
+/* Fade-in effect for project cards (optional) */
 .project-card {
-  background-color: #121212; /* Dark background */
-  padding: 1.5rem;
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  opacity: 1;
+  transition: opacity 0.6s ease;
 }
+
+/* Blur effect for preview batches */
+.blurred {
+  filter: blur(4px);
+  transition: filter 0.6s ease;
+}
+
+
 
 .project-card:hover {
   transform: translateY(-10px);
@@ -628,4 +635,40 @@ z-index: 1;
   height: auto;
   margin-left: 1rem;
   border-radius: 8px; /* Adjust the radius for more or less rounding */
+}
+
+/* Container that controls the slide-down animation */
+.more-projects-wrapper {
+  max-height: 200px; /* Height to show a blurred preview (adjust based on your card sizes) */
+  overflow: hidden;
+  transition: max-height 0.6s ease;
+}
+
+/* When expanded, set a large max-height to reveal all content */
+.more-projects-wrapper.expanded {
+  max-height: 2000px; /* Ensure this is large enough for all extra projects */
+}
+
+/* Initially blur the extra projects */
+.extra-projects {
+  filter: blur(4px);
+  transition: filter 0.6s ease;
+}
+
+/* Remove the blur when expanded */
+.more-projects-wrapper.expanded .extra-projects {
+  filter: none;
+}
+
+/* Optional: Animate the button icon rotation */
+.more-button i {
+  transition: transform 0.6s ease;
+}
+
+.more-button.expanded i {
+  transform: rotate(180deg);
+}
+.project-card {
+  opacity: 1;
+  transition: opacity 0.6s ease;
 }
