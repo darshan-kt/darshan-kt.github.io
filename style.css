@@ -673,7 +673,18 @@ z-index: 1;
   transition: opacity 0.6s ease;
 }
 @media only screen and (max-width: 768px) {
-  .project-grid {
-    grid-template-columns: 1fr;
+  /* Remove blur on mobile */
+  .project-card,
+  .blurred,
+  .extra-projects {
+    filter: none;
+  }
+  /* Optionally remove the show-more button on mobile */
+  #toggleProjects {
+    display: none;
+  }
+  /* And ensure the container shows all projects */
+  .more-projects-wrapper {
+    max-height: none;
   }
 }
