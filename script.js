@@ -27,8 +27,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Update the background image and fade in
       slideshowContainer.style.backgroundImage = `url('${currentImage}')`;
-      slideshowContainer.style.opacity = 1.5;
-    }, 1200); // Fade-out duration: 1.5 seconds
+      slideshowContainer.style.opacity = 2.5;
+    }, 1300); // Fade-out duration: 1.5 seconds
   }
 
   // Initialize with a random image
@@ -36,5 +36,5 @@ document.addEventListener('DOMContentLoaded', () => {
   slideshowContainer.style.backgroundImage = `url('${currentImage}')`;
 
   // Change background periodically (adjust timing as desired)
-  setInterval(changeBackground, 8000);
+  setInterval(changeBackground, 5000);
 });

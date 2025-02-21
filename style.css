@@ -1,352 +1,195 @@
 /* General Styles */
 body {
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #fff; /* White text for contrast */
-    background-color: #121212; /* Dark background */
-  }
-  
-  .container {
-    width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-  }
-  
-  /* Navigation Bar */
-  nav {
-    background-color: #000; /* Black navigation bar */
-    color: #1db954; /* Spotify green */
-    padding: 1rem 0;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-  }
-  
-  nav .logo {
-    font-size: 1.5rem;
-    font-weight: 600;
-    color: #1db954; /* Spotify green */
-  }
-  
-  nav .nav-links {
-    list-style: none;
-    display: flex;
-    gap: 1.5rem;
-  }
-  
-  nav .nav-links a {
-    color: #fff; /* White text for links */
-    text-decoration: none;
-    font-weight: 400;
-    transition: color 0.3s ease;
-  }
-  
-  nav .nav-links a:hover {
-    color: #1db954; /* Spotify green on hover */
-  }
-  
-  /* Home Section */
-.home-section {
-  position: relative;
-  height: 100vh;
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  color: #fff; /* White text for contrast */
+  background-color: #121212; /* Dark background */
+}
+
+.container {
+  width: 100%;
+  max-width: 1700px;
+  margin: 0 auto;
+}
+
+/* Navigation Bar */
+nav {
+  background-color: #000; /* Black navigation bar */
+  color: #1db954; /* Spotify green */
+  padding: 1rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+nav .logo {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1db954; /* Spotify green */
+}
+
+nav .nav-links {
+  list-style: none;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  overflow: hidden;
-  /* Removed gradient background */
+  gap: 1.5rem;
+}
+
+nav .nav-links a {
+  color: #fff; /* White text for links */
+  text-decoration: none;
+  font-weight: 400;
+  transition: color 0.3s ease;
+}
+
+nav .nav-links a:hover {
+  color: #1db954; /* Spotify green on hover */
+}
+
+/* Home Section */
+.home-section {
+position: relative;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+text-align: center;
+overflow: hidden;
+/* Removed gradient background */
+}
+/* Increase heading size in the home section */
+.home-section h1 {
+  font-size: 3rem; /* Adjust this value as needed */
+  margin-bottom: 1rem;
+}
+
+/* Increase paragraph text size in the home section */
+.home-section p {
+  font-size: 1.1rem; /* Adjust this value as needed */
+  margin-bottom: 2rem;
+}
+
+/* Increase the icon size in the social links */
+.social-links a {
+  font-size: 2rem; /* Adjust this value as needed */
+  margin: 0 0.75rem;
 }
 
 .background-slideshow {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: -1;
-  background-size: cover;
-  background-position: center;
-  transition: opacity 3s ease-in-out;
-  opacity: 1;
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+z-index: -1;
+background-size: cover;
+background-position: center;
+transition: opacity 3s ease-in-out;
+opacity: 1;
 }
 
 /* Overlay for faded green tint */
 .background-slideshow::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Green tint with about 30% opacity */
-  background: rgba(22, 22, 22, 0.644);
-  pointer-events: none;
+content: "";
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+/* Green tint with about 30% opacity */
+background: rgba(22, 22, 22, 0.644);
+pointer-events: none;
 }
 
 
-  
-  .social-links a {
-    color: #fff;
-    margin: 0 0.5rem;
-    font-size: 1.5rem;
-    transition: color 0.3s ease;
-  }
-  
-  .social-links a:hover {
-    color: #1db954; /* Spotify green on hover */
-  }
-  
-  /* About Section */
-  .about-section {
-    padding: 4rem 0;
-    background-color: #121212; /* Dark background */
-  }
-  
-  .about-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .about-section p {
-    text-align: center;
-    max-width: 800px;
-    margin: 0 auto 2rem;
-  }
-  
-  .skills {
-    text-align: center;
-  }
-  
-  .skills h3 {
-    margin-bottom: 1rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .skills ul {
-    list-style: none;
-    padding: 0;
-  }
-  
-  .skills li {
-    margin-bottom: 0.5rem;
-  }
-  
-  /* Projects Section */
-  .projects-section {
-    padding: 4rem 0;
-    background-color: #000; /* Black background */
-  }
-  
-  .projects-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .project-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-  }
-  
-  .project-card {
-    background-color: #121212; /* Dark background */
-    padding: 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-  }
-  
-  .project-card h3 {
-    margin-bottom: 1rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  /* Experience Section */
-  .experience-section {
-    padding: 4rem 0;
-    background-color: #121212; /* Dark background */
-  }
-  
-  .experience-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .experience-list {
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .experience-item {
-    margin-bottom: 1.5rem;
-  }
-  
-  .experience-item h3 {
-    margin-bottom: 0.5rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  /* Publications Section */
-  .publications-section {
-    padding: 4rem 0;
-    background-color: #000; /* Black background */
-  }
-  
-  .publications-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .publications-section ul {
-    list-style: none;
-    padding: 0;
-    max-width: 800px;
-    margin: 0 auto;
-  }
-  
-  .publications-section li {
-    margin-bottom: 1rem;
-  }
-  
-  /* Contact Section */
-  .contact-section {
-    padding: 4rem 0;
-    background-color: #121212; /* Dark background */
-  }
-  
-  .contact-section h2 {
-    text-align: center;
-    margin-bottom: 2rem;
-    color: #1db954; /* Spotify green */
-  }
-  
-  .contact-info {
-    text-align: center;
-  }
-  
-  .contact-info a {
-    color: #1db954; /* Spotify green */
-    text-decoration: none;
-    transition: color 0.3s ease;
-  }
-  
-  .contact-info a:hover {
-    color: #fff; /* White on hover */
-  }
-  
-  /* Footer */
-  footer {
-    background-color: #000; /* Black background */
-    color: #1db954; /* Spotify green */
-    text-align: center;
-    padding: 1rem 0;
-  }
-  
-  /* Animations */
-  @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-  }
-  
-  .animated-text {
-    animation: fadeIn 1.5s ease-in-out;
-  } 
-  /* Timeline Styles */
-.timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 0;
-  }
-  
-.timeline::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 4px;
-    background-color: #1db954; /* Spotify green */
-    left: 50%;
-    margin-left: -2px;
-  }
-  
-.timeline-item {
-    padding: 20px 40px;
-    position: relative;
-    width: 50%;
-    animation: fadeIn 1s ease-in-out;
-  }
-  
-  .timeline-item.left {
-    left: 0;
-    text-align: right;
-  }
-  
-  .timeline-item.right {
-    left: 50%;
-    text-align: left;
-  }
-  
-  .timeline-content {
-    padding: 20px;
-    background-color: #121212; /* Dark background */
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
-  
-  .timeline-item::after {
-    content: '';
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background-color: #1db954; /* Spotify green */
-    border: 4px solid #121212; /* Dark background */
-    border-radius: 50%;
-    top: 20px;
-    left: 50%;
-    margin-left: -10px;
-    z-index: 1;
-  }
-  
-  /* Project Images */
-  .project-card img {
-    width: 100%;
-    border-radius: 8px;
-    margin-bottom: 1rem;
-  }
-  
-  /* More Button */
-  .more-button {
-    display: inline-block;
-    margin-top: 2rem;
-    padding: 10px 20px;
-    background-color: #1db954; /* Spotify green */
-    color: #fff;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-  }
-  
-  .more-button:hover {
-    background-color: #169c46; /* Darker green on hover */
-  }
 
- 
+.social-links a {
+  color: #fff;
+  margin: 0 0.5rem;
+  font-size: 1.5rem;
+  transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+  color: #1db954; /* Spotify green on hover */
+}
+
+/* About Section */
+.about-section {
+  padding: 4rem 0;
+  background-color: #121212; /* Dark background */
+}
+
+.about-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Spotify green */
+}
+
+.about-section p {
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto 2rem;
+}
+
+.skills {
+  text-align: center;
+}
+
+.skills h3 {
+  margin-bottom: 1rem;
+  color: #1db954; /* Spotify green */
+}
+
+.skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.skills li {
+  margin-bottom: 0.5rem;
+}
+
+/* Projects Section */
+.projects-section {
+  padding: 4rem 0;
+  background-color: #000; /* Black background */
+}
+
+.projects-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Spotify green */
+}
+
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.project-card {
+  background-color: #121212; /* Dark background */
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.project-card h3 {
+  margin-bottom: 1rem;
+  color: #1db954; /* Spotify green */
+}
 
 /* Experience Section */
 .experience-section {
   padding: 4rem 0;
-  background-color: #000; /* Black background */
+  background-color: #121212; /* Dark background */
 }
 
 .experience-section h2 {
@@ -355,6 +198,87 @@ body {
   color: #1db954; /* Spotify green */
 }
 
+.experience-list {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.experience-item {
+  margin-bottom: 1.5rem;
+}
+
+.experience-item h3 {
+  margin-bottom: 0.5rem;
+  color: #1db954; /* Spotify green */
+}
+
+/* Publications Section */
+.publications-section {
+  padding: 4rem 0;
+  background-color: #000; /* Black background */
+}
+
+.publications-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Spotify green */
+}
+
+.publications-section ul {
+  list-style: none;
+  padding: 0;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.publications-section li {
+  margin-bottom: 1rem;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 4rem 0;
+  background-color: #121212; /* Dark background */
+}
+
+.contact-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Spotify green */
+}
+
+.contact-info {
+  text-align: center;
+}
+
+.contact-info a {
+  color: #1db954; /* Spotify green */
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contact-info a:hover {
+  color: #fff; /* White on hover */
+}
+
+/* Footer */
+footer {
+  background-color: #000; /* Black background */
+  color: #1db954; /* Spotify green */
+  text-align: center;
+  padding: 1rem 0;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.animated-text {
+  animation: fadeIn 1.5s ease-in-out;
+} 
+/* Timeline Styles */
 .timeline {
   position: relative;
   max-width: 800px;
@@ -397,27 +321,6 @@ body {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.timeline-item img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin-bottom: 1rem;
-}
-
-.timeline-item h3 {
-  margin-bottom: 1rem;
-  color: #1db954; /* Spotify green */
-}
-
-.timeline-item ul {
-  list-style: none;
-  padding: 0;
-}
-
-.timeline-item li {
-  margin-bottom: 0.5rem;
-}
-
 .timeline-item::after {
   content: '';
   position: absolute;
@@ -432,7 +335,250 @@ body {
   z-index: 1;
 }
 
+/* Project Images */
+.project-card img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+/* More Button */
+.more-button {
+  display: inline-block;
+  margin-top: 2rem;
+  padding: 10px 20px;
+  background-color: #1db954; /* Spotify green */
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.more-button:hover {
+  background-color: #169c46; /* Darker green on hover */
+}
+
+
+
+/* Experience Section */
+.experience-section {
+padding: 4rem 0;
+background-color: #000; /* Black background */
+}
+
+.experience-section h2 {
+text-align: center;
+margin-bottom: 2rem;
+color: #1db954; /* Spotify green */
+}
+
+.timeline {
+position: relative;
+max-width: 800px;
+margin: 0 auto;
+padding: 40px 0;
+}
+
+.timeline::before {
+content: '';
+position: absolute;
+top: 0;
+bottom: 0;
+width: 4px;
+background-color: #1db954; /* Spotify green */
+left: 50%;
+margin-left: -2px;
+}
+
+.timeline-item {
+padding: 20px 40px;
+position: relative;
+width: 50%;
+animation: fadeIn 1s ease-in-out;
+}
+
+.timeline-item.left {
+left: 0;
+text-align: right;
+}
+
+.timeline-item.right {
+left: 50%;
+text-align: left;
+}
+
+.timeline-content {
+padding: 20px;
+background-color: #121212; /* Dark background */
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item img {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+margin-bottom: 1rem;
+}
+
+.timeline-item h3 {
+margin-bottom: 1rem;
+color: #1db954; /* Spotify green */
+}
+
+.timeline-item ul {
+list-style: none;
+padding: 0;
+}
+
+.timeline-item li {
+margin-bottom: 0.5rem;
+}
+
+.timeline-item::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: #1db954; /* Spotify green */
+border: 4px solid #121212; /* Dark background */
+border-radius: 50%;
+top: 20px;
+left: 50%;
+margin-left: -10px;
+z-index: 1;
+}
+
 /* Education Section */
+.education-section {
+padding: 4rem 0;
+background-color: #121212; /* Dark background */
+}
+
+.education-section h2 {
+text-align: center;
+margin-bottom: 2rem;
+color: #1db954; /* Spotify green */
+}
+
+.education-list {
+max-width: 800px;
+margin: 0 auto;
+}
+
+.education-item {
+background-color: #000; /* Black background */
+padding: 1.5rem;
+border-radius: 8px;
+margin-bottom: 2rem;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.education-item:hover {
+transform: translateY(-10px);
+box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+}
+
+.education-item h3 {
+margin-bottom: 1rem;
+color: #1db954; /* Spotify green */
+}
+
+/* Experience Section */
+.experience-section {
+padding: 4rem 0;
+background-color: #000; /* Black background */
+}
+
+.experience-section h2 {
+text-align: center;
+margin-bottom: 2rem;
+color: #1db954; /* Spotify green */
+}
+
+.timeline {
+position: relative;
+max-width: 800px;
+margin: 0 auto;
+padding: 40px 0;
+}
+
+.timeline::before {
+content: '';
+position: absolute;
+top: 0;
+bottom: 0;
+width: 4px;
+background-color: #1db954; /* Spotify green */
+left: 50%;
+margin-left: -2px;
+}
+
+.timeline-item {
+padding: 20px 40px;
+position: relative;
+width: 50%;
+animation: fadeIn 1s ease-in-out;
+}
+
+.timeline-item.left {
+left: 0;
+text-align: right;
+}
+
+.timeline-item.right {
+left: 50%;
+text-align: left;
+}
+
+.timeline-content {
+padding: 20px;
+background-color: #121212; /* Dark background */
+border-radius: 8px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.timeline-item img {
+width: 80px;
+height: 80px;
+border-radius: 50%;
+margin-bottom: 1rem;
+}
+
+.timeline-item h3 {
+margin-bottom: 1rem;
+color: #1db954; /* Spotify green */
+}
+
+.timeline-item ul {
+list-style: none;
+padding: 0;
+}
+
+.timeline-item li {
+margin-bottom: 0.5rem;
+}
+
+.timeline-item::after {
+content: '';
+position: absolute;
+width: 20px;
+height: 20px;
+background-color: #1db954; /* Spotify green */
+border: 4px solid #121212; /* Dark background */
+border-radius: 50%;
+top: 20px;
+left: 50%;
+margin-left: -10px;
+z-index: 1;
+}
+
+.education-item img {
+  max-width: 100px; /* Adjust the size as needed */
+  margin-bottom: 1rem;
+}
+
 .education-section {
   padding: 4rem 0;
   background-color: #121212; /* Dark background */
@@ -463,96 +609,21 @@ body {
   box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
-.education-item h3 {
-  margin-bottom: 1rem;
-  color: #1db954; /* Spotify green */
-}
-
-/* Experience Section */
-.experience-section {
-  padding: 4rem 0;
-  background-color: #000; /* Black background */
-}
-
-.experience-section h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #1db954; /* Spotify green */
-}
-
-.timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 40px 0;
-}
-
-.timeline::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  background-color: #1db954; /* Spotify green */
-  left: 50%;
-  margin-left: -2px;
-}
-
-.timeline-item {
-  padding: 20px 40px;
-  position: relative;
-  width: 50%;
-  animation: fadeIn 1s ease-in-out;
-}
-
-.timeline-item.left {
-  left: 0;
-  text-align: right;
-}
-
-.timeline-item.right {
-  left: 50%;
-  text-align: left;
-}
-
-.timeline-content {
-  padding: 20px;
-  background-color: #121212; /* Dark background */
-  border-radius: 8px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.timeline-item img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
+.education-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin-bottom: 1rem;
 }
 
-.timeline-item h3 {
-  margin-bottom: 1rem;
+.education-header h3 {
+  margin: 0;
   color: #1db954; /* Spotify green */
 }
 
-.timeline-item ul {
-  list-style: none;
-  padding: 0;
-}
-
-.timeline-item li {
-  margin-bottom: 0.5rem;
-}
-
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: #1db954; /* Spotify green */
-  border: 4px solid #121212; /* Dark background */
-  border-radius: 50%;
-  top: 20px;
-  left: 50%;
-  margin-left: -10px;
-  z-index: 1;
+.education-header img {
+  max-width: 100px; /* Adjust the size as needed */
+  height: auto;
+  margin-left: 1rem;
+  border-radius: 8px; /* Adjust the radius for more or less rounding */
 }
