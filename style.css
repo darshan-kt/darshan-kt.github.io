@@ -690,3 +690,7 @@ z-index: 1;
     display: none;
   }
 }
+
+html, body {
+  overflow-x: hidden;
+}
