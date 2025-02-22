@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>4WD Outdoor Navigation Robot</title>
+  <!-- Link your main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Dark theme styling */
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .report-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);
+      line-height: 1.6;
+    }
+    .report-container h1, 
+    .report-container h2, 
+    .report-container h3 {
+      color: #1db954;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .report-container p, 
+    .report-container li, 
+    .report-container pre {
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+    .report-container ul, 
+    .report-container ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .report-container figure {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .report-container figcaption {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+    .video-container {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .video-container img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+    .image-grid img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    .media-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .media-link a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #1db954;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+    .media-link a:hover {
+      background: #13a04a;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">Jerin Peter</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Report Container -->
+  <div class="report-container">
+    <h1>4WD Outdoor Navigation Robot</h1>
+    <h2>A 4WD ROS Robot with Autonomous Navigation Capability</h2>
+    <p><strong>Authors:</strong> Jerin Peter (RET19EC098) and Team</p>
+    <p><strong>Date:</strong> 2023</p>
+    
+    <!-- Demo Video as YouTube Thumbnail -->
+    <div class="video-container">
+      <a href="https://youtu.be/Dy9fhVJdwMo?si=8TiXv9m70lLR1xAU" target="_blank">
+        <img src="https://img.youtube.com/vi/Dy9fhVJdwMo/hqdefault.jpg" alt="Demo Video Thumbnail">
+      </a>
+      <p style="text-align: center;">Click above to view the demo video</p>
+    </div>
+    <!-- Abstract -->
+    <h2>Abstract</h2>
+    <p>
+      This report details the development of a 4WD Outdoor Navigation Robot built on a ROS framework.
+      Integrating hardware components such as an Nvidia Jetson Nano, Arduino Mega, RMCS-2303 Motor Drivers, and 100 RPM DC motors,
+      the system leverages advanced SLAM techniques—including GMapping and RTAB-Map—to achieve robust autonomous navigation in dynamic outdoor environments.
+      The combined research and practical implementation confirm the robot’s efficacy in generating accurate maps and navigating complex terrains.
+    </p>
+    
+    <!-- Introduction -->
+    <h2>Introduction</h2>
+    <p>
+      Autonomous navigation is a cornerstone for modern robotic systems, particularly in applications like delivery, surveillance, and exploration.
+      Traditional methods relying solely on encoders or LIDAR may suffer from limitations such as odometry drift or restricted sensor ranges.
+      This project addresses these challenges by integrating multiple sensors and employing advanced SLAM algorithms to generate accurate 2D/3D maps.
+      This report merges details from the project README with comprehensive research findings from our conference paper.
+    </p>
+    
+    <!-- Hardware Setup -->
+    <h2>Hardware Setup</h2>
+    <p>
+      The robot features a robust four-wheel drive mechanism with a compact chassis (approximately 250 mm x 300 mm) constructed from aluminium composite panels.
+      Key components include:
+    </p>
+    <ul>
+      <li><strong>Processing:</strong> Nvidia Jetson Nano running ROS for high-level control.</li>
+      <li><strong>Control:</strong> Arduino Mega and RMCS-2303 Motor Drivers managing four 100 RPM DC motors.</li>
+      <li><strong>Sensors:</strong> YD-Lidar X4 for mapping, Xbox Kinect for 3D vision, and additional tracking cameras for enhanced odometry.</li>
+    </ul>
+    <!-- Image Grid for Hardware -->
+<div class="image-grid">
+      <img src="assets/images/projects/4wd_project/robot.jpg" alt="Robot Front View">
+      <img src="assets/images/projects/4wd_project/robot3.jpg" alt="Robot in Action">
+
+      <img src="assets/images/projects/4wd_project/drive.gif" alt="Robot Side View">
+      <img src="assets/images/projects/4wd_project/robot2.jpg" alt="Robot in Action">
+      
+      <img src="assets/images/projects/4wd_project/motortest.gif" alt="Robot in Action">
+      <img src="assets/images/projects/4wd_project/body.png" alt="Robot Top View">
+</div>
+
+<style>
+      .image-grid img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            border-radius: 8px;
+      }
+</style>
+    <!-- Simulation & Software Setup -->
+    <h2>Simulation and Software Setup</h2>
+    <p>
+      The robot was modeled in Fusion360 and converted to URDF using Fusion2URDF.
+      Gazebo plugins for differential drive, odometry, and LaserScan were integrated to simulate the robot in a custom environment.
+      The software stack includes ROS packages such as move_base, gmapping, and RTAB-Map, which work in tandem with sensor inputs to generate accurate maps and enable autonomous navigation.
+      Installation involves cloning the repository, building the workspace with <code>catkin_make</code>, and resolving dependencies with <code>rosdep</code>.
+    </p>
+    
+    <!-- Methodology -->
+    <h2>Methodology</h2>
+    <p>
+      Our approach is twofold:
+    </p>
+    <ul>
+      <li>
+        <strong>Simulation Model:</strong> A detailed CAD model was developed and tested in Gazebo. The navigation stack utilizes move_base and SLAM algorithms to continuously update the map and compute optimal paths.
+      </li>
+      <li>
+        <strong>Hardware Integration:</strong> The robot fuses data from LIDAR, Kinect, and wheel encoders to improve localization accuracy.
+        An Intel RealSense T265 Tracking Camera further refines the odometry, enabling robust real-world navigation.
+      </li>
+    </ul>
+    
+    <!-- Results and Discussion -->
+    <h2>Results and Discussion</h2>
+    <p>
+      Simulation tests in Gazebo validated the system's ability to generate both 2D and 3D maps.
+      In real-world trials, the robot effectively navigated dynamic outdoor environments, demonstrating reliable obstacle avoidance and accurate localization.
+      The combination of GMapping for rapid 2D mapping and RTAB-Map for richer 3D spatial awareness provides a comprehensive solution for autonomous navigation in GPS-restricted areas.
+    </p>
+    <div class="image-grid">
+      <img src="assets/images/projects/4wd_project/sim.png" alt="Simulation in Gazebo">
+      <img src="assets/images/projects/4wd_project/rtab.png" alt="RTAB-Map Output">
+    </div>
+    
+    <!-- Conclusion -->
+    <h2>Conclusion</h2>
+    <p>
+      The 4WD Outdoor Navigation Robot integrates advanced hardware and software to achieve robust autonomous navigation.
+      By combining detailed simulation with rigorous hardware integration, the robot reliably maps its environment and navigates complex terrains.
+      Future work will focus on optimizing sensor fusion, reducing computational overhead, and extending the operational range to further enhance system performance.
+    </p>
+    
+  
+    <!-- GitHub Documentation Button -->
+    <div class="media-link">
+      <a href="https://github.com/jerinpeter/4wdNavbot" target="_blank">
+        <i class="fab fa-github" style="font-size: 2rem; vertical-align: middle; margin-right: 0.5rem;"></i> View Full Documentation on GitHub
+      </a>
+    </div>
+  </div>
+  
+  <!-- Footer -->
+  <footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+    <p>&copy; 2025 Jerin Peter. All rights reserved.</p>
+  </footer>
+</body>
+</html>
