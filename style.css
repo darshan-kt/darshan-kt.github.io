@@ -126,29 +126,42 @@ pointer-events: none;
   color: #1db954; /* Spotify green */
 }
 
+.about-section .container {
+  background-color: #000; /* Black background */
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 800px; /* Optional: limit width if necessary */
+  margin: 0 auto;
+}
+
+.about-section .container:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
+black-box {
+  background-color: #1a1a1a;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin: 0 auto 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 800px; /* Optional: limit width if you want a narrower box */
+}
+
+.black-box:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 8px 12px rgba(0, 0, 0, 0.4);
+}
+
 .about-section p {
   text-align: center;
   max-width: 800px;
   margin: 0 auto 2rem;
 }
 
-.skills {
-  text-align: center;
-}
-
-.skills h3 {
-  margin-bottom: 1rem;
-  color: #1db954; /* Spotify green */
-}
-
-.skills ul {
-  list-style: none;
-  padding: 0;
-}
-
-.skills li {
-  margin-bottom: 0.5rem;
-}
 
 /* Projects Section */
 .projects-section {
@@ -170,10 +183,19 @@ pointer-events: none;
 }
 
 /* Fade-in effect for project cards (optional) */
+/* Remove initial blur effect */
+/* Fade-in animation for projects */
 .project-card {
-  opacity: 1;
-  transition: opacity 0.6s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
+
+.project-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 /* Blur effect for preview batches */
 .blurred {
@@ -460,7 +482,7 @@ z-index: 1;
 
 /* Education Section */
 .education-section {
-padding: 4rem 0;
+padding: 1rem 1;
 background-color: #121212; /* Dark background */
 }
 
@@ -689,6 +711,27 @@ z-index: 1;
   #toggleProjects {
     display: none;
   }
+}
+.resume-container {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.resume-button {
+  display: inline-block;
+  background-color: #f8f8f8; /* Spotify Green */
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.resume-button:hover {
+  background-color: #169c46; /* Slightly darker green */
+  transform: scale(1.05);
 }
 
 
