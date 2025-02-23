@@ -235,7 +235,7 @@
     <!-- Base Station Setup -->
     <h2>Base Station Setup</h2>
     <p>
-      The RTK base station consists of a GPS board paired with a high-gain antenna and a telemetry module (Tx) that continuously transmits correction data. A Pi Zero W, deployed at a remote location (typically atop a building), receives these signals via an attached receiver module. This Pi Zero W then uploads RTCM correction data to an NTRIP server hosted on Rtk2go.com. This remote setup allows for centralized correction data to be made available over the internet.
+      The RTK base station consists of a GPS board paired with a high-gain antenna and a telemetry module (Tx) that continuously transmits correction data (typically on top of a building). A Pi Zero W, deployed at a remote location that has internet access, receives these signals via an attached receiver module. This Pi Zero W then uploads RTCM correction data to an NTRIP server hosted on Rtk2go.com. This remote setup allows for centralized correction data to be made available over the internet.
     </p>
     <p>
       At the robot end, the Raspberry Pi 4—connected to the internet—downloads the RTCM data from the NTRIP server and pushes it via USB to the RTK GPS module. The RTK2B board within the module processes these corrections internally and outputs highly accurate positional data.
