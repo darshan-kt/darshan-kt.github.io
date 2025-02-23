@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,6 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
   <!-- Navigation Bar -->
   <nav>
@@ -26,28 +28,30 @@
 
 
   <!-- Home Section -->
-<section id="home" class="home-section">
-  <div class="background-slideshow"></div>
-  <div class="container">
-    <h1 class="animated-text">Hi, I'm Jerin Peter</h1>
-    <p class="animated-text">Robotics Engineer | Control & Navigation Specialist | ROS Developer | Maker</p>
-    <div class="social-links animated-text">
-      <a href="https://linkedin.com/in/jerinpeter" target="_blank"><i class="fab fa-linkedin"></i></a>
-      <a href="https://github.com/jerinpeter" target="_blank"><i class="fab fa-github"></i></a>
-      <a href="mailto:jerinpeter@gmail.com"><i class="fas fa-envelope"></i></a>
+  <section id="home" class="home-section">
+    <div class="background-slideshow"></div>
+    <div class="container">
+      <h1 class="animated-text">Hi, I'm Jerin Peter</h1>
+      <p class="animated-text">Robotics Engineer | Control & Navigation Specialist | ROS Developer | Maker</p>
+      <div class="social-links animated-text">
+        <a href="https://linkedin.com/in/jerinpeter" target="_blank"><i class="fab fa-linkedin"></i></a>
+        <a href="https://github.com/jerinpeter" target="_blank"><i class="fab fa-github"></i></a>
+        <a href="mailto:jerinpeter@gmail.com"><i class="fas fa-envelope"></i></a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
 
   <!-- About Section -->
   <section id="about" class="about-section">
-    <div class="container">
+    <div class="container black-box">
       <h2>About Me</h2>
       <p>
-        I am a Robotics Engineer with a Master's degree from the University of California, Riverside, specializing in control and navigation. I have a strong background in robotics, automation, and sensor fusion, with hands-on experience in ROS, Python, C++, and embedded systems.
+        I am a Robotics Engineer with a Master's degree from the University of California, Riverside, specializing in
+        control and navigation. I have a strong background in robotics, automation, and sensor fusion, with hands-on
+        experience in ROS, Python, C++, and embedded systems.
       </p>
-      <div class="skills">
+      <!-- <div class="skills">
         <h3>Skills</h3>
         <ul>
           <li>C++, Python, Embedded C</li>
@@ -55,7 +59,7 @@
           <li>Linux, FreeRTOS, Windows</li>
         </ul>
       </div>
-    </div>
+    </div> -->
   </section>
 
   <!-- Education Section -->
@@ -70,7 +74,9 @@
           </div>
           <p>MS in Robotics with focus on control & navigation</p>
           <p>CGPA: 4.0</p>
-          <p>Courses: Programming Practical Robots, Kinematics & Dynamics of Robots, Reinforcement Learning, Optimal Control & Estimation, Computational Methods for Robotics, Fundamentals of Machine Learning, Foundations of Robotics</p>
+          <p>Courses: Programming Practical Robots, Kinematics & Dynamics of Robots, Reinforcement Learning, Optimal
+            Control & Estimation, Computational Methods for Robotics, Fundamentals of Machine Learning, Foundations of
+            Robotics</p>
         </div>
         <div class="education-item">
           <div class="education-header">
@@ -79,7 +85,8 @@
           </div>
           <p>Undergraduate in Electronics & Communication Engineering</p>
           <p>CGPA: 3.26</p>
-          <p>Courses: Robotics and Industrial Automation, Machine Learning, Real Time Operating Systems, Control Systems, Digital Signal Processing</p>
+          <p>Courses: Robotics and Industrial Automation, Machine Learning, Real Time Operating Systems, Control
+            Systems, Digital Signal Processing</p>
         </div>
         <div class="education-item">
           <div class="education-header">
@@ -93,7 +100,7 @@
       </div>
     </div>
   </section>
-  
+
 
   <!-- Projects Section -->
   <section id="projects" class="projects-section">
@@ -104,7 +111,9 @@
         <div class="project-card">
           <img src="assets/images/projects/multimodal.png" alt="Multimodal Calibration Dataset">
           <h3>Multimodal Calibration Dataset - CALIBDB</h3>
-          <p>A versatile multimodal calibration platform that uses robotic arms and a high-precision MoCap system to collect diverse extrinsic data between cameras and LiDAR sensors across both static and dynamic configurations.</p>
+          <p>A versatile multimodal calibration platform that uses robotic arms and a high-precision MoCap system to
+            collect diverse extrinsic data between cameras and LiDAR sensors across both static and dynamic
+            configurations.</p>
           <P> Submitted to RSS 2025 (pending approval)</P>
         </div>
         <!-- Project 2 -->
@@ -112,76 +121,89 @@
           <div class="project-card">
             <img src="assets/images/projects/arm.gif" alt="Plate Cleaning Robot">
             <h3>Plate Cleaning Robot</h3>
-            <p>Developed an automated plate-cleaning system with an ABB IRB 120 robotic arm using inverse kinematics and PD control for spiral motions.</p>
-            <p> It features efficient trajectory planning and enhanced reliability through random plate positioning and robust task space design.</p>
+            <p>Developed an automated plate-cleaning system with an ABB IRB 120 robotic arm using inverse kinematics and
+              PD control for spiral motions.</p>
+            <p> It features efficient trajectory planning and enhanced reliability through random plate positioning and
+              robust task space design.</p>
           </div>
         </a>
-        
+
         <!-- Project 3 -->
         <a href="autonomous_indoor_delivery_robot.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/nova.jpg" alt="Autonomous Indoor Delivery Robot">
-          <h3>Autonomous Indoor Delivery Robot</h3>
-          <p>Developed an autonomous indoor delivery robot using ROS for precise path planning. Integerated sensor fusion (Lidar, Wheel odom, IMU) with EKF for high accuracy localization.</p>
-          <p>Designed a PyQT-based GUI for easy user interation and voice control.</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/nova.jpg" alt="Autonomous Indoor Delivery Robot">
+            <h3>Autonomous Indoor Delivery Robot</h3>
+            <p>Developed an autonomous indoor delivery robot using ROS for precise path planning. Integerated sensor
+              fusion (Lidar, Wheel odom, IMU) with EKF for high accuracy localization.</p>
+            <p>Designed a PyQT-based GUI for easy user interation and voice control.</p>
+          </div>
+        </a>
         <!-- Project 4 -->
         <a href="4wd_outdoor_nav.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/4wd.jpg" alt="4WD Outdoor Navigation Robot">
-          <h3>4WD Outdoor Navigation Robot</h3>
-          <p>Developed a 4-wheel drive robot with 3D camera for real-time appearance-based mapping and navigation in Gps denied environments.</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/4wd.jpg" alt="4WD Outdoor Navigation Robot">
+            <h3>4WD Outdoor Navigation Robot</h3>
+            <p>Developed a 4-wheel drive robot with 3D camera for real-time appearance-based mapping and navigation in
+              Gps denied environments.</p>
+          </div>
+        </a>
         <!-- Project 5 -->
-        <a href="all_terrain_medical_rover.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/psr.png" alt="All-Terrain Medical Security Phase Shifting Rover">
-          <h3>All-Terrain Medical Security Phase Shifting Rover</h3>
-          <p>Designed a modular rover for disaster management with adaptive height/width adjustments and toxic gas detection.</p>
-        </div>
-      </a>
+        <a href="dqn.html" style="text-decoration: none; color: inherit;">
+          <div class="project-card">
+            <img src="assets/images/projects/rl.png" alt="Autonomous Navigation of a Mecanum Robot Using DQN in ROS 2">
+            <h3>Autonomous Navigation of a Mecanum Robot Using DQN in ROS 2</h3>
+            <p>This project implements DQN in ROS2 for autonomous navigation of a mecanum-wheeled robot. The robot learns to reach its target while avoiding obstacles in a simulated environment.</p>
+          </div>
+        </a>
         <!-- Project 6 -->
         <a href="low_cost_autonomous_robot.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/mini.png" alt="Mini Indoor Autonomous Nav Bot">
-          <h3>Mini Indoor Autonomous Nav Bot</h3>
-          <p>A mini autonomous navigation robot based on the LinoRobot Repository.</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/mini.png" alt="Mini Indoor Autonomous Nav Bot">
+            <h3>Mini Indoor Autonomous Nav Bot</h3>
+            <p>A mini autonomous navigation robot based on the LinoRobot Repository.</p>
+          </div>
+        </a>
         <!-- Project 7 -->
         <a href="mecanum.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/mecanum.png" alt="Holonomic Autonomous Navigation Mobile Robot">
-          <h3>Mecanum Wheel Based Nav. Robot</h3>
-          <p>An implementation of autonomous navigation with sampling-based trajectory planner and drift control using PID.</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/mecanum.png" alt="Holonomic Autonomous Navigation Mobile Robot">
+            <h3>Mecanum Wheel Based Nav. Robot</h3>
+            <p>An implementation of autonomous navigation with sampling-based trajectory planner and drift control using
+              PID.</p>
+          </div>
+        </a>
         <!-- Project 8 -->
         <a href="turtle_game.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/demo.gif" alt="Turtlesim based Game in ROS">
-          <h3>Turtlesim based Game in ROS</h3>
-          <p>A game made with TurtleSim in ROS, the task is to drive the turtle around a predefined path without going out of the line..</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/demo.gif" alt="Turtlesim based Game in ROS">
+            <h3>Turtlesim based Game in ROS</h3>
+            <p>A game made with TurtleSim in ROS, the task is to drive the turtle around a predefined path without going
+              out of the line..</p>
+          </div>
+        </a>
         <!-- Project 9 -->
         <a href="outdoorbot.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/outdoor.png" alt="RTK GPS Based Outdoor Nav. Bot">
-          <h3>RTK GPS Based Outdoor Nav. Bot</h3>
-          <p>Autonomous navigation with sensor fusion and RTK GPS.</p>
-        </div>
-      </a>
-
-      <a href="dqn.html" style="text-decoration: none; color: inherit;">
-        <div class="project-card">
-          <img src="assets/images/projects/rl.png" alt="Autonomous Navigation of a Mecanum Robot Using DQN in ROS 2">
-          <h3>Autonomous Navigation of a Mecanum Robot Using DQN in ROS 2</h3>
-          <p>Holonomic navigation implementation with sampling-based trajectory planner and PID control.</p>
-        </div>
-      </a>
+          <div class="project-card">
+            <img src="assets/images/projects/outdoor.png" alt="RTK GPS Based Outdoor Nav. Bot">
+            <h3>RTK GPS Based Outdoor Nav. Bot</h3>
+            <p>Autonomous navigation with sensor fusion and RTK GPS.</p>
+          </div>
+        </a>
+        <a href="all_terrain_medical_rover.html" style="text-decoration: none; color: inherit;">
+          <div class="project-card">
+            <img src="assets/images/projects/psr.png" alt="All-Terrain Medical Security Phase Shifting Rover">
+            <h3>All-Terrain Medical Security Phase Shifting Rover</h3>
+            <p>Designed a modular rover for disaster management with adaptive height/width adjustments and toxic gas
+              detection.</p>
+          </div>
+        </a>
+        <a href="https://github.com/jerinpeter/chat_app" target="_blank" style="text-decoration: none; color: inherit;">
+          <div class="project-card">
+            <img src="assets/images/projects/chatapp.gif" alt="Chat App using pub sub model">
+            <h3>Simple chat Application based on talker and listener node in ROS</h3>
+            <p>Implemented chat-like application consisting of 2 nodes in ROS, Implementation of basic subscriber-publisher, using the concept of multithreading using AsyncSpinner in ROS.</p>
+          </div>
+        </a>
         <!-- Project 11 -->
         <div class="project-card">
           <img src="assets/images/projects/spidy.png" alt="4 Legged Spider Robot">
@@ -195,11 +217,7 @@
           <p>Implementation with sampling-based trajectory planner and PID control.</p>
         </div>
         <!-- Project 13 -->
-        <div class="project-card">
-          <img src="assets/images/projects/chatapp.gif" alt="Chat App using pub sub model">
-          <h3>Chat App using pub sub model with async spinner</h3>
-          <p>Implemented chat-like nodes using async spinner in ROS.</p>
-        </div>
+
         <!-- Project 14 -->
         <div class="project-card">
           <img src="assets/images/projects/waterbot.png" alt="Water Body Cleaning Robot">
@@ -242,12 +260,12 @@
           <h3>RC offroad car with drift control</h3>
           <p>OpenCV based lane following and drift control implementation.</p>
         </div>
-        
+
       </div>
       <button class="more-button" id="toggleProjects">More Projects</button>
     </div>
   </section>
-  
+
 
   <!-- Experience Section -->
   <section id="experience" class="experience-section">
@@ -328,4 +346,5 @@
 
   <script src="script.js"></script>
 </body>
+
 </html>
