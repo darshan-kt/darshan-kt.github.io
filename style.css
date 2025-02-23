@@ -737,8 +737,7 @@ z-index: 1;
   transform: scale(1.05);
 }
 
-
-section {
-  padding: 2rem 1.5rem;
+html, body {
+  overflow-x: hidden;
 }
 
