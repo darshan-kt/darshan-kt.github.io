@@ -128,7 +128,7 @@ pointer-events: none;
 
 .about-section .container {
   background-color: #000; /* Black background */
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -699,6 +699,8 @@ z-index: 1;
 @media only screen and (max-width: 768px) {
   .project-grid {
     grid-template-columns: 1fr !important;
+    .projects-section .container {
+      padding: 0 1.5rem; 
   }
   .more-projects-wrapper {
     max-height: none;
