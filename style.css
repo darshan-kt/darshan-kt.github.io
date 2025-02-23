@@ -9,7 +9,7 @@ body {
 
 .container {
   width: 100%;
-  max-width: 1700px;
+  max-width: 1690px;
   margin: 0 auto;
 }
 
@@ -690,6 +690,8 @@ z-index: 1;
     display: none;
   }
 }
+
+
 
 html, body {
   overflow-x: hidden;
