@@ -8,7 +8,8 @@ document.addEventListener('DOMContentLoaded', () => {
     'assets/images/background/robot2.jpg',
     'assets/images/background/robot4.jpg',
     'assets/images/background/robot5.jpg',
-    'assets/images/background/robot6.jpg'
+    'assets/images/background/robot6.jpg',
+    'assets/images/background/class2.jpg'
   ];
   let currentImage = '';
 
@@ -25,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
       slideshowContainer.style.opacity = 1;
     }, 1000);
   }
-  setInterval(changeBackground, 4000);
+  setInterval(changeBackground, 3000);
 
   // === Project Reveal Animation with Blurring Effect ===
   const projectCards = document.querySelectorAll('.project-card');
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     },
-    { threshold: 0.2 }
+    { threshold: 0.1 }
   );
   
   projectCards.forEach((card) => {
