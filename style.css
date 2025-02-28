@@ -840,6 +840,35 @@ z-index: 1;
   }
 }
 
+/* Container for the skill list */
+.project-skills {
+  list-style: none;        /* Remove default bullet points */
+  margin: 1rem 0;          /* Spacing above/below */
+  padding: 0;
+  display: flex;           /* Lay them out side by side */
+  flex-wrap: wrap;         /* Wrap to the next line if too long */
+  gap: 0.5rem;             /* Space between skill tags */
+}
+
+/* Individual skill tags (pills) */
+.project-skills li {
+  display: inline-block;
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #1db954; /* A red border color (example) */
+  color: #ffffff;            /* Matching text color */
+  background-color: #1a1919; /* White background (or any color you like) */
+  border-radius: 16px;       /* Rounded pill shape */
+  font-size: 0.9rem;         /* Slightly smaller text */
+  cursor: default;           /* Pointer not needed since they’re not links */
+  transition: background-color 0.3s;
+}
+
+/* Optional hover effect: invert colors or lighten background */
+.project-skills li:hover {
+  background-color: #f44336;
+  color: #ffffff;
+}
+
 
 html, body {
   overflow-x: hidden;
