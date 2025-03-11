@@ -1105,7 +1105,23 @@ z-index: 1;
   font-size: 0.9rem;
   color: #ccc; /* Slightly lighter gray text for references */
 }
+.publication-link {
+  display: block;
+  width: fit-content;
+  margin: 1rem auto 0; /* Center the button */
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #1db954;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
 
+.publication-link:hover {
+  background-color: #1db954;
+  color: #000;
+}
 /* Button/Link to paper */
 .publication-link {
   color: #1db954;
