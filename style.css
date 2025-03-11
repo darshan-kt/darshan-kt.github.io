@@ -1053,6 +1053,79 @@ z-index: 1;
   text-align: justify;
 }
 
+/* Publications Section */
+.publications-section {
+  padding: 4rem 0;
+  background-color: #000; /* Maintains black background */
+}
+
+.publications-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Green accent */
+}
+
+/* Responsive Grid Layout for publications */
+.publications-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+/* Individual Publication Card */
+.publication-card {
+  background-color: #121212;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.publication-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+}
+
+/* Card Content */
+.publication-info {
+  padding: 1rem;
+  color: #fff;
+}
+
+/* Publication Title */
+.publication-info h3 {
+  margin: 0 0 0.5rem;
+  font-size: 1.1rem;
+  color: #1db954; /* Green accent for titles */
+}
+
+/* Short description / reference text */
+.publication-info p {
+  margin: 0 0 1rem;
+  font-size: 0.9rem;
+  color: #ccc; /* Slightly lighter gray text for references */
+}
+
+/* Button/Link to paper */
+.publication-link {
+  color: #1db954;
+  text-decoration: none;
+  font-weight: 600;
+  border: 1px solid #1db954;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+.publication-link:hover {
+  background-color: #1db954;
+  color: #000;
+}
+
+.publication-link:hover {
+  background-color: #1db954;
+  color: #000;
+}
 
 
 html, body {
