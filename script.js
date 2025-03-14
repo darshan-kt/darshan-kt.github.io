@@ -13,20 +13,29 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   let currentImage = '';
 
+  // Apply initial styles for smooth transition
+  slideshowContainer.style.transition = 'opacity 1.5s linear';
+  slideshowContainer.style.opacity = 0.3;
+
   function changeBackground() {
-    slideshowContainer.style.opacity = 0;
-    setTimeout(() => {
-      let newImage;
-      do {
-        newImage = files[Math.floor(Math.random() * files.length)];
-      } while (newImage === currentImage && files.length > 1);
-      currentImage = newImage;
-      
-      slideshowContainer.style.backgroundImage = `url(${currentImage})`;
-      slideshowContainer.style.opacity = 1;
-    }, 1000);
+    let newImage;
+    do {
+      newImage = files[Math.floor(Math.random() * files.length)];
+    } while (newImage === currentImage && files.length > 1);
+    currentImage = newImage;
+    
+    slideshowContainer.style.backgroundImage = `url(${currentImage})`;
+    slideshowContainer.style.opacity = 0.8;
   }
-  setInterval(changeBackground, 3000);
+
+  // Initial background change
+  changeBackground();
+
+  // Set interval for background change
+  setInterval(() => {
+    slideshowContainer.style.opacity = 0;
+    setTimeout(changeBackground, 800);
+  }, 3700);
 
   // === Project Reveal Animation with Blurring Effect ===
   const projectCards = document.querySelectorAll('.project-card');
