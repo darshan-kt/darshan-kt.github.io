@@ -102,14 +102,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-advance every 3 seconds
   let timer = setInterval(() => {
     nextSlide();
-  }, 5000);
+  }, 4500);
 
   // Reset the timer when user manually navigates
   function resetTimer() {
     clearInterval(timer);
     timer = setInterval(() => {
       nextSlide();
-    }, 5000);
+    }, 4500);
   }
 
   // Initialize first slide
