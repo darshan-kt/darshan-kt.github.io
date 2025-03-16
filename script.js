@@ -62,6 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const slides = document.querySelectorAll('.slider .slide');
   const next = document.querySelector('.slider .next');
   const prev = document.querySelector('.slider .prev');
+  const dots = document.querySelectorAll('.dots-container .dot');
 
   function showSlide(index) {
     if (index >= slides.length) {
@@ -74,6 +75,12 @@ document.addEventListener('DOMContentLoaded', () => {
       slide.classList.remove('active');
       if (i === slideIndex) {
         slide.classList.add('active');
+      }
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.remove('active');
+      if (i === slideIndex) {
+        dot.classList.add('active');
       }
     });
   }
@@ -97,6 +104,18 @@ document.addEventListener('DOMContentLoaded', () => {
     prevSlide();
     resetTimer();
   });
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      currentSlide(i + 1);
+    });
+  });
+
+  function currentSlide(index) {
+    slideIndex = index - 1;
+    showSlide(slideIndex);
+    resetTimer();
+  }
 
   // Auto-advance every 3 seconds
   let timer = setInterval(() => {
