@@ -33,7 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set interval for background change
   setInterval(() => {
-
     slideshowContainer.style.opacity = 0;
     setTimeout(changeBackground, 800);
   }, 3700);
@@ -102,14 +101,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // Auto-advance every 3 seconds
   let timer = setInterval(() => {
     nextSlide();
-  }, 4500);
+  }, 3000);
 
   // Reset the timer when user manually navigates
   function resetTimer() {
     clearInterval(timer);
     timer = setInterval(() => {
       nextSlide();
-    }, 4500);
+    }, 3000);
   }
 
   // Initialize first slide
