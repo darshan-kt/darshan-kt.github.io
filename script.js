@@ -33,6 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Set interval for background change
   setInterval(() => {
+
     slideshowContainer.style.opacity = 0;
     setTimeout(changeBackground, 800);
   }, 3700);
@@ -56,4 +57,61 @@ document.addEventListener('DOMContentLoaded', () => {
     card.classList.add('blurred'); // Ensure blur is applied initially
     observer.observe(card);
   });
+});
+document.addEventListener('DOMContentLoaded', () => {
+  let slideIndex = 0;
+  const slides = document.querySelectorAll('.slider .slide');
+  const next = document.querySelector('.slider .next');
+  const prev = document.querySelector('.slider .prev');
+
+  function showSlide(index) {
+    if (index >= slides.length) {
+      slideIndex = 0;
+    }
+    if (index < 0) {
+      slideIndex = slides.length - 1;
+    }
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === slideIndex) {
+        slide.classList.add('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    slideIndex++;
+    showSlide(slideIndex);
+  }
+
+  function prevSlide() {
+    slideIndex--;
+    showSlide(slideIndex);
+  }
+
+  next.addEventListener('click', () => {
+    nextSlide();
+    resetTimer();
+  });
+
+  prev.addEventListener('click', () => {
+    prevSlide();
+    resetTimer();
+  });
+
+  // Auto-advance every 3 seconds
+  let timer = setInterval(() => {
+    nextSlide();
+  }, 5000);
+
+  // Reset the timer when user manually navigates
+  function resetTimer() {
+    clearInterval(timer);
+    timer = setInterval(() => {
+      nextSlide();
+    }, 5000);
+  }
+
+  // Initialize first slide
+  showSlide(slideIndex);
 });

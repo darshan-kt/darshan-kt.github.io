@@ -1142,6 +1142,64 @@ z-index: 1;
   background-color: #1db954;
   color: #000;
 }
+/* Workshops & Mentorships Slideshow Section */
+.workshops-section {
+  padding: 4rem 0;
+  background-color: #000; /* Consistent with your other sections */
+}
+
+.workshops-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954; /* Spotify green accent */
+}
+
+.slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+.slide {
+  display: none;
+  text-align: center;
+}
+
+.slide.active {
+  display: block;
+}
+
+.slide img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.slide p {
+  margin-top: 0.5rem;
+  color: #fff;
+}
+
+.prev, .next {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 2rem;
+  color: #1db954;
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  border-radius: 4px;
+}
+
+.prev {
+  left: 10px;
+}
+
+.next {
+  right: 10px;
+}
 
 
 html, body {
