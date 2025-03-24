@@ -133,3 +133,66 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize first slide
   showSlide(slideIndex);
 });
+
+document.addEventListener('DOMContentLoaded', () => {
+  let achievementIndex = 0;
+  const achievementSlides = document.querySelectorAll('.achievements-slider .slide');
+  const achievementNext = document.querySelector('.achievements-slider .next');
+  const achievementPrev = document.querySelector('.achievements-slider .prev');
+  const achievementDots = document.querySelectorAll('.achievements-section .dot');
+  let achievementTimer;
+
+  function showAchievementSlide(index) {
+    if (index >= achievementSlides.length) {
+      achievementIndex = 0;
+    }
+    if (index < 0) {
+      achievementIndex = achievementSlides.length - 1;
+    }
+    achievementSlides.forEach((slide) => {
+      slide.classList.remove('active');
+    });
+    achievementDots.forEach((dot) => {
+      dot.classList.remove('active');
+    });
+    achievementSlides[achievementIndex].classList.add('active');
+    achievementDots[achievementIndex].classList.add('active');
+  }
+
+  function nextAchievementSlide() {
+    achievementIndex++;
+    showAchievementSlide(achievementIndex);
+  }
+
+  function prevAchievementSlide() {
+    achievementIndex--;
+    showAchievementSlide(achievementIndex);
+  }
+
+  function resetAchievementTimer() {
+    clearInterval(achievementTimer);
+    achievementTimer = setInterval(nextAchievementSlide, 2000);
+  }
+
+  achievementNext.addEventListener('click', () => {
+    nextAchievementSlide();
+    resetAchievementTimer();
+  });
+
+  achievementPrev.addEventListener('click', () => {
+    prevAchievementSlide();
+    resetAchievementTimer();
+  });
+
+  achievementDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      achievementIndex = i;
+      showAchievementSlide(achievementIndex);
+      resetAchievementTimer();
+    });
+  });
+
+  // Initialize first slide and auto-scroll
+  showAchievementSlide(achievementIndex);
+  achievementTimer = setInterval(nextAchievementSlide, 3000);
+});

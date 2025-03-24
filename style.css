@@ -778,15 +778,21 @@ z-index: 1;
 }
 
 .resume-button {
-  display: inline-block;
+  display: inline-flex; /* Use flexbox for alignment */
+  align-items: center; /* Vertically align icon and text */
+  gap: 0.5rem; /* Space between icon and text */
   background-color: #f8f8f8; /* Spotify Green */
   color: #000000;
-  font-size: 1.2rem;
+  font-size: 1rem; /* Reduced font size */
   font-weight: 600;
-  padding: 0.8rem 1.5rem;
+  padding: 0.6rem 1rem; /* Reduced padding */
   border-radius: 6px;
   text-decoration: none;
   transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.resume-button i {
+  font-size: 1rem; /* Icon size */
 }
 /* .about-section p {
     text-align: justify; /* Improves readability */
@@ -1223,5 +1229,23 @@ z-index: 1;
 
 html, body {
   overflow-x: hidden;
+}
+
+.achievements-section {
+  padding: 4rem 0;
+  background-color: #000;
+}
+
+.achievements-section h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #1db954;
+}
+
+.achievements-slider {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  overflow: hidden;
 }
 
