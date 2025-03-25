@@ -150,15 +150,18 @@ document.addEventListener('DOMContentLoaded', () => {
     if (index < 0) {
       achievementIndex = achievementSlides.length - 1;
     }
-    achievementSlides.forEach((slide) => {
-      slide.style.transition = 'opacity 0.5s ease'; // Smooth transition
+    achievementSlides.forEach((slide, i) => {
+      slide.style.transition = 'opacity 0.5s ease-in-out'; // Smooth fade transition
       slide.classList.remove('active');
+      slide.style.opacity = i === achievementIndex ? '1' : '0'; // Ensure no blank slides
     });
-    achievementDots.forEach((dot) => {
+    achievementDots.forEach((dot, i) => {
       dot.classList.remove('active');
+      if (i === achievementIndex) {
+        dot.classList.add('active');
+      }
     });
     achievementSlides[achievementIndex].classList.add('active');
-    achievementDots[achievementIndex].classList.add('active');
   }
 
   function nextAchievementSlide() {
@@ -173,7 +176,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetAchievementTimer() {
     clearInterval(achievementTimer);
-    achievementTimer = setInterval(nextAchievementSlide, 2000);
+    achievementTimer = setInterval(nextAchievementSlide, 3000);
   }
 
   achievementNext.addEventListener('click', () => {

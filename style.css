@@ -1252,3 +1252,10 @@ html, body {
   overflow: hidden;
 }
 
+.achievements-slider .slide img {
+  max-width: 90%; /* Reduce the width to 70% of the container */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the image */
+  display: block; /* Ensure the image is centered */
+}
+
