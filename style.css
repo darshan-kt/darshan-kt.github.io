@@ -21,6 +21,7 @@ nav {
   position: sticky;
   top: 0;
   z-index: 1000;
+  animation: slideInDown 1s ease-in-out;
 }
 
 nav .logo {
@@ -61,18 +62,21 @@ overflow: hidden;
 .home-section h1 {
   font-size: 3rem; /* Adjust this value as needed */
   margin-bottom: 1rem;
+  animation: fadeInUp 1.5s ease-in-out;
 }
 
 /* Increase paragraph text size in the home section */
 .home-section p {
   font-size: 1.1rem; /* Adjust this value as needed */
   margin-bottom: 2rem;
+  animation: fadeInUp 1.5s ease-in-out;
 }
 
 /* Increase the icon size in the social links */
 .social-links a {
   font-size: 2rem; /* Adjust this value as needed */
   margin: 0 0.75rem;
+  animation: zoomIn 1.5s ease-in-out;
 }
 
 .background-slideshow {
@@ -110,7 +114,7 @@ pointer-events: none;
   transition: color 0.3s ease;
 }
 
-.social-links a:hover {
+social-links a:hover {
   color: #1db954; /* Spotify green on hover */
 }
 
@@ -124,6 +128,7 @@ pointer-events: none;
   text-align: center;
   margin-bottom: 2rem;
   color: #1db954; /* Spotify green */
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* .about-section .container {
@@ -162,6 +167,7 @@ black-box {
   text-align: center;
   max-width: 700px;
   margin: 0 auto 2rem;
+  animation: fadeInUp 1.2s ease-in-out;
 }
 
 
@@ -191,6 +197,7 @@ black-box {
   opacity: 0;
   transform: translateY(30px);
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  animation: fadeInUp 1.2s ease-in-out;
 }
 
 .project-card.visible {
@@ -290,7 +297,7 @@ black-box {
   transition: color 0.3s ease;
 }
 
-.contact-info a:hover {
+contact-info a:hover {
   color: #fff; /* White on hover */
 }
 
@@ -300,6 +307,7 @@ footer {
   color: #1db954; /* Spotify green */
   text-align: center;
   padding: 1rem 0;
+  animation: fadeIn 1s ease-in-out;
 }
 
 /* Animations */
@@ -338,16 +346,19 @@ footer {
   width: 30%;
   padding: 10px 10px; /* Controls spacing around each card */
   box-sizing: border-box;
+  animation: fadeInUp 1s ease-in-out;
 }
 
 .timeline-item.left {
   left: 0;        /* Positions the left cards on the left half */
   text-align: right;
+  animation: slideInLeft 1s ease-in-out;
 }
 
 .timeline-item.right {
   left: 40%;      /* Positions the right cards on the right half */
   text-align: left;
+  animation: slideInRight 1s ease-in-out;
 }
 
 /* The card content itself */
@@ -946,6 +957,7 @@ z-index: 1;
   text-align: center;
   box-shadow: 0 4px 6px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
+  animation: zoomIn 1s ease-in-out;
 }
 
 .skill-card:hover {
@@ -990,6 +1002,7 @@ z-index: 1;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1.2s ease-in-out;
 }
 
 .publication-card:hover {
@@ -1085,6 +1098,7 @@ z-index: 1;
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0,0,0,0.3);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInUp 1.2s ease-in-out;
 }
 
 .publication-card:hover {
@@ -1172,6 +1186,7 @@ z-index: 1;
   text-align: center;
   opacity: 0; /* Start with hidden opacity */
   transition: opacity 0.5s ease; /* Smooth transition for opacity */
+  animation: fadeIn 1s ease-in-out;
 }
 
 .slide.active {
@@ -1257,5 +1272,181 @@ html, body {
   height: auto; /* Maintain aspect ratio */
   margin: 0 auto; /* Center the image */
   display: block; /* Ensure the image is centered */
+  /* Removed animation */
+}
+
+.achievements-slider .slide {
+  display: none;
+  text-align: center;
+  opacity: 0; /* Start with hidden opacity */
+  transition: opacity 0.5s ease; /* Smooth transition for opacity */
+  animation: fadeIn 1s ease-in-out;
+}
+
+.achievements-slider .slide.active {
+  display: block;
+  opacity: 1; /* Fully visible when active */
+}
+
+/* Experience Section Card Animation */
+.experience-section .timeline-item {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.experience-section .timeline-item.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* General Animation Keyframes */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Apply Animations to Sections */
+section {
+  animation: fadeInUp 1s ease-in-out;
+}
+
+/* Navigation Bar Animation */
+nav {
+  animation: slideInDown 1s ease-in-out;
+}
+
+/* Home Section Animations */
+.home-section h1,
+.home-section p {
+  animation: fadeInUp 1.5s ease-in-out;
+}
+
+.social-links a {
+  animation: zoomIn 1.5s ease-in-out;
+}
+
+/* About Section */
+.about-section h2 {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.about-section p {
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+/* Skills Section */
+.skill-card {
+  animation: zoomIn 1s ease-in-out;
+}
+
+/* Projects Section */
+.project-card {
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+/* Timeline Items */
+.timeline-item.left {
+  animation: slideInLeft 1s ease-in-out;
+}
+
+.timeline-item.right {
+  animation: slideInRight 1s ease-in-out;
+}
+
+/* Publications Section */
+.publication-card {
+  animation: fadeInUp 1.2s ease-in-out;
+}
+
+/* Workshops Section */
+.workshops-section .slide {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Achievements Section */
+.achievements-slider .slide {
+  animation: zoomIn 1s ease-in-out;
+}
+
+/* Footer Animation */
+footer {
+  animation: fadeIn 1s ease-in-out;
+}
+
+/* Ensure visibility for animated elements */
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  animation-play-state: running !important;
+}
+
+/* Add fallback for sections to ensure visibility */
+section, .skill-card, .project-card, .timeline-item, .publication-card, .slide, footer {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Hidden state for elements before animation */
+.hidden {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* Visible state for elements after animation */
+.visible {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 

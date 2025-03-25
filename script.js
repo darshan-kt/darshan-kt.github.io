@@ -56,6 +56,24 @@ document.addEventListener('DOMContentLoaded', () => {
     card.classList.add('blurred'); // Ensure blur is applied initially
     observer.observe(card);
   });
+
+  // Add animation to experience section cards
+  const timelineItems = document.querySelectorAll('.experience-section .timeline-item');
+  const experienceObserver = new IntersectionObserver(
+    (entries, observer) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  timelineItems.forEach((item) => {
+    experienceObserver.observe(item);
+  });
 });
 document.addEventListener('DOMContentLoaded', () => {
   let slideIndex = 0;
@@ -140,7 +158,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const achievementSlides = document.querySelectorAll('.achievements-slider .slide');
   const achievementNext = document.querySelector('.achievements-slider .next');
   const achievementPrev = document.querySelector('.achievements-slider .prev');
-  const achievementDots = document.querySelectorAll('.achievements-section .dot');
+  const achievementDots = document.querySelectorAll('.achievements-slider .dot');
   let achievementTimer;
 
   function showAchievementSlide(index) {
@@ -151,17 +169,17 @@ document.addEventListener('DOMContentLoaded', () => {
       achievementIndex = achievementSlides.length - 1;
     }
     achievementSlides.forEach((slide, i) => {
-      slide.style.transition = 'opacity 0.5s ease-in-out'; // Smooth fade transition
+      slide.style.display = 'none';
+      slide.style.opacity = '0';
       slide.classList.remove('active');
-      slide.style.opacity = i === achievementIndex ? '1' : '0'; // Ensure no blank slides
     });
-    achievementDots.forEach((dot, i) => {
+    achievementDots.forEach((dot) => {
       dot.classList.remove('active');
-      if (i === achievementIndex) {
-        dot.classList.add('active');
-      }
     });
+    achievementSlides[achievementIndex].style.display = 'block';
+    achievementSlides[achievementIndex].style.opacity = '1';
     achievementSlides[achievementIndex].classList.add('active');
+    achievementDots[achievementIndex].classList.add('active');
   }
 
   function nextAchievementSlide() {
@@ -263,4 +281,26 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize first slide and auto-scroll
   showWorkshopSlide(workshopIndex);
   workshopTimer = setInterval(nextWorkshopSlide, 3000);
+});
+
+// === Scroll-Triggered Animations ===
+document.addEventListener('DOMContentLoaded', () => {
+  const animatedElements = document.querySelectorAll('section, .skill-card, .project-card, .timeline-item, .publication-card, .slide, footer');
+
+  const scrollObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible'); // Add the 'visible' class to trigger animations
+          scrollObserver.unobserve(entry.target); // Stop observing once the animation is triggered
+        }
+      });
+    },
+    { threshold: 0.1 } // Trigger when 10% of the element is visible
+  );
+
+  animatedElements.forEach((element) => {
+    element.classList.add('hidden'); // Ensure elements are hidden initially
+    scrollObserver.observe(element);
+  });
 });
