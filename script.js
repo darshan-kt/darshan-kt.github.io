@@ -135,6 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+  // Smooth slide movement for achievements
   let achievementIndex = 0;
   const achievementSlides = document.querySelectorAll('.achievements-slider .slide');
   const achievementNext = document.querySelector('.achievements-slider .next');
@@ -150,6 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
       achievementIndex = achievementSlides.length - 1;
     }
     achievementSlides.forEach((slide) => {
+      slide.style.transition = 'opacity 0.5s ease'; // Smooth transition
       slide.classList.remove('active');
     });
     achievementDots.forEach((dot) => {
@@ -171,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetAchievementTimer() {
     clearInterval(achievementTimer);
-    achievementTimer = setInterval(nextAchievementSlide, 2000);
+    achievementTimer = setInterval(nextAchievementSlide, 3000);
   }
 
   achievementNext.addEventListener('click', () => {
@@ -195,4 +197,67 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize first slide and auto-scroll
   showAchievementSlide(achievementIndex);
   achievementTimer = setInterval(nextAchievementSlide, 3000);
+
+  // Smooth slide movement for workshops
+  let workshopIndex = 0;
+  const workshopSlides = document.querySelectorAll('.workshops-section .slide');
+  const workshopNext = document.querySelector('.workshops-section .next');
+  const workshopPrev = document.querySelector('.workshops-section .prev');
+  const workshopDots = document.querySelectorAll('.workshops-section .dot');
+  let workshopTimer;
+
+  function showWorkshopSlide(index) {
+    if (index >= workshopSlides.length) {
+      workshopIndex = 0;
+    }
+    if (index < 0) {
+      workshopIndex = workshopSlides.length - 1;
+    }
+    workshopSlides.forEach((slide) => {
+      slide.style.transition = 'opacity 0.5s ease'; // Smooth transition
+      slide.classList.remove('active');
+    });
+    workshopDots.forEach((dot) => {
+      dot.classList.remove('active');
+    });
+    workshopSlides[workshopIndex].classList.add('active');
+    workshopDots[workshopIndex].classList.add('active');
+  }
+
+  function nextWorkshopSlide() {
+    workshopIndex++;
+    showWorkshopSlide(workshopIndex);
+  }
+
+  function prevWorkshopSlide() {
+    workshopIndex--;
+    showWorkshopSlide(workshopIndex);
+  }
+
+  function resetWorkshopTimer() {
+    clearInterval(workshopTimer);
+    workshopTimer = setInterval(nextWorkshopSlide, 3000);
+  }
+
+  workshopNext.addEventListener('click', () => {
+    nextWorkshopSlide();
+    resetWorkshopTimer();
+  });
+
+  workshopPrev.addEventListener('click', () => {
+    prevWorkshopSlide();
+    resetWorkshopTimer();
+  });
+
+  workshopDots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      workshopIndex = i;
+      showWorkshopSlide(workshopIndex);
+      resetWorkshopTimer();
+    });
+  });
+
+  // Initialize first slide and auto-scroll
+  showWorkshopSlide(workshopIndex);
+  workshopTimer = setInterval(nextWorkshopSlide, 3000);
 });

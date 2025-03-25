@@ -1170,10 +1170,13 @@ z-index: 1;
 .slide {
   display: none;
   text-align: center;
+  opacity: 0; /* Start with hidden opacity */
+  transition: opacity 0.5s ease; /* Smooth transition for opacity */
 }
 
 .slide.active {
   display: block;
+  opacity: 1; /* Fully visible when active */
 }
 
 .slide img {
@@ -1247,66 +1250,5 @@ html, body {
   max-width: 800px;
   margin: 0 auto;
   overflow: hidden;
-}
-
-/* Slider Transitions */
-.slider .slide {
-  display: none;
-  text-align: center;
-  opacity: 0; /* Start with hidden opacity */
-  transition: opacity 0.8s ease-in-out; /* Smooth opacity transition */
-}
-
-.slider .slide.active {
-  display: block;
-  opacity: 1; /* Fully visible when active */
-}
-
-/* Navigation Buttons */
-.prev, .next {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 2rem;
-  color: #1db954;
-  background-color: rgba(0, 0, 0, 0.5);
-  padding: 0.5rem 1rem;
-  cursor: pointer;
-  user-select: none;
-  border-radius: 4px;
-  transition: background-color 0.3s ease; /* Smooth hover effect */
-}
-
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.8); /* Darker background on hover */
-}
-
-/* Dots Transition */
-.dot {
-  display: inline-block;
-  width: 8px;
-  height: 8px;
-  margin: 0 5px;
-  background-color: #bbb;
-  border-radius: 50%;
-  cursor: pointer;
-  transition: background-color 0.3s ease; /* Smooth dot color transition */
-}
-
-.dot.active {
-  background-color: #1db954; /* Spotify green for active dot */
-}
-
-/* Smooth Transition for Achievements Section */
-.achievements-slider .slide {
-  display: none;
-  text-align: center;
-  opacity: 0; /* Start with hidden opacity */
-  transition: opacity 0.8s ease-in-out; /* Smooth opacity transition */
-}
-
-.achievements-slider .slide.active {
-  display: block;
-  opacity: 1; /* Fully visible when active */
 }
 
