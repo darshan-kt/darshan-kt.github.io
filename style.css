@@ -767,6 +767,7 @@ z-index: 1;
     width: 90%; /* Adjust width for smaller screens */
     max-width: 500px; /* Limit maximum width */
     text-align: center; /* Center-align text */
+    margin: 0 auto; /* Center the project card horizontally */
   }
 }
 
