@@ -757,79 +757,16 @@ z-index: 1;
 }
 @media only screen and (max-width: 768px) {
   .project-grid {
-    grid-template-columns: 1fr !important;
-    
+    display: flex; /* Ensure proper layout on mobile */
+    flex-direction: column; /* Stack projects vertically */
+    align-items: center; /* Center-align project cards */
+    gap: 1.5rem; /* Add spacing between project cards */
   }
 
-  @media only screen and (max-width: 768px) {
-    nav .nav-links {
-      flex-direction: row;
-      align-items: center;
-      gap: 1rem;
-    }
-  }
-  
-  .more-projects-wrapper {
-    max-height: none;
-  }
-  /* Remove blur on mobile */
-  .project-card,
-  .blurred,
-  .extra-projects {
-    filter: none;
-  }
-  /* Optionally remove the show-more button on mobile */
-  #toggleProjects {
-    display: none;
-  }
-}
-.resume-container {
-  text-align: center;
-  margin: 2rem 0;
-}
-
-.resume-button {
-  display: inline-flex; /* Use flexbox for alignment */
-  align-items: center; /* Vertically align icon and text */
-  gap: 0.5rem; /* Space between icon and text */
-  background-color: #f8f8f8; /* Spotify Green */
-  color: #000000;
-  font-size: 1rem; /* Reduced font size */
-  font-weight: 600;
-  padding: 0.6rem 1rem; /* Reduced padding */
-  border-radius: 6px;
-  text-decoration: none;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-.resume-button i {
-  font-size: 1rem; /* Icon size */
-}
-/* .about-section p {
-    text-align: justify; /* Improves readability */
-    
-} */
-
-.resume-button:hover {
-  background-color: #169c46; /* Slightly darker green */
-  transform: scale(1.05);
-}
-
-
-@media only screen and (max-width: 768px) {
-  .project-grid {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 1.5rem;
-  }
-  
   .project-card {
-    width: 90%;
-    max-width: 500px;
-    margin-left: 20px;
-    margin-right: 20px;
-    text-align: center;
+    width: 90%; /* Adjust width for smaller screens */
+    max-width: 500px; /* Limit maximum width */
+    text-align: center; /* Center-align text */
   }
 }
 
