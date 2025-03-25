@@ -173,7 +173,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   function resetAchievementTimer() {
     clearInterval(achievementTimer);
-    achievementTimer = setInterval(nextAchievementSlide, 3000);
+    achievementTimer = setInterval(nextAchievementSlide, 2000);
   }
 
   achievementNext.addEventListener('click', () => {
