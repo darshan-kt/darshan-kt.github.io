@@ -1387,3 +1387,43 @@ section, .skill-card, .project-card, .timeline-item, .publication-card, .slide, 
   transition: opacity 0.6s ease-out, transform 0.6s ease-out;
 }
 
+.resume-container {
+  margin-top: 1.5rem;
+}
+
+.resume-button {
+  display: inline-block;
+  padding: 0.5rem 1rem; /* Smaller padding */
+  font-size: 0.9rem; /* Smaller font size */
+  font-weight: 600;
+  color: #fff; /* White text */
+  background-color: transparent; /* Transparent background */
+  border: 1px solid #fff; /* White border */
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.resume-button:hover {
+  background-color: #fff; /* White background on hover */
+  color: #000; /* Black text on hover */
+}
+
+/* Ensure project cards are visible on mobile */
+@media only screen and (max-width: 768px) {
+  .project-card {
+    opacity: 1 !important; /* Force visibility */
+    transform: translateY(0) !important; /* Reset any translation */
+    animation: none !important; /* Disable animations for mobile */
+  }
+}
+
+/* Ensure visibility for all animated elements on mobile */
+@media only screen and (max-width: 768px) {
+  section, .skill-card, .project-card, .timeline-item, .publication-card, .slide, footer {
+    opacity: 1 !important; /* Force visibility */
+    transform: translateY(0) !important; /* Reset any translation */
+    animation: none !important; /* Disable animations for mobile */
+  }
+}
+
