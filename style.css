@@ -1226,6 +1226,15 @@ html, body {
   opacity: 1; /* Fully visible when active */
 }
 
+/* Standardize and increase image size in the achievements slider */
+.achievements-slider .slide img {
+  width: 100%; /* Ensure all images take up the full width of the container */
+  max-width: 650px; /* Increased maximum width for larger images */
+  height: auto; /* Maintain aspect ratio */
+  display: block;
+  margin: 0 auto; /* Center the image */
+}
+
 /* Experience Section Card Animation */
 .experience-section .timeline-item {
   opacity: 0;
