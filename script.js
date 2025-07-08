@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // === Background Slideshow ===
   const slideshowContainer = document.querySelector('.background-slideshow');
   const files = [
+    'assets/images/background/ucr.jpg',
     'assets/images/background/nova1.jpg',
     'assets/images/background/nova2.jpg',
     'assets/images/background/robot1.jpg',
@@ -17,6 +18,15 @@ document.addEventListener('DOMContentLoaded', () => {
   slideshowContainer.style.transition = 'opacity 1.5s linear';
   slideshowContainer.style.opacity = 0.3;
 
+  // Show ucr.jpg initially and keep it for 4 seconds
+  currentImage = files[0];
+  slideshowContainer.style.backgroundImage = `url(${currentImage})`;
+  slideshowContainer.style.opacity = 0.8;
+
+  // Ensure background size and position are consistent for all images
+  slideshowContainer.style.backgroundSize = 'cover';
+  slideshowContainer.style.backgroundPosition = 'center';
+
   function changeBackground() {
     let newImage;
     do {
@@ -28,14 +38,19 @@ document.addEventListener('DOMContentLoaded', () => {
     slideshowContainer.style.opacity = 0.8;
   }
 
-  // Initial background change
-  changeBackground();
-
-  // Set interval for background change
-  setInterval(() => {
+  // Start the slideshow after 4 seconds
+  setTimeout(() => {
+    // Fade out before first change
     slideshowContainer.style.opacity = 0;
-    setTimeout(changeBackground, 800);
-  }, 3700);
+    setTimeout(() => {
+      changeBackground();
+      // Set interval for background change
+      setInterval(() => {
+        slideshowContainer.style.opacity = 0;
+        setTimeout(changeBackground, 800);
+      }, 3700);
+    }, 800);
+  }, 8000);
 
   // === Project Reveal Animation with Blurring Effect ===
   const projectCards = document.querySelectorAll('.project-card');
