@@ -2,15 +2,14 @@ document.addEventListener('DOMContentLoaded', () => {
   // === Background Slideshow ===
   const slideshowContainer = document.querySelector('.background-slideshow');
   const files = [
-    'assets/images/background/ucr.jpg',
-    'assets/images/background/nova1.jpg',
-    'assets/images/background/nova2.jpg',
-    'assets/images/background/robot1.jpg',
-    'assets/images/background/robot2.jpg',
-    'assets/images/background/robot4.jpg',
-    'assets/images/background/robot5.jpg',
-    'assets/images/background/robot6.jpg',
-    'assets/images/background/class2.jpg'
+    'assets/images/background/autonomous_golfcart.jpg',
+    'assets/images/background/Bachelors_graduation.jpg',
+    'assets/images/background/Master_gradutaion.jpg',
+    'assets/images/background/openpose_git.gif',
+    'assets/images/background/robot_building1.jpg',
+    'assets/images/background/robot_building2.jpg',
+    'assets/images/background/turtlebot_experiment.jpg'
+    //'assets/images/background/with_turlebot_robot.jpg'
   ];
   let currentImage = '';
 
