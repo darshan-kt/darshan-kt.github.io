@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Pole Detection &amp; Midpoint Calculation</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .report-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+    }
+    h1, h2 {
+      color: #1db954;
+    }
+    p, li {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+    ul {
+      margin-left: 1.5rem;
+    }
+    .emoji-heading {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1db954;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">Darshan K T</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+<div class="report-container">
+
+<h1>Pole Detection &amp; Midpoint Calculation for Autonomous Robot</h1>
+<div class="video-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 2rem auto;">
+  <a href="https://www.youtube.com/watch?v=4Efh2HQmeR8" target="_blank" style="display: block;">
+    <img alt="Demo Video Thumbnail" src="assets/images/projects/pole_detection/pole_detection_algo-1.gif" style="max-width: 100%; border-radius: 8px;">
+  </a>
+  <p style="margin-top: 0.5rem;">Click above to view the demo video</p>
+</div>
+
+<div class="emoji-heading">📌 Overview</div>
+<p>This simulation project presents a LiDAR-based navigation system for an autonomous robot designed to mow grass beneath solar panels. It uses point cloud processing to accurately detect pole landmarks and generate midpoints for path planning. The solution reduces false pole detection caused by tall grass and ensures precise autonomous navigation in structured environments. Since we cann't pull the exact grass and solar panel environment into gazebo simulator, in this project used the dummy pole structure which mimics the poles structure as assuming. The overall idea is to detect the poles accurately with lidar and apply the PCL filters to remove the grass(which is not represented in simulation but assuming that for algorithm development) based on threshold grass height and thickness consideration. Later using the midpoint and Bezier line mathmetical approch calcualted the midpoint and draw path for robot navigation.</p>
+<div class="emoji-heading">🚧 Problem Statement</div>
+<p>The robot relies on vertical poles for navigation reference. However, when the grass grows too tall, the LiDAR sensor falsely detects it as additional poles. This results in inaccurate midpoint calculations, leading to irregular path generation and inefficient mowing.</p>
+<div class="emoji-heading">🎯 Objective</div>
+<p>Develop a reliable method to:</p>
+<ul>
+<li>Accurately detect actual support poles.</li>
+<li>Filter out false positives like tall grass.</li>
+<li>Generate straight and efficient mowing paths using true midpoints.</li>
+</ul>
+<div class="emoji-heading">🧠 Solution Approach</div>
+<h3>1. Point Cloud Filtering &amp; Pole Detection</h3>
+<ul>
+<li><strong>Ground Plane Removal:</strong><br/>Method: RANSAC plane segmentation.<br/>Goal: Eliminate ground points to focus on vertical structures.</li>
+<li><strong>Pass-Through Height Filter:</strong><br/>Filter: Z-axis threshold (e.g., &gt; 0.5m).<br/>Goal: Remove low-height objects like short grass.</li>
+<li><strong>Height Range Filtering:</strong><br/>Filter Range: 0.5m – 2.0m.<br/>Goal: Target objects likely to be poles.</li>
+<li><strong>Euclidean Cluster Extraction:</strong><br/>Goal: Identify valid clusters based on expected pole size.</li>
+<li><strong>Cluster Analysis:</strong><br/>Method: Evaluate vertical extent and dimensions.<br/>Goal: Confirm pole-like structures and compute centroids.</li>
+</ul>
+<h3>2. Midpoint Calculation &amp; Path Generation</h3>
+<ul>
+<li>Midpoints are calculated only when both left and right pole centroids are detected.</li>
+<li>Y-coordinate of midpoints is normalized to maintain a straight-line mowing path.</li>
+</ul>
+<h3>3. Straight-Line Path Tracking</h3>
+<ul>
+<li>Used a Bezier curve (or straight-line formula) from robot to midpoint.</li>
+<li>Path is visualized in RViz as a marker for real-time monitoring.</li>
+</ul>
+<div class="emoji-heading">🧪 Tools &amp; Technologies</div>
+<ul>
+<li><strong>Simulation:</strong> Gazebo</li>
+<li><strong>Programming:</strong> C++</li>
+<li><strong>Framework:</strong> ROS 2 (Robot Operating System)</li>
+<li><strong>Visualization:</strong> RViz</li>
+<li><strong>Sensor:</strong> 3D LiDAR</li>
+<li><strong>Libraries:</strong> Point Cloud Library (PCL)</li>
+</ul>
+<div class="emoji-heading">📌 Conclusion</div>
+<p>By utilizing powerful tools such as ROS 2, Gazebo, RViz, and the Point Cloud Library (PCL), along with a systematic methodology for LiDAR-based filtering and clustering, the project successfully met its objectives. The robot was able to accurately detect true pole landmarks, filter out false positives like tall grass, and calculate precise midpoints for navigation. This approach enabled efficient and reliable path planning for autonomous mowing operations, demonstrating the effectiveness of advanced point cloud processing techniques. 
+</p>
+</div>
+
+
+
+<!-- GitHub Documentation Button -->
+
+<div class="media-link" style="text-align: center; margin-top: 2rem;">
+<a href="https://github.com/darshan-kt/poles_detection_with_pcl" style="display: inline-block; padding: 0.5rem 1rem; background: #1db954; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1.2rem;" target="_blank">
+<i class="fab fa-github" style="font-size: 2rem; vertical-align: middle; margin-right: 0.5rem;"></i> View Full Documentation on GitHub
+  </a>
+</div>
+
+<footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+<p>© 2025 Darshan K T. All rights reserved.</p>
+</footer>
+
+
+<!-- Footer -->
+
+</body>
+</html>
