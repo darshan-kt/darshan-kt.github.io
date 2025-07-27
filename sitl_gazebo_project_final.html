@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SITL-Based Simulation and Gazebo Visualization with ArduPilot Integration</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: #121212;
+      color: #fff;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);
+    }
+    h1, h2, h3 {
+      color: #1db954;
+    }
+    p, li {
+      line-height: 1.6;
+      text-align: justify;
+    }
+    ul {
+      margin-left: 1.5rem;
+    }
+    .section {
+      margin-bottom: 2rem;
+    }
+    code {
+      background-color: #1e1e1e;
+      color: #1db954;
+      padding: 2px 4px;
+      border-radius: 4px;
+      font-family: monospace;
+    }
+    pre {
+      background-color: #1e1e1e;
+      padding: 1rem;
+      border-radius: 8px;
+      overflow-x: auto;
+    }
+    .image-block {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .image-block img {
+      width: 100%;
+      max-width: 700px;
+      border-radius: 10px;
+    }
+    .image-block p {
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <h2>SITL-Based Simulation and Gazebo Visualization with ArduPilot Integration</h2>
+
+  <div class="video-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 2rem auto;">
+    <a href="https://youtu.be/dUtoUXEG6Ng?si=C6vaK2D4CbawDgx9" target="_blank">
+      <img src="assets/images/projects/sitl_gazebo/sitl_gazebo_gif.gif" alt="Demo Video" style="max-width: 100%; border-radius: 8px;">
+    </a>
+    <p style="margin-top: 0.5rem;">Click above to view the demo video</p>
+  </div>
+
+  <div class="section">
+    <h2>Abstract</h2>
+    <p>
+      This project presents a comprehensive three-stage approach to simulating and testing quadrotor (drone) behavior using the ArduPilot autopilot software stack. The first stage utilizes the <strong>Software-In-The-Loop (SITL)</strong> framework to emulate quadrotor dynamics without physical hardware. The second stage enhances realism by integrating <strong>SITL with the Gazebo simulator</strong>, allowing for 3D visualization and interaction using the Iris model. Finally, the third stage connects the simulation environment with <strong>ROS (Robot Operating System)</strong> via <strong>MAVROS</strong>, enabling ROS-based control and sensor integration. This simulation platform supports flight modes like <strong>Circle</strong>, <strong>RTL</strong>, <strong>AltHold</strong>, and <strong>Auto Mission Planning</strong>, offering a safe and extensible testbed for UAV development.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>Introduction</h2>
+    <p>
+      Autonomous aerial robots like quadrotors are widely used for inspection, mapping, and surveillance. Real-world testing is risky and expensive, especially during early development. <strong>SITL</strong> allows developers to simulate UAV behavior using the actual ArduPilot firmware stack in software.
+    </p>
+    <p>This project includes three key phases:</p>
+    <ul>
+      <li><strong>SITL-Based Simulation with MAVProxy GCS:</strong> Emulate UAV control and dynamics using terminal-based interface.</li>
+      <li><strong>SITL + Gazebo Integration:</strong> Add realistic 3D environment for visualizing drone flight using the Iris model.</li>
+      <li><strong>SITL + Gazebo + MAVROS Interface:</strong> Integrate with ROS for higher-level autonomy, path planning, and sensor interfacing.</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>System Overview</h2>
+    <ul style="margin-top: 1rem;">
+      <li><strong>ArduPilot Stack:</strong> Open-source autopilot framework with ArduCopter firmware</li>
+      <li><strong>SITL:</strong> Simulates flight controller behavior in software</li>
+      <li><strong>MAVProxy GCS:</strong> CLI for mission planning and telemetry</li>
+      <li><strong>Flight Modes:</strong> Circle, RTL, Auto, GeoFence, AltHold</li>
+      <li><strong>Gazebo Simulator:</strong> 3D simulation for dynamic behavior</li>
+      <li><strong>Quadrotor Model:</strong> Iris (predefined in Gazebo)</li>
+      <li><strong>Middleware:</strong> MAVLink protocol for communication</li>
+    </ul>
+  </div>
+
+<div class="section">
+  <h2>Part 1: SITL-Based Simulation with ArduPilot</h2>
+  <p>The first phase of the project focuses on simulating UAV behavior using the SITL framework. SITL allows execution of the ArduCopter firmware in a fully virtual environment.</p>
+  
+  <h3>✅ Setup Highlights:</h3>
+  <ul>
+    <li>ArduPilot stack is executed on a virtual ArduCopter.</li>
+    <li>Internal flight simulator handles dynamics without hardware.</li>
+    <li>MAVProxy GCS provides a command-line interface for sending control commands and drawing mission plans.</li>
+    <li>Internally linked components: ArduPilot ⇄ MAVProxy ⇄ Map & Console (via UDP).</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="assets/images/projects/sitl_gazebo/sitl_arch.png" alt="SITL Architecture Diagram">
+    <p>Figure: SITL-Based Simulation with ArduPilot Architecture</p>
+  </div>
+  <h3>Flight Modes and Commands</h3>
+
+    <h3>Circle Mode</h3>
+          <p>In this mode, the quadrotor spins in a circular path using throttle and radius parameters.</p>
+    <pre><code>
+      arm throttle (activate motors)
+      takeoff 50 (take-off the model upto 50cm height)
+      rc 3 1500 (set the motor speed to 1500rpm)
+      param set circle_radius 2000 (set the radius to 2000cm)</code></pre>
+    <div class="image-block">
+      <img src="assets/images/projects/sitl_gazebo/sitl_circle.png" alt="Circle Mode">
+      <p>Figure: GeoFence Mode Setup with Boundary Constraints</p>
+    </div>
+
+
+
+    <h3>Mission Plan (Auto Mode)</h3>
+    <p>In Auto Mode, the user defines a series of waypoints on the MAVProxy Map. The quadrotor autonomously follows the mission path after takeoff.</p>
+    <pre><code>
+      arm throttle          (activate motors)
+      takeoff 20            (take-off the model up to 20cm height)
+      mode auto             (switch to Auto mode to follow mission)
+    </code></pre>
+    <div class="image-block">
+      <img src="assets/images/projects/sitl_gazebo/sitl_mission.png" alt="Mission Plan">
+      <p>Figure: Mission Planning using MAVProxy Map</p>
+    </div>
+
+    <h3>GeoFence Mode</h3>
+    <p>GeoFence Mode defines virtual boundaries in the airspace. The UAV stays within these boundaries and returns or lands if it tries to breach them.</p>
+    <pre><code>
+      arm throttle          (activate motors)
+      takeoff 20            (take-off the model up to 20cm height)
+      mode auto             (switch to Auto mode with GeoFence active)
+    </code></pre>
+    <div class="image-block">
+      <img src="assets/images/projects/sitl_gazebo/sitl_geofence.png" alt="GeoFence Mode">
+      <p>Figure: GeoFence Mode Setup with Boundary Constraints</p>
+    </div>
+
+
+  <div class="section">
+    <h2>Part 2: Integrating SITL with Gazebo for 3D Visualization</h2>
+    <p>Enhancing the simulation by integrating Gazebo with SITL for real-time visual feedback using the Iris quadrotor model.</p>
+    <div class="image-block">
+      <img src="assets/images/projects/sitl_gazebo/sitl_g_arch.png" alt="SITL + Gazebo Architecture">
+      <img src="assets/images/projects/sitl_gazebo/sitl_g_arch2.png" alt="SITL + Gazebo Architecture with Iris Model">
+      <p>Figure: SITL + Gazebo Architecture Overview</p>
+    </div>
+
+<h3>Mission Planning</h3>
+<p>
+  To execute an autonomous mission, users can define waypoints directly on the MAVProxy Map:
+</p>
+<ul>
+  <li>Right-click on the map and select <strong>“Draw Mission”</strong>.</li>
+  <li>Click to add multiple pose points (waypoints).</li>
+  <li>Left-click to finish drawing the mission plan.</li>
+</ul>
+
+<p>
+  Once the mission path is drawn, execute the following commands in the MAVProxy terminal to begin the autonomous flight:
+</p>
+
+<pre><code>
+arm throttle          (activate motors)
+takeoff 20            (take-off the model up to 20cm height)
+mode auto             (set to Auto mode to start mission execution)
+</code></pre>
+
+<div class="image-block">
+  <img src="assets/images/projects/sitl_gazebo/sitl_g_mission.png" alt="Mission Planning using SITL-Gazebo Interface">
+  <p>Figure: Mission Planning using MAVProxy Map Interface</p>
+</div>
+
+
+<div class="section">
+  <h2>Part 3: Interfacing SITL + Gazebo with MAVROS</h2>
+  <p>
+    Until this point, the quadrotor simulation using SITL was controlled via the <strong>MAVProxy GCS terminal</strong>. The next phase of the project introduces integration with the <strong>Robot Operating System (ROS)</strong> to enable access to high-level robotics tools such as navigation stacks, perception pipelines, and planning algorithms.
+  </p>
+
+  <p>
+    <strong>MAVROS</strong> acts as a bridge between the <strong>MAVLink protocol</strong> (used by ArduPilot) and the ROS ecosystem. It translates MAVLink messages into ROS topics, enabling bi-directional communication between ArduPilot and ROS nodes. Additionally, MAVROS serves as a proxy interface for GCS commands and telemetry.
+  </p>
+
+  <p>
+    An open-source package named <code>ardupilot_gazebo</code> (available on ROS wiki) provides the base for SITL-Gazebo-MAVROS integration. For this project:
+  </p>
+
+  <ul>
+    <li>The <code>iris</code> quadrotor model was extended by adding a camera and its Gazebo plugin.</li>
+    <li>MAVROS was configured to receive and publish flight data from the ArduPilot SITL environment.</li>
+    <li>The system allows ROS nodes to monitor quadrotor state, issue commands, and interact with sensor outputs like camera feeds.</li>
+  </ul>
+
+  <div class="image-block">
+    <img src="assets/images/projects/sitl_gazebo/sitl_mavros.png" alt="SITL + Gazebo + MAVROS Architecture">
+    <p>Figure: SITL + Gazebo Integrated with MAVROS for ROS Communication</p>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>Conclusion</h2>
+  <p>
+    This three-stage simulation project successfully demonstrates a scalable and modular approach to autonomous quadrotor testing using the ArduPilot ecosystem. The <strong>SITL and MAVProxy</strong> setup enabled safe emulation of flight behavior and mode switching without hardware. The <strong>Gazebo integration</strong> added rich 3D visualization for real-time observation and validation of UAV dynamics. Finally, the <strong>SITL + Gazebo + MAVROS interface</strong> bridged the system with the ROS ecosystem, enabling access to advanced autonomy tools, sensor integration, and future navigation algorithms. Together, this layered architecture provides a powerful testbed for developing, debugging, and validating UAV applications prior to real-world deployment.
+  </p>
+</div>
+
+
+<div class="section" style="text-align: center; margin-top: 3rem;">
+  <a href="https://drive.google.com/drive/folders/12SL-4UBklpGyF1ONVhSgYr3NhmAy6Tj8" 
+     target="_blank" 
+     style="display: inline-block; padding: 0.75rem 1.5rem; background-color: #1db954; color: #fff; border-radius: 6px; font-size: 1.1rem; text-decoration: none;">
+    📁 View the Complete Project Files on Google Drive
+  </a>
+</div>
+
+</body>
+</html>
