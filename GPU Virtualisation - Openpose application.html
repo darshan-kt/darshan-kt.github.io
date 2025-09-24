@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Virtualizing GPU for OpenPose Application using GVirtuS</title>
+  <!-- Link your main stylesheet -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <style>
+    /* Dark theme styling */
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .report-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+      box-shadow: 0 0 10px rgba(0,0,0,0.8);
+      line-height: 1.6;
+    }
+    .report-container h1, 
+    .report-container h2, 
+    .report-container h3 {
+      color: #1db954;
+      text-align: left;
+      margin-bottom: 1rem;
+    }
+    .report-container p, 
+    .report-container li, 
+    .report-container pre {
+      text-align: justify;
+      margin-bottom: 1rem;
+    }
+    .report-container ul, 
+    .report-container ol {
+      margin-left: 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .report-container figure {
+      margin: 1.5rem 0;
+      text-align: center;
+    }
+    .report-container figcaption {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+    .video-container {
+      text-align: center;
+      margin: 1rem 0;
+    }
+    .video-container img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+    .media-link {
+      text-align: center;
+      margin-top: 2rem;
+    }
+    .media-link a {
+      display: inline-block;
+      padding: 0.5rem 1rem;
+      background: #1db954;
+      color: #fff;
+      border-radius: 5px;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: background 0.3s ease;
+    }
+    .media-link a:hover {
+      background: #13a04a;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">Jerin Peter</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- Report Container -->
+  <div class="report-container">
+    <h1>Virtualizing GPU for OpenPose Application using GVirtuS</h1>
+    <h2>Making GPU-Rich Deep Learning Accessible on Non-GPU Devices</h2>
+
+    <!-- Abstract -->
+    <h2>Abstract</h2>
+    <p>
+      Deep learning applications like <strong>OpenPose</strong> are heavily GPU-dependent due to the massive parallel computations they require. 
+      But what if you want to run such applications on lightweight edge devices or non-GPU machines? 
+      This is where <strong>GPU Virtualization</strong> comes into play.  
+      In this article, we explore what GPU virtualization is, why it is needed, how the <strong>GVirtuS framework</strong> makes it possible, 
+      and finally, how you can run <strong>OpenPose</strong> virtually using GVirtuS in real-time.
+    </p>
+
+    <!-- Section 1 -->
+    <h2>1. What is GPU Virtualization and Why is it Needed?</h2>
+    <p>
+      Modern AI applications demand immense computational power. CPUs, though powerful for general-purpose tasks, 
+      fall short when it comes to handling the highly parallel workloads of neural networks, image processing, 
+      and deep learning pipelines. GPUs, with their parallel architecture, are the go-to hardware for such workloads.
+    </p>
+    <p>
+      However, not every device has a dedicated GPU. Edge devices, laptops, and small servers often lack the GPU horsepower 
+      needed to run GPU-rich applications. Buying multiple GPU machines for distributed environments is also costly.
+    </p>
+    <p>
+      <strong>GPU Virtualization bridges this gap.</strong> It allows a non-GPU device to “borrow” GPU resources from a remote GPU-enabled server. 
+      By virtualizing the GPU, we make high-performance computing available to lightweight devices—unlocking flexibility, 
+      cost efficiency, and scalability in AI deployments.
+    </p>
+
+    <!-- Section 2 -->
+    <h2>2. Introduction to GVirtuS Framework</h2>
+    <p>
+      <a href="https://github.com/ecn-aau/GVirtuS.git" target="_blank">GVirtuS</a> is an <strong>open-source GPU virtualization software</strong> 
+      that enables applications built with <strong>CUDA Toolkit v12.6+</strong> to efficiently leverage GPU acceleration remotely.  
+      It provides <strong>partial or full virtualization</strong> for key CUDA libraries, including cuDNN, cuFFT, cuBLAS, cuSPARSE, and cuSOLVER.
+    </p>
+    <p>
+      GVirtuS follows a <strong>split-driver model</strong>, meaning the workload is separated between a non-GPU frontend and a GPU backend.
+    </p>
+    <ul>
+      <li><strong>Frontend:</strong> Captures CUDA API calls made by the application running on a non-GPU device.</li>
+      <li><strong>Backend:</strong> Executes those CUDA calls on the physical GPU hardware.</li>
+      <li><strong>Communicator:</strong> Transfers data and instructions between frontend and backend (via TCP/IP, RDMA, etc.).</li>
+    </ul>
+
+    <!-- Section 3 -->
+    <h2>3. OpenPose Application and Why It’s GPU-Rich</h2>
+    <p>
+      <strong>OpenPose</strong> is one of the most popular human pose estimation frameworks. 
+      It detects body, hand, and facial keypoints from images and videos in real-time.
+    </p>
+    <p>
+      Under the hood, OpenPose uses the <strong>Caffe deep learning library</strong>, which is highly optimized for GPU execution. 
+      Since OpenPose involves processing high-resolution images, extracting features through deep convolutional networks, 
+      and running inference for multiple keypoints per frame, it becomes an extremely GPU-intensive application.
+    </p>
+    <p>
+      Running OpenPose on a CPU-only machine leads to slow performance, making real-time pose estimation nearly impossible. 
+      This is where GVirtuS becomes invaluable.
+    </p>
+
+    <!-- Section 4 -->
+    <h2>4. How GVirtuS Helps Virtualize OpenPose</h2>
+    <p>
+      GVirtuS virtualizes CUDA calls by splitting them between frontend and backend. Here’s how it works for OpenPose:
+    </p>
+    <ul>
+      <li>The <strong>GVirtuS Frontend</strong> hosts the OpenPose application on a non-GPU device.</li>
+      <li>When OpenPose makes CUDA calls, the frontend intercepts them.</li>
+      <li>The <strong>Communicator</strong> (such as TCP/IP) transparently forwards these calls to the backend.</li>
+      <li>The <strong>GVirtuS Backend</strong>, running on a GPU-enabled machine, executes the CUDA calls directly on the GPU hardware.</li>
+      <li>The results are sent back to the frontend, where the user sees OpenPose running smoothly on a non-GPU device.</li>
+    </ul>
+
+    <!-- Section 5 -->
+    <h2>5. Running OpenPose Virtualized with GVirtuS</h2>
+    <p>
+      Let’s walk through the real-time execution of OpenPose with GVirtuS.
+    </p>
+
+    <h3>Step 1: Download GVirtuS</h3>
+    <pre><code>git clone https://github.com/ecn-aau/GVirtuS.git
+cd GVirtuS</code></pre>
+
+    <h3>Step 2: Start the Backend</h3>
+    <pre><code>make run-gvirtus-backend-dev</code></pre>
+    <p>This launches the GVirtuS backend process on the GPU-enabled server.</p>
+
+    <h3>Step 3: Run OpenPose on the Frontend</h3>
+    <pre><code>make run-openpose-test</code></pre>
+    <p>
+      This command triggers a Docker container, the <code>00_test.cpp</code> script, and executes OpenPose with GPU virtualization. 
+      The results are displayed directly on the frontend (non-GPU device).
+    </p>
+
+    <!-- Conclusion -->
+    <h2>Conclusion</h2>
+    <p>
+      GPU Virtualization is transforming how we deploy deep learning applications, making GPU acceleration accessible from almost any device. 
+      By using <strong>GVirtuS</strong>, we can unlock GPU resources across distributed environments and enable GPU-intensive frameworks 
+      like <strong>OpenPose</strong> to run even on lightweight edge devices.
+    </p>
+    <p>
+      For more setup instructions, check my previous guide:  
+      👉 <a href="https://medium.com/p/d1092b4c5fb9" target="_blank">GVirtuS + OpenPose Integration</a>
+    </p>
+
+    <!-- Acknowledgment -->
+    <h2>Acknowledgment</h2>
+    <p>
+      This work has been funded by the <a href="https://www.cleverproject.eu/" target="_blank">Clever Project</a>.  
+      Special thanks to <strong>Associate Professor Sokol Kosta</strong> for his guidance and support.
+    </p>
+
+  </div>
+
+
+     <!-- Demo & Author Section -->
+    <h2 style="margin-top: 2rem; text-align: center;">Demo</h2>
+
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 2rem auto; gap: 2rem;">
+
+      <!-- Demo GIF -->
+      <div>
+        <a href="https://youtu.be/qgrVkOlUOx4" target="_blank" style="display: block;">
+          <img alt="OpenPose Virtualization Demo" src="assets/images/projects/gvirtus_openpose/integration.gif" style="max-width: 100%; border-radius: 8px;">
+        </a>
+        <p style="margin-top: 0.5rem;">Click above to view the demo video</p>
+      </div>
+
+      <!-- Author Image -->
+      <div>
+        <img src="assets/images/projects/gvirtus_openpose/my_image.png" alt="Author Photo" style="width: 90%; max-width: 450px; height: auto; border-radius: 20px; box-shadow: 0 0 15px rgba(0,0,0,0.8);">
+        <p style="margin-top: 0.5rem; font-weight: 600; color: #1db954; font-size: 1.2rem;">Author: Darshan K T</p>
+      </div>
+    </div>
+
+
+
+<!-- GitHub Documentation Button -->
+
+<div class="media-link" style="text-align: center; margin-top: 2rem;">
+<a href="https://github.com/ecn-aau/GVirtuS.git" style="display: inline-block; padding: 0.5rem 1rem; background: #1db954; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1.2rem;" target="_blank">
+<i class="fab fa-github" style="font-size: 2rem; vertical-align: middle; margin-right: 0.5rem;"></i> View Full Documentation on GitHub
+  </a>
+</div>
+
+<footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+<p>© 2025 Darshan K T. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
