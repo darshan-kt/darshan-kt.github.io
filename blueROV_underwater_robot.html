@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>BlueROV2 Setup & Real-Time Deployment</title>
+<link href="style.css" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<style>
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+    .report-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+    }
+    h1, h2 {
+      color: #1db954;
+    }
+    p, li {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+    ul {
+      margin-left: 1.5rem;
+    }
+    .emoji-heading {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1db954;
+    }
+</style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+  <div class="container">
+    <a href="index.html" class="logo">Darshan K T</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#publications">Publications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="report-container">
+
+<h1>BlueROV2 Setup & Real-Time Deployment</h1>
+
+<div class="emoji-heading">📌 Overview</div>
+<p>This project demonstrates the complete setup, configuration, and deployment of the <strong>BlueROV2 underwater robot</strong>. Using the official BlueRobotics documentation as a reference, the robot was configured for real-time underwater control, visual feedback, and future autonomous upgrades via ROS2 and AI-based models. The project establishes a strong baseline for future research in underwater species detection and inspection missions.</p>
+
+<div class="emoji-heading">🛠 System Setup</div>
+<p>The setup followed step-by-step instructions from the official BlueROV2 guide, covering both software and hardware integration:</p>
+<ul>
+  <li>Flashed the <strong>Pixhawk flight controller</strong> with the <strong>ArduSub</strong> firmware.</li>
+  <li>Configured the <strong>Raspberry Pi companion computer</strong> for MAVLink communication.</li>
+  <li>Installed and connected <strong>QGroundControl (QGC)</strong> on the surface laptop.</li>
+  <li>Established network bridge over tether via Ethernet.</li>
+  <li>Calibrated all sensors, actuators, and camera feed.</li>
+  <li>Enabled control via <strong>Xbox remote controller</strong>.</li>
+</ul>
+<p>Reference followed: <a href="https://bluerobotics.com/learn/bluerov2-software-setup/" target="_blank" style="color:#1db954;">BlueROV2 Software Setup Guide</a></p>
+
+<div class="image-gallery" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem;">
+  <img src="assets/images/projects/bluerov/bluerov_hero.jpg" alt="BlueROV robot" style="width: 30%; border-radius: 10px;">
+  <img src="assets/images/projects/bluerov/IMG_20250709_114648.jpg" alt="Robot Internal Wiring View" style="width: 30%; border-radius: 10px;">
+  <img src="assets/images/projects/bluerov/Media.jpeg" alt="Battery setup" style="width: 30%; border-radius: 10px;">
+</div>
+
+<div class="emoji-heading">🎯 Deployment Outcome</div>
+<ul>
+  <li>Successfully piloted BlueROV underwater using Xbox gamepad in real-time.</li>
+  <li>Live camera feed displayed via QGroundControl on surface laptop.</li>
+  <li>All thrusters and sensors functional with smooth communication between onboard and surface systems.</li>
+</ul>
+
+<div class="emoji-heading">🔭 Future Vision</div>
+<p>This project sets the foundation for advanced underwater autonomy by combining ROS2 and AI-based perception tools:</p>
+<ul>
+  <li><strong>Live object detection:</strong> Use camera feed with custom YOLO models for underwater species detection or visual surveillance.</li>
+  <li><strong>ROS2 Integration:</strong> Develop and deploy high-level control nodes on Raspberry Pi using MAVROS for custom flight modes.</li>
+  <li><strong>Mission-specific modes:</strong> Future extension includes creating and triggering ROS2-based missions directly via the controller or remote interface.</li>
+</ul>
+
+<div class="image-gallery" style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin-top: 2rem;">
+  <img src="assets/images/projects/bluerov/simulation testing.gif" alt="Testing robot with simulator and future ROS2 integration" style="width: 30%; border-radius: 10px;">
+</div>
+
+<div class="emoji-heading">🧩 Internal Architecture</div>
+<ul>
+  <li><strong>Pixhawk (ArduSub firmware):</strong> Handles motor control, sensor fusion, and safety logic.</li>
+  <li><strong>Raspberry Pi:</strong> Companion computer for high-level computing, network routing, and future ROS2 tasks.</li>
+  <li><strong>QGroundControl:</strong> Visual interface for telemetry, video, sensor data, and manual operation.</li>
+  <li><strong>MAVROS (Planned):</strong> Middleware to bridge ROS2 and MAVLink-based Pixhawk control.</li>
+</ul>
+
+<h2>Conclusion</h2>
+<p>
+By following the official BlueROV2 configuration process and integrating all required components, the robot was successfully made water-ready and controllable in real time. The system enables reliable remote control and live feedback via QGC and Xbox controller. Looking ahead, the integration with ROS2 and AI-based computer vision tools like YOLO paves the way for intelligent underwater perception and autonomy—supporting research missions, inspection, and exploration.
+</p>
+
+<div class="video-container" style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: 2rem auto;">
+  <img alt="BlueROV2 Setup Demo Video" src="assets/images/projects/bluerov/bluerov.gif" style="width: 50%; border-radius: 8px; margin-bottom: 1rem;">
+  
+  <a href="https://www.youtube.com/shorts/A1lvbUAmpdQ" target="_blank"
+     style="display: inline-block; padding: 0.6rem 1.2rem; background-color: #1db954; color: #fff; border-radius: 5px; text-decoration: none; font-weight: 500;">
+    ▶️ Watch BlueROV2 Full Demo on YouTube By Clicking Here
+  </a>
+</div>
+
+
+<!-- Optional GitHub or Resource Button -->
+<div class="media-link" style="text-align: center; margin-top: 2rem;">
+<a href="https://github.com/darshan-kt/bluerov2" style="display: inline-block; padding: 0.5rem 1rem; background: #1db954; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1.2rem;" target="_blank">
+<i class="fas fa-link" style="font-size: 2rem; vertical-align: middle; margin-right: 0.5rem;"></i> Click For GitHub Repository
+</a>
+</div>
+
+<footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+<p>© 2025 Darshan K T. All rights reserved.</p>
+</footer>
+
+</div>
+</body>
+</html>
