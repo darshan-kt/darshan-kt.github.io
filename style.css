@@ -1456,3 +1456,23 @@ section, .skill-card, .project-card, .timeline-item, .publication-card, .slide, 
     animation: none !important; /* Disable animations for mobile */
   }
 }
+
+
+/* Page Transitions */
+body {
+  animation: pageFadeIn 0.4s ease-in-out forwards;
+}
+
+.page-transition-leave {
+  animation: pageFadeOut 0.4s ease-in-out forwards !important;
+}
+
+@keyframes pageFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes pageFadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}

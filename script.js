@@ -318,3 +318,34 @@ document.addEventListener('DOMContentLoaded', () => {
     scrollObserver.observe(element);
   });
 });
+
+
+// === Page Transitions ===
+document.addEventListener('DOMContentLoaded', () => {
+  const links = document.querySelectorAll('a');
+  links.forEach(link => {
+    link.addEventListener('click', function(e) {
+      const hrefAttr = this.getAttribute('href');
+      if (!hrefAttr || this.target === '_blank' || hrefAttr.startsWith('#') || hrefAttr.startsWith('mailto:') || hrefAttr.startsWith('tel:')) {
+        return;
+      }
+      
+      const targetHref = this.href;
+      if (targetHref.includes('#') && targetHref.split('#')[0] === window.location.href.split('#')[0]) {
+        return;
+      }
+
+      e.preventDefault();
+      document.body.classList.add('page-transition-leave');
+      setTimeout(() => {
+        window.location.href = targetHref;
+      }, 400); // 400ms matches the CSS animation duration
+    });
+  });
+});
+
+window.addEventListener('pageshow', (event) => {
+  if (event.persisted) {
+    document.body.classList.remove('page-transition-leave');
+  }
+});
