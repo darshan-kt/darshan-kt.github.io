@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // === Background Slideshow ===
   const slideshowContainer = document.querySelector('.background-slideshow');
   const files = [
+    'assets/images/background/arm_robot_programming.gif',
     'assets/images/background/autonomous_golfcart.jpg',
     'assets/images/background/Bachelors_graduation.jpg',
     'assets/images/background/Master_gradutaion.jpg',
@@ -13,18 +14,19 @@ document.addEventListener('DOMContentLoaded', () => {
   ];
   let currentImage = '';
 
-  // Apply initial styles for smooth transition
-  slideshowContainer.style.transition = 'opacity 1.5s linear';
-  slideshowContainer.style.opacity = 0.3;
+  // Create an image element to ensure GIFs animate properly
+  const slideImg = document.createElement('img');
+  slideImg.style.width = '100%';
+  slideImg.style.height = '100%';
+  slideImg.style.objectFit = 'contain';
+  slideImg.style.transition = 'opacity 1.5s linear';
+  slideImg.style.opacity = '0.3';
+  slideshowContainer.appendChild(slideImg);
 
-  // Show ucr.jpg initially and keep it for 4 seconds
+  // Show first image initially
   currentImage = files[0];
-  slideshowContainer.style.backgroundImage = `url(${currentImage})`;
-  slideshowContainer.style.opacity = 0.8;
-
-  // Ensure background size and position are consistent for all images
-  slideshowContainer.style.backgroundSize = 'cover';
-  slideshowContainer.style.backgroundPosition = 'center';
+  slideImg.src = currentImage;
+  slideImg.style.opacity = '0.8';
 
   function changeBackground() {
     let newImage;
@@ -32,20 +34,21 @@ document.addEventListener('DOMContentLoaded', () => {
       newImage = files[Math.floor(Math.random() * files.length)];
     } while (newImage === currentImage && files.length > 1);
     currentImage = newImage;
-    
-    slideshowContainer.style.backgroundImage = `url(${currentImage})`;
-    slideshowContainer.style.opacity = 0.8;
+
+    // Setting src on img plays GIFs properly
+    slideImg.src = currentImage;
+    slideImg.style.opacity = '0.8';
   }
 
   // Start the slideshow after 4 seconds
   setTimeout(() => {
     // Fade out before first change
-    slideshowContainer.style.opacity = 0;
+    slideImg.style.opacity = 0;
     setTimeout(() => {
       changeBackground();
       // Set interval for background change
       setInterval(() => {
-        slideshowContainer.style.opacity = 0;
+        slideImg.style.opacity = 0;
         setTimeout(changeBackground, 800);
       }, 3700);
     }, 800);
@@ -65,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     { threshold: 0.1 }
   );
-  
+
   projectCards.forEach((card) => {
     card.classList.add('blurred'); // Ensure blur is applied initially
     observer.observe(card);
@@ -324,12 +327,12 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
   const links = document.querySelectorAll('a');
   links.forEach(link => {
-    link.addEventListener('click', function(e) {
+    link.addEventListener('click', function (e) {
       const hrefAttr = this.getAttribute('href');
       if (!hrefAttr || this.target === '_blank' || hrefAttr.startsWith('#') || hrefAttr.startsWith('mailto:') || hrefAttr.startsWith('tel:')) {
         return;
       }
-      
+
       const targetHref = this.href;
       if (targetHref.includes('#') && targetHref.split('#')[0] === window.location.href.split('#')[0]) {
         return;

@@ -98,14 +98,6 @@ nav .nav-links a:hover {
   height: 100%;
   z-index: -1;
 
-  background-size: 100% 100%;
-  /* Fit the entire image inside the section */
-  background-position: center;
-  /* Center the image */
-  background-repeat: no-repeat;
-  /* Prevent repeat */
-  transition: opacity 3s ease-in-out, background-image 1s ease-in-out;
-  opacity: 1;
   background-color: #000;
   /* Optional fallback */
 }

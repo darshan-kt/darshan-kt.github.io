@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Autonomous Drone-Based Warehouse Inspection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #121212;
+            font-family: 'Poppins', sans-serif;
+            color: #fff;
+        }
+
+        /* NAV */
+        nav {
+            background-color: #000;
+            padding: 1rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid #1db954;
+        }
+
+        .logo {
+            color: #1db954;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 300;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #1db954;
+        }
+
+        /* REPORT CONTAINER */
+        .report-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #1a1a1a;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+            color: #fff;
+        }
+
+        .report-container h1,
+        .report-container h2,
+        .report-container h3 {
+            text-align: left;
+            margin-bottom: 1rem;
+            color: #1db954;
+        }
+
+        .report-container h1 {
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+
+        .report-container h2 {
+            font-size: 1.3rem;
+            margin-top: 2rem;
+        }
+
+        .report-container h3 {
+            font-size: 1.05rem;
+            margin-top: 1.5rem;
+        }
+
+        .report-container p,
+        .report-container li,
+        .report-container pre {
+            text-align: justify;
+            margin-bottom: 1rem;
+            color: #fff;
+            font-weight: 300;
+        }
+
+        .report-container em {
+            color: #aaa;
+        }
+
+        .report-container ul,
+        .report-container ol {
+            margin-left: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .report-container ul li,
+        .report-container ol li {
+            margin-bottom: 0.4rem;
+        }
+
+        .report-container figure {
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .report-container figcaption {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+        .report-container figure img {
+            max-width: 700px;
+            width: 100%;
+            border: 1px solid #2a2a2a;
+        }
+
+        .highlight {
+            background: #222;
+            border-left: 4px solid #1db954;
+            padding: 0.5rem 1rem;
+            margin: 0.5rem 0;
+            font-family: monospace;
+            color: #1db954;
+            font-size: 0.95rem;
+            overflow-x: auto;
+        }
+
+        .highlight .comment {
+            color: #555;
+            font-size: 0.85rem;
+        }
+
+        .note-box {
+            background: #222;
+            border-left: 4px solid #1db954;
+            padding: 0.8rem 1rem;
+            margin: 1rem 0;
+            font-size: 0.9rem;
+            color: #ccc;
+            font-weight: 300;
+        }
+
+        .note-box strong {
+            color: #1db954;
+        }
+
+        /* HARDWARE / TOOLS GRID */
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .info-card {
+            background: #222;
+            border: 1px solid #2a2a2a;
+            border-top: 3px solid #1db954;
+            padding: 1.2rem;
+        }
+
+        .info-card h4 {
+            color: #1db954;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.8rem;
+        }
+
+        .info-card ul {
+            margin-left: 1rem;
+            margin-bottom: 0;
+        }
+
+        .info-card ul li {
+            font-size: 0.88rem;
+            color: #ccc;
+            margin-bottom: 0.3rem;
+        }
+
+        /* PIPELINE STEPS */
+        .pipeline {
+            list-style: none;
+            margin-left: 0 !important;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin: 1rem 0;
+        }
+
+        .pipeline li {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+            background: #222;
+            padding: 0.9rem 1rem;
+            border-left: 3px solid #1db954;
+            margin-bottom: 0 !important;
+        }
+
+        .pipeline-num {
+            color: #1db954;
+            font-weight: 600;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+            min-width: 1.4rem;
+        }
+
+        .pipeline-text {
+            font-size: 0.9rem;
+            color: #ddd;
+            font-weight: 300;
+        }
+
+        .pipeline-text strong {
+            color: #fff;
+            font-weight: 600;
+        }
+
+        .video-container {
+            text-align: center;
+            margin-top: 2rem;
+        }
+
+        .video-container iframe {
+            max-width: 100%;
+        }
+
+        .video-container figcaption {
+            font-size: 0.9rem;
+            color: #aaa;
+            margin-top: 0.5rem;
+        }
+
+        /* PDF BUTTON */
+        .btn-report {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            background: #1db954;
+            color: #fff;
+            border-radius: 6px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s;
+            margin-top: 2.5rem;
+        }
+
+        .btn-report:hover {
+            background: #17a348;
+        }
+
+        footer {
+            text-align: center;
+            padding: 1rem 0;
+            background-color: #000;
+            color: #1db954;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <a href="index.html" class="logo">Darshan Robotics</a>
+        <ul class="nav-links">
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <div class="report-container">
+
+        <h1>Autonomous Drone-Based Warehouse Inspection</h1>
+        <p><em>3D Grid Mapping and A* Path Planning for Autonomous Rack Inspection in Simulated Warehouse
+                Environments</em></p>
+
+        <h2>Abstract</h2>
+        <p>
+            This project presents the design and implementation of an autonomous drone navigation system for warehouse
+            inspection tasks. The system constructs a 3D occupancy grid of a simulated warehouse environment and uses a
+            custom 3D A* path planning algorithm to navigate a drone efficiently between rack locations for item
+            inspection. The approach integrates stereo camera-based perception, ROS/ROS2 middleware, and a Euclidean
+            distance heuristic to compute shortest traversal paths through three-dimensional space, enabling safe and
+            scalable autonomous inspection without human intervention.
+        </p>
+
+        <h2>1. Introduction</h2>
+        <p>
+            Modern warehouses require frequent inspection of goods stored on multi-level racking systems — a task that
+            is time-consuming and physically demanding when performed manually. Autonomous aerial robots (drones) offer
+            a compelling alternative, capable of navigating three-dimensional spaces and inspecting rack faces at
+            multiple heights without scaffolding or human risk. This project investigates the core algorithmic
+            challenges of deploying such a system: building a 3D spatial representation of the environment and computing
+            collision-free, shortest-distance inspection paths using a 3D A* search algorithm implemented in C++ within
+            the ROS ecosystem.
+        </p>
+
+        <h2>2. System Overview</h2>
+        <ul>
+            <li><strong>3D Grid Mapping:</strong> The warehouse environment is discretized into a 3D voxel grid. Each
+                voxel stores occupancy probability derived from stereo camera depth estimates, representing free space,
+                obstacles (racks, pillars, floor), and unknown regions.</li>
+            <li><strong>3D A* Path Planner:</strong> A custom A* implementation searches the 3D voxel grid from the
+                drone's current position to each inspection waypoint, using 3D Euclidean distance as the heuristic to
+                minimize total traversal distance.</li>
+            <li><strong>ROS/ROS2 Integration:</strong> The mapping, planning, and control nodes communicate over ROS
+                topics and services, enabling modular development and real-time replanning.</li>
+            <li><strong>Stereo Camera Perception:</strong> A stereo camera onboard the ModelAI Voxel 2 provides
+                disparity-based depth data for both grid updates and obstacle detection during flight.</li>
+            <li><strong>Simulation Environment:</strong> The full pipeline is validated in a Gazebo-based simulated
+                warehouse with configurable rack layouts before physical deployment.</li>
+        </ul>
+
+        <div class="info-grid">
+            <div class="info-card">
+                <h4>Hardware</h4>
+                <ul>
+                    <li>ModelAI Voxel 2 Drone</li>
+                    <li>Stereo Camera</li>
+                    <li>Onboard compute unit</li>
+                </ul>
+            </div>
+            <div class="info-card">
+                <h4>Software & Tools</h4>
+                <ul>
+                    <li>ROS / ROS2</li>
+                    <li>C++ / Python</li>
+                    <li>Gazebo Simulation</li>
+                    <li>Git, Docker</li>
+                </ul>
+            </div>
+        </div>
+
+        <h2>3. Methodology</h2>
+
+        <h3>3.1 3D Voxel Grid Construction</h3>
+        <p>
+            The warehouse environment is represented as a 3D occupancy grid where each cell (voxel) is a fixed-size cube
+            in metric space. As the drone flies, stereo camera depth frames are back-projected into 3D point clouds and
+            used to update voxel occupancy probabilities using a log-odds update rule. Free voxels form the navigable
+            space; occupied and unknown voxels are treated as obstacles for planning purposes.
+        </p>
+        <ul>
+            <li>Voxel resolution is configurable to trade off map fidelity against memory footprint.</li>
+            <li>The grid is bounded to the warehouse extents and initialized as unknown prior to exploration.</li>
+            <li>Stereo disparity is converted to depth using the camera's calibrated baseline and focal length.</li>
+        </ul>
+
+        <h3>3.2 3D A* Path Planning Algorithm</h3>
+        <p>
+            The core research contribution is a 3D A* search operating directly on the voxel grid. The algorithm expands
+            nodes in 26-connected neighborhoods (faces, edges, and corners of each voxel), evaluating movement cost and
+            a Euclidean heuristic to find the shortest collision-free path from the drone's current voxel to the target
+            inspection voxel.
+        </p>
+
+        <ul>
+            <li><strong>3D Euclidean Heuristic:</strong> h(n) = √( Δx² + Δy² + Δz² ) — admissible and consistent,
+                guaranteeing optimal paths.</li>
+            <li><strong>26-connectivity:</strong> Diagonal and vertical moves are permitted, enabling the planner to
+                exploit free airspace and minimize detours.</li>
+            <li><strong>Shortest Traversal Distance:</strong> The planner minimizes total flight distance, reducing
+                inspection time and battery consumption.</li>
+            <li>Paths are smoothed post-planning to remove unnecessary heading changes before being sent to the drone's
+                flight controller as waypoint sequences.</li>
+        </ul>
+
+        <div class="note-box">
+            <strong>Research Focus:</strong> Development and integration of the 3D A* path planning algorithm —
+            including 3D grid representation, 3D Euclidean distance calculation, and shortest traversal distance
+            optimization across the full voxel graph.
+        </div>
+
+        <h3>3.3 Inspection Waypoint Sequencing</h3>
+        <p>
+            Rack inspection points are pre-defined as 3D coordinates corresponding to the face of each shelf segment.
+            The system sequences these waypoints to minimize total flight path length — analogous to a constrained
+            coverage problem — before invoking the A* planner between consecutive inspection goals.
+        </p>
+        <ol>
+            <li>Inspection targets are loaded from a YAML configuration file defining rack positions and heights.</li>
+            <li>A greedy nearest-neighbor ordering is applied to sequence waypoints by proximity.</li>
+            <li>The 3D A* planner computes the collision-free path between each consecutive waypoint pair.</li>
+            <li>The drone executes each path segment, pausing at each waypoint to capture and log inspection imagery.
+            </li>
+        </ol>
+
+        <h3>3.4 System Pipeline</h3>
+        <ul class="pipeline">
+            <li>
+                <span class="pipeline-num">01</span>
+                <span class="pipeline-text"><strong>Map Initialization:</strong> Warehouse bounds and rack positions
+                    loaded; 3D voxel grid initialized to unknown state.</span>
+            </li>
+            <li>
+                <span class="pipeline-num">02</span>
+                <span class="pipeline-text"><strong>Exploration Pass:</strong> Drone performs a pre-programmed sweep to
+                    populate the voxel grid with stereo camera depth data.</span>
+            </li>
+            <li>
+                <span class="pipeline-num">03</span>
+                <span class="pipeline-text"><strong>Waypoint Planning:</strong> Inspection waypoints are sequenced; 3D
+                    A* computes shortest collision-free paths between each pair.</span>
+            </li>
+            <li>
+                <span class="pipeline-num">04</span>
+                <span class="pipeline-text"><strong>Autonomous Flight:</strong> Drone executes waypoint paths, updating
+                    the occupancy grid continuously and replanning if new obstacles are detected.</span>
+            </li>
+            <li>
+                <span class="pipeline-num">05</span>
+                <span class="pipeline-text"><strong>Inspection &amp; Logging:</strong> At each rack face, stereo imagery
+                    is captured and logged for downstream inventory analysis.</span>
+            </li>
+        </ul>
+
+        <h3>3.5 Simulation Environment</h3>
+        <p>
+            The full system is tested in a Gazebo simulation of a warehouse with configurable rack layouts, aisle
+            widths, and ceiling heights. The ModelAI Voxel 2 drone model is simulated with realistic physics and stereo
+            camera plugin output, enabling direct transfer of the ROS nodes to the physical platform without code
+            modification.
+        </p>
+
+        <figure>
+            <img src="assets/images/projects/drone_warehouse/simulation.png"
+                alt="Gazebo warehouse simulation with drone and racks" onerror="this.style.display='none'">
+            <figcaption>Fig. 1. Simulated warehouse environment in Gazebo showing drone, rack layout, and planned
+                inspection path</figcaption>
+        </figure>
+
+        <figure>
+            <img src="assets/images/projects/drone_warehouse/3d_grid.png" alt="3D occupancy voxel grid visualization"
+                onerror="this.style.display='none'">
+            <figcaption>Fig. 2. 3D voxel occupancy grid constructed from stereo camera depth data — free (blue),
+                occupied (red), unknown (grey)</figcaption>
+        </figure>
+
+        <figure>
+            <img src="assets/images/projects/drone_warehouse/astar_path.png"
+                alt="3D A* path visualized through voxel grid" onerror="this.style.display='none'">
+            <figcaption>Fig. 3. 3D A* shortest path (green) computed through the voxel grid between two rack inspection
+                points</figcaption>
+        </figure>
+
+        <h2>4. Results</h2>
+        <p>
+            The system successfully demonstrated end-to-end autonomous warehouse inspection in simulation. The 3D A*
+            planner consistently found shortest collision-free paths through the voxel grid, with the Euclidean
+            heuristic providing near-optimal path quality across varying rack configurations. Replanning on newly
+            observed obstacles completed within real-time constraints. Inspection coverage of all defined rack faces was
+            achieved in each trial without any collisions.
+        </p>
+        <ul>
+            <li>3D A* path search executed within planning time budgets suitable for online replanning.</li>
+            <li>Euclidean heuristic reduced node expansions significantly compared to uninformed search.</li>
+            <li>Full rack coverage achieved across all simulated warehouse layouts tested.</li>
+            <li>Stereo-based voxel updates maintained consistent map fidelity throughout flight.</li>
+        </ul>
+
+        <div class="video-container">
+            <iframe width="640" height="360"
+                src="https://drive.google.com/file/d/17TKgqJjVDHxHYoPsGYV_U848PqdnuatE/preview?usp=sharing"
+                title="Autonomous Drone Warehouse Inspection Demo" frameborder="0" allow="autoplay" allowfullscreen>
+            </iframe>
+            <figcaption>Autonomous Drone Inspection Demo — 3D A* navigation through simulated warehouse (in progress)
+            </figcaption>
+        </div>
+
+        <h2>5. Conclusion</h2>
+        <p>
+            The 3D A* path planning algorithm and all associated concepts — including voxel grid construction, Euclidean
+            distance heuristics, and stereo camera-based occupancy mapping — have been successfully tested and validated
+            within the Gazebo simulation environment. The results confirm the correctness and efficiency of the approach
+            in representative warehouse conditions. The next phase of this project is to replicate and deploy the same
+            system in a real-world warehouse setup, using the ModelAI Voxel 2 drone equipped with a stereo camera,
+            operating over physical rack structures. This transition from simulation to reality will validate the full
+            pipeline under real sensor noise, lighting conditions, and dynamic environments.
+        </p>
+
+        <!-- <div style="text-align:center;">
+            <a href="assets/images/projects/drone_warehouse/Final_Project_Report.pdf" target="_blank"
+                class="btn-report">
+                📄 Full Report (PDF)
+            </a>
+        </div> -->
+
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Darshan K T Gowda. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
