@@ -1,21 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
-  <title>Multi-Robot Navigation using RMF and TurtleBot3</title>
-  <link rel="stylesheet" href="style.css">
+  <title>Autonomous Navigation using TurtleBot and ROS</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      color: #fff;
+    }
+
+    nav {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid #1db954;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      color: #1db954;
+      font-size: 1.2rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #1db954;
+    }
+
     .report-container {
       max-width: 800px;
       margin: 2rem auto;
       padding: 2rem;
       background: #1a1a1a;
-      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
       line-height: 1.6;
       color: #fff;
     }
+
     .report-container h1,
     .report-container h2,
     .report-container h3 {
@@ -23,124 +73,358 @@
       margin-bottom: 1rem;
       color: #1db954;
     }
+
+    .report-container h1 {
+      font-size: 1.8rem;
+      font-weight: 600;
+    }
+
+    .report-container h2 {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 2rem;
+    }
+
+    .report-container h3 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+    }
+
     .report-container p,
-    .report-container li,
-    .report-container pre {
+    .report-container li {
       text-align: justify;
       margin-bottom: 1rem;
       color: #fff;
+      font-weight: 300;
     }
+
     .report-container ul,
     .report-container ol {
       margin-left: 1.5rem;
       margin-bottom: 1rem;
     }
+
+    .report-container li {
+      margin-bottom: 0.4rem;
+    }
+
+    .report-container em {
+      color: #aaa;
+    }
+
     .report-container figure {
       margin: 1.5rem 0;
       text-align: center;
     }
+
     .report-container figcaption {
       font-size: 0.9rem;
       color: #aaa;
       margin-top: 0.5rem;
     }
+
     .highlight {
       background: #222;
       border-left: 4px solid #1db954;
       padding: 0.5rem 1rem;
-      margin: 1rem 0;
+      margin: 0.4rem 0;
       font-family: monospace;
       color: #1db954;
-      font-size: 1rem;
+      font-size: 0.95rem;
       overflow-x: auto;
+    }
+
+    .window-label {
+      color: #aaa;
+      font-size: 0.82rem;
+      margin-top: 1.2rem;
+      margin-bottom: 0.2rem;
+      font-style: italic;
+    }
+
+    .note-box {
+      background: #222;
+      border-left: 4px solid #1db954;
+      padding: 0.6rem 1rem;
+      margin: 1rem 0;
+      color: #1db954;
+      font-size: 0.9rem;
+      font-family: monospace;
+    }
+
+    .checklist {
+      list-style: none;
+      margin-left: 0.5rem !important;
+    }
+
+    .checklist li::before {
+      content: '\2714  ';
+      color: #1db954;
+    }
+
+    .rviz-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin: 1rem 0 1.5rem;
+    }
+
+    .rviz-box {
+      background: #222;
+      border-left: 4px solid #1db954;
+      padding: 1rem 1.2rem;
+    }
+
+    .rviz-box h4 {
+      color: #1db954;
+      font-size: 0.88rem;
+      margin-bottom: 0.8rem;
+      font-weight: 600;
+    }
+
+    .rviz-box ol {
+      margin-left: 1.2rem;
+    }
+
+    .rviz-box ol li {
+      color: #fff;
+      font-size: 0.88rem;
+      font-weight: 300;
+      margin-bottom: 0.4rem;
+      text-align: left;
+    }
+
+    .video-container {
+      text-align: center;
+      margin-top: 2rem;
+    }
+
+    .video-container iframe {
+      width: 100%;
+      max-width: 700px;
+      height: 360px;
+      border: none;
+    }
+
+    .video-container figcaption {
+      font-size: 0.9rem;
+      color: #aaa;
+      margin-top: 0.5rem;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem 0;
+      background-color: #000;
+      color: #1db954;
+      font-size: 0.9rem;
+      margin-top: 2rem;
+    }
+
+    @media (max-width: 600px) {
+      .rviz-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 1rem;
+      }
+
+      .report-container {
+        padding: 1.2rem;
+      }
+
+      .video-container iframe {
+        height: 220px;
+      }
     }
   </style>
 </head>
+
 <body>
+
   <nav>
-    <div class="container">
-      <a href="index.html" class="logo">Darshan Robotics</a>
-      <ul class="nav-links">
-        <li><a href="index.html#projects">Projects</a></li>
-        <li><a href="index.html#experience">Experience</a></li>
-        <li><a href="index.html#publications">Publications</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-      </ul>
-    </div>
+    <a href="index.html" class="logo">Darshan Robotics</a>
+    <ul class="nav-links">
+      <li><a href="index.html#projects">Projects</a></li>
+      <li><a href="index.html#experience">Experience</a></li>
+      <li><a href="index.html#publications">Publications</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
   </nav>
+
   <div class="report-container">
-    <h1>Multi-Robot Navigation using RMF and TurtleBot3</h1>
-    <p><em>Fleet Coordination and Traffic Management in Simulated Environments</em></p>
+
+    <h1>Autonomous Navigation using TurtleBot and ROS</h1>
+    <p><em>Map Building, Localization, and Goal-Directed Navigation with a Mobile Robot</em></p>
+
     <h2>Abstract</h2>
-    <p>
-      This project presents the design and implementation of a multi-robot navigation system using the Robotics Middleware Framework (RMF) and TurtleBot3 robots. The system demonstrates coordinated task allocation, traffic management, and dynamic path planning for a fleet of robots, leveraging ROS 2 and Gazebo. The approach enables robust, scalable, and efficient operation for real-world logistics and facility management scenarios.
-    </p>
+    <p>This project presents the implementation of autonomous navigation on a TurtleBot platform using ROS. The system
+      covers two core phases: building a 2D occupancy grid map of an unknown environment using gmapping and keyboard
+      teleoperation, followed by autonomous, driverless goal navigation using AMCL-based localization. The approach
+      demonstrates fundamental concepts in mobile robotics including odometry, localization, costmap-based path
+      planning, and real-time obstacle avoidance.</p>
+
     <h2>1. Introduction</h2>
-    <p>
-      The increasing demand for automation in logistics and facility management has led to the development of multi-robot systems capable of performing complex tasks collaboratively. RMF provides a modular framework for managing fleets, scheduling tasks, and resolving conflicts. This project explores the integration of RMF with TurtleBot3 robots, focusing on coordinated navigation, task execution, and real-time traffic control.
-    </p>
-    <h2>2. System Overview</h2>
+    <p>Autonomous navigation is a cornerstone capability for mobile robots operating in real-world environments. This
+      project explores the ROS navigation stack on a TurtleBot, covering the complete pipeline from raw sensor data to
+      goal-directed motion. Using the Astra depth sensor, the robot builds a probabilistic map of its surroundings and
+      then localizes itself within that map to execute autonomous point-to-point navigation without any human
+      intervention.</p>
+
+    <h2>2. Key Concepts</h2>
     <ul>
-      <li><strong>Robotics Middleware Framework (RMF):</strong> Centralized fleet and traffic management, task scheduling, and conflict resolution.</li>
-      <li><strong>ROS 2:</strong> Communication backbone for robot control, sensor integration, and navigation.</li>
-      <li><strong>Gazebo Simulation:</strong> Realistic environment for testing navigation, obstacle avoidance, and task execution.</li>
-      <li><strong>TurtleBot3 Robots:</strong> Mobile platforms running navigation and localization stacks.</li>
-    </ul>
-    <figure>
-      <img src="assets/images/projects/tb3_rmf_multirobotnav/robots.jpg" alt="Fleet of TurtleBot3 robots in simulation" style="max-width: 700px; width: 100%;">
-      <figcaption>Fig. 1 TB3 robots used for testing</figcaption>
-    </figure>
-    <h2>3. Methodology</h2>
-    <h3>3.1 Environment and Robot Setup</h3>
-    <ul>
-      <li>A custom map is created in Gazebo, representing a facility with multiple rooms, corridors, and obstacles.</li>
-      <li>Multiple TurtleBot3 robots are spawned, each with unique namespaces and configurations.</li>
-      <li>Robots are equipped with LIDAR and odometry for localization and mapping.</li>
-    </ul>
-    <h3>3.2 RMF Integration and Task Scheduling</h3>
-    <ul>
-      <li>RMF is configured to recognize all robots, define traffic lanes, and set up delivery endpoints.</li>
-      <li>Tasks (e.g., deliveries, patrols) are assigned via the RMF web dashboard or API.</li>
-      <li>RMF schedules and coordinates task execution, dynamically resolving conflicts and rerouting robots as needed.</li>
-    </ul>
-    <figure>
-      <img src="assets/images/projects/tb3_rmf_multirobotnav/tasksinwebgui.png" alt="RMF Web Dashboard" style="max-width: 700px; width: 100%;">
-      <figcaption>Fig. 2. RMF web dashboard for task assignment and monitoring</figcaption>
-    </figure>
-    <h3>3.3 Navigation, Traffic Management, and Coordination</h3>
-    <ul>
-      <li>Each robot runs the ROS 2 navigation stack for path planning and obstacle avoidance.</li>
-      <li>RMF manages traffic, ensuring robots yield, wait, or reroute to prevent collisions.</li>
-      <li>Dynamic path planning allows robots to adapt to changing environments and traffic conditions.</li>
-    </ul>
-    <figure>
-      <img src="assets/images/projects/tb3_rmf_multirobotnav/task.png" alt="Task execution in simulation" style="max-width: 700px; width: 100%;">
-      <figcaption>Fig. 3. Task execution and robot coordination implementation in real-world setting</figcaption>
-    </figure>
-    <h3>3.4 Monitoring and Visualization</h3>
-    <ul>
-      <li>System state is monitored using RViz and the RMF dashboard, providing real-time feedback on robot positions, task status, and traffic flow.</li>
-      <li>Logs and metrics are collected for performance analysis and debugging.</li>
+      <li><strong>Odometry:</strong> Data gathered from moving sensors used to estimate the change in the robot's
+        position over time, providing a relative position from the starting location.</li>
+      <li><strong>Occupancy Grid Map (OGM):</strong> A 2D map generated from 3D sensor data and the known robot pose.
+        The environment is divided into an evenly-spaced grid where each cell holds a probabilistic value indicating the
+        presence of obstacles.</li>
+      <li><strong>Localization:</strong> The process of determining the robot's current position relative to a known map
+        using sensed environmental features.</li>
+      <li><strong>AMCL:</strong> Adaptive Monte Carlo Localization represents each possible robot position as a
+        particle. Particles whose laser scans do not match the map are removed, converging on the robot's true location.
+      </li>
+      <li><strong>Global Costmap:</strong> Keeps information for global navigation and path planning. Parameters are
+        stored in <code>global_costmap_params.yaml</code> and <code>costmap_common_params.yaml</code>.</li>
+      <li><strong>Local Costmap:</strong> Keeps information for local navigation and real-time obstacle avoidance.
+        Parameters are stored in <code>local_costmap_params.yaml</code>.</li>
     </ul>
 
+    <h2>3. Methodology</h2>
+
+    <h3>3.1 Phase A — Building a Map</h3>
+    <p>The robot is driven manually through the environment using keyboard teleoperation while gmapping builds an
+      occupancy grid map in real time from Astra depth sensor data. Once the environment is fully explored, the map is
+      saved to disk.</p>
+
+    <p class="window-label">Terminal Window 1 — Minimal launch of TurtleBot</p>
+    <div class="highlight">roslaunch turtlebot_bringup minimal.launch</div>
+
+    <p class="window-label">Terminal Window 2 — Launch gmapping</p>
+    <div class="highlight">export KINECT_DRIVER=openni2</div>
+    <div class="highlight">export TURTLEBOT_3D_SENSOR=astra</div>
+    <div class="highlight">roslaunch turtlebot_navigation gmapping_demo.launch</div>
+    <div class="note-box">Look for the following text on your window: &nbsp;<strong>odom received!</strong></div>
+
+    <p class="window-label">Terminal Window 3 — View navigation in RViz</p>
+    <div class="highlight">roslaunch turtlebot_rviz_launchers view_navigation.launch</div>
+    <p>If a map is not displayed, make sure the following display checkboxes are selected in the Displays panel:</p>
+    <ul class="checklist">
+      <li>RobotModel</li>
+      <li>LaserScan</li>
+      <li>Map</li>
+      <li>Global Map</li>
+      <li>Local Map</li>
+      <li>Amcl Particle Swarm</li>
+      <li>Full Plan</li>
+    </ul>
+
+    <p class="window-label">Terminal Window 4 — Keyboard teleoperation</p>
+    <div class="highlight">roslaunch turtlebot_teleop keyboard_teleop.launch</div>
+    <p>Drive the robot through the entire environment. When a complete map appears in RViz, save it without killing any
+      prior processes.</p>
+
+    <p class="window-label">Terminal Window 5 — Save the map</p>
+    <div class="highlight">rosrun map_server map_saver -f my_map</div>
+    <p>The process creates two files: <strong>my_map.yaml</strong> and <strong>my_map.pgm</strong>, placed in the
+      TurtleBot netbook home directory.</p>
+
+    <figure>
+      <img src="assets/images/projects/turtlebot_nav/gmapping_rviz.png" alt="Gmapping map building in RViz"
+        style="max-width: 700px; width: 100%;">
+      <figcaption>Fig. 1. Occupancy grid map being built in real time via RViz during teleoperation</figcaption>
+    </figure>
+
+    <h3>3.2 Phase B — Autonomous Navigation with AMCL</h3>
+    <p>With the saved map loaded, AMCL localizes the robot by matching live laser scans against the map. The ROS
+      navigation stack then plans and executes collision-free paths to user-specified goals entirely without human
+      driving.</p>
+
+    <p class="window-label">Terminal Window 1 — Minimal launch of TurtleBot</p>
+    <div class="highlight">roslaunch turtlebot_bringup minimal.launch</div>
+
+    <p class="window-label">Terminal Window 2 — Launch AMCL with saved map</p>
+    <div class="highlight">export KINECT_DRIVER=openni2</div>
+    <div class="highlight">export TURTLEBOT_3D_SENSOR=astra</div>
+    <div class="highlight">roslaunch turtlebot_navigation amcl_demo.launch map_file:=/home/&lt;username&gt;/my_map.yaml
+    </div>
+    <div class="note-box">Look for the following text on your window: &nbsp;<strong>odom received!</strong></div>
+
+    <p class="window-label">Terminal Window 3 — View navigation in RViz</p>
+    <div class="highlight">roslaunch turtlebot_rviz_launchers view_navigation.launch</div>
+
+    <figure>
+      <img src="assets/images/projects/turtlebot_nav/amcl_rviz.png" alt="AMCL localization in RViz"
+        style="max-width: 700px; width: 100%;">
+      <figcaption>Fig. 2. AMCL particle cloud converging on the robot's estimated location within the saved map
+      </figcaption>
+    </figure>
+
+    <h3>3.3 RViz Control — Pose Initialization and Navigation Goals</h3>
+    <p>When amcl_demo loads the map, TurtleBot does not yet know its current position on the map. Use RViz to initialize
+      the pose estimate and send navigation goals:</p>
+
+    <div class="rviz-grid">
+      <div class="rviz-box">
+        <h4>Set Initial Pose Estimate</h4>
+        <ol>
+          <li>Click the <strong>2D Pose Estimate</strong> button in the RViz toolbar.</li>
+          <li>Click the robot's physical location on the map.</li>
+          <li>Drag the arrow in the direction the robot is currently facing.</li>
+        </ol>
+      </div>
+      <div class="rviz-box">
+        <h4>Send Navigation Goal</h4>
+        <ol>
+          <li>Click the <strong>2D Nav Goal</strong> button in the RViz toolbar.</li>
+          <li>Click the target destination on the map.</li>
+          <li>Drag to set the desired heading when the robot arrives.</li>
+        </ol>
+      </div>
+    </div>
+
+    <figure>
+      <img src="assets/images/projects/turtlebot_nav/navgoal.png" alt="Navigation goal in RViz"
+        style="max-width: 700px; width: 100%;">
+      <figcaption>Fig. 3. Navigation goal sent via RViz — the green line shows the computed global path to the goal
+      </figcaption>
+    </figure>
+
     <h2>4. Results</h2>
-    <p>
-      The system successfully demonstrated coordinated navigation and task execution for multiple TurtleBot3 robots. RMF efficiently managed task allocation and traffic, enabling robots to complete deliveries without collisions. The simulation validated the scalability and robustness of RMF for real-world multi-robot applications.
-    </p>
-        <div class="video-container" style="text-align: center; margin-top: 2rem;">
-      <iframe width="640" height="360" src="https://www.youtube.com/embed/DyssXuOaH5k?si=H4bJVBvwwuscdOsh" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-      <figcaption> Robot Navigation Working (in progress) </figcaption>
+    <p>The system successfully demonstrated end-to-end autonomous navigation. The robot built an accurate occupancy grid
+      map of the environment through manual teleoperation, then localized itself within that map using AMCL and
+      navigated to multiple user-defined goals without collisions. The ROS navigation stack handled both global route
+      planning and local obstacle avoidance reliably across all test scenarios.</p>
+
+    <div class="video-container">
+      <iframe src="https://www.youtube.com/embed/q6s9RfedUlo" title="TurtleBot Autonomous Navigation Demo"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen></iframe>
+      <figcaption>TurtleBot navigating autonomously to a user-defined goal using AMCL and the ROS navigation stack
+      </figcaption>
     </div>
+
     <h2>5. Conclusion</h2>
-    <p>
-      Integrating RMF with ROS 2 and TurtleBot3 robots enables scalable, flexible, and safe multi-robot navigation. This approach is applicable to a wide range of domains, including healthcare, logistics, and smart facilities. Future work may involve deploying the system on physical robots and extending RMF capabilities for heterogeneous fleets and dynamic environments.
-    </p>
+    <p>This project demonstrated a complete autonomous navigation pipeline on a TurtleBot using ROS. Gmapping and AMCL
+      together provide reliable map building and localization, while the ROS navigation stack handles global path
+      planning and local obstacle avoidance. The system is readily extensible to larger environments, richer sensor
+      configurations, and integration with higher-level task planners. Future work may explore dynamic obstacle
+      handling, multi-floor navigation, and deployment in real-world logistics or facility management settings.</p>
+
     <div style="text-align:center; margin:2.5rem 0 0 0;">
-      <a href="assets/images/projects/tb3_rmf_multirobotnav/Final_Project_Report.pdf" target="_blank" style="display:inline-block; padding:0.75rem 2rem; background:#1db954; color:#fff; border-radius:6px; font-size:1.2rem; font-weight:600; text-decoration:none; transition:background 0.2s;">📄 Full Report (PDF)</a>
+      <a href="https://drive.google.com/file/d/1hRY5w6ens_q4UXPMUTsn1QnfM0CBX2Q_/view?usp=sharing" target="_blank"
+        style="display:inline-block; padding:0.75rem 2rem; background:#1db954; color:#fff; border-radius:6px; font-size:1.2rem; font-weight:600; text-decoration:none; transition:background 0.2s;">&#128196;
+        Full Report (PDF)</a>
     </div>
+
   </div>
-  <footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+
+  <footer>
     <p>&copy; 2025 Darshan K T Gowda. All rights reserved.</p>
   </footer>
+
 </body>
+
 </html>
