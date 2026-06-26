@@ -1,484 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8"/>
-<title>Building and Testing Quadrotor Drone</title>
-<link href="style.css" rel="stylesheet"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet"/>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet"/>
-<style>
-  body {
-    background-color: #121212;
-    font-family: 'Poppins', sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #fff;
-  }
-  .report-container {
-    max-width: 800px;
-    margin: 2rem auto;
-    padding: 2rem;
-    background: #000;
-  }
-  h1, h2 {
-    color: #1db954;
-  }
-  p, li {
-    margin-bottom: 1rem;
-    line-height: 1.6;
-    text-align: justify;
-  }
-  ul {
-    margin-left: 1.5rem;
-  }
-  .emoji-heading {
-    font-size: 1.2rem;
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    color: #1db954;
-  }
-  .step-box {
-    background: #1a1a1a;
-    border-left: 4px solid #1db954;
-    border-radius: 6px;
-    padding: 1rem 1.4rem;
-    margin-bottom: 1.2rem;
-  }
-  .step-box h3 {
-    color: #1db954;
-    margin: 0 0 0.5rem 0;
-    font-size: 1rem;
-  }
-  .step-box p, .step-box li {
-    margin-bottom: 0.4rem;
-    font-size: 0.93rem;
-  }
-  .image-gallery {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 1.5rem;
-    margin-bottom: 1.5rem;
-  }
-  .image-gallery img {
-    width: 30%;
-    border-radius: 10px;
-    object-fit: cover;
-  }
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.9rem;
-  }
-  th {
-    background: #1db954;
-    color: #000;
-    padding: 0.5rem 0.8rem;
-    text-align: left;
-  }
-  td {
-    padding: 0.5rem 0.8rem;
-    border-bottom: 1px solid #2a2a2a;
-    color: #ddd;
-  }
-  tr:nth-child(even) td {
-    background: #111;
-  }
-</style>
+  <meta charset="utf-8" />
+  <title>Building and Testing Quadrotor Drone</title>
+  <link href="style.css" rel="stylesheet" />
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      background-color: #121212;
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      padding: 0;
+      color: #fff;
+    }
+
+    .report-container {
+      max-width: 800px;
+      margin: 2rem auto;
+      padding: 2rem;
+      background: #000;
+    }
+
+    h1,
+    h2 {
+      color: #1db954;
+    }
+
+    p,
+    li {
+      margin-bottom: 1rem;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    ul {
+      margin-left: 1.5rem;
+    }
+
+    .emoji-heading {
+      font-size: 1.2rem;
+      margin-top: 2rem;
+      margin-bottom: 1rem;
+      color: #1db954;
+    }
+
+    .step-box {
+      background: #1a1a1a;
+      border-left: 4px solid #1db954;
+      border-radius: 6px;
+      padding: 1rem 1.4rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .step-box h3 {
+      color: #1db954;
+      margin: 0 0 0.5rem 0;
+      font-size: 1rem;
+    }
+
+    .step-box p,
+    .step-box li {
+      margin-bottom: 0.4rem;
+      font-size: 0.93rem;
+    }
+
+    .image-gallery {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .image-gallery img {
+      width: 30%;
+      border-radius: 10px;
+      object-fit: cover;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.9rem;
+    }
+
+    th {
+      background: #1db954;
+      color: #000;
+      padding: 0.5rem 0.8rem;
+      text-align: left;
+    }
+
+    td {
+      padding: 0.5rem 0.8rem;
+      border-bottom: 1px solid #2a2a2a;
+      color: #ddd;
+    }
+
+    tr:nth-child(even) td {
+      background: #111;
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- Navigation Bar -->
-<nav>
-  <div class="container">
-    <a href="index.html" class="logo">Darshan K T</a>
-    <ul class="nav-links">
-      <li><a href="index.html#projects">Projects</a></li>
-      <li><a href="index.html#experience">Experience</a></li>
-      <li><a href="index.html#publications">Publications</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
+  <!-- Navigation Bar -->
+  <nav>
+    <div class="container">
+      <a href="index.html" class="logo">Darshan K T</a>
+      <ul class="nav-links">
+        <li><a href="index.html#projects">Projects</a></li>
+        <li><a href="index.html#experience">Experience</a></li>
+        <li><a href="index.html#publications">Publications</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="report-container">
+
+    <h1>Building and Testing Quadrotor Drone</h1>
+
+    <!-- Overview -->
+    <div class="emoji-heading">📌 Overview</div>
+    <p>
+      This project covers the complete end-to-end process of building and flight-testing a <strong>quadrotor drone from
+        scratch</strong>.
+      Starting from selecting the right hardware components, through mechanical assembly, flight-controller firmware
+      configuration,
+      remote controller binding, GPS setup, full sensor calibration in <strong>QGroundControl (QGC)</strong>, and
+      finally a successful
+      outdoor test flight. The workflow follows industry-standard practices used in ArduPilot / PX4 based UAV
+      development.
+    </p>
+
+    <!-- Components -->
+    <div class="emoji-heading">🔩 Step 1 — Components</div>
+    <p>The following hardware was selected for building a stable and responsive quadrotor capable of GPS-assisted
+      flight:</p>
+
+    <table>
+      <tr>
+        <th>Component</th>
+        <th>Specification / Model</th>
+        <th>Purpose</th>
+      </tr>
+      <tr>
+        <td>Frame</td>
+        <td>F450 / S500 Quadrotor Frame</td>
+        <td>Structural chassis, 450 mm wheelbase</td>
+      </tr>
+      <tr>
+        <td>Flight Controller</td>
+        <td>Pixhawk 4 / Cube Orange</td>
+        <td>Autopilot with IMU, barometer, MAVLink</td>
+      </tr>
+      <tr>
+        <td>Motors</td>
+        <td>2212 920KV Brushless Motors (×4)</td>
+        <td>Propulsion — CW &amp; CCW pairs</td>
+      </tr>
+      <tr>
+        <td>ESCs</td>
+        <td>30A Electronic Speed Controllers (×4)</td>
+        <td>Motor speed control via PWM</td>
+      </tr>
+      <tr>
+        <td>Propellers</td>
+        <td>1045 (10 inch, 4.5 pitch) — 2 CW + 2 CCW</td>
+        <td>Thrust generation</td>
+      </tr>
+      <tr>
+        <td>Battery</td>
+        <td>3S / 4S 5200 mAh LiPo</td>
+        <td>Power supply</td>
+      </tr>
+      <tr>
+        <td>Power Distribution Board</td>
+        <td>PDB with BEC</td>
+        <td>Distribute power to ESCs and FC</td>
+      </tr>
+      <tr>
+        <td>GPS Module</td>
+        <td>Neo-M8N / Here3 GPS + Compass</td>
+        <td>Position hold, RTL, waypoint missions</td>
+      </tr>
+      <tr>
+        <td>RC Receiver</td>
+        <td>FrSky X8R / FlySky FS-iA10B</td>
+        <td>Receive RC commands from transmitter</td>
+      </tr>
+      <tr>
+        <td>RC Transmitter</td>
+        <td>FrSky Taranis X9D / FlySky FS-i6X (10ch)</td>
+        <td>Manual pilot control</td>
+      </tr>
+      <tr>
+        <td>Telemetry Radio</td>
+        <td>SiK 915 MHz / 433 MHz (×2)</td>
+        <td>GCS ↔ drone MAVLink link</td>
+      </tr>
+      <tr>
+        <td>Companion Computer (Optional)</td>
+        <td>Raspberry Pi 4</td>
+        <td>ROS2 / onboard processing</td>
+      </tr>
+    </table>
+
+    <!-- Assembly -->
+    <div class="emoji-heading">🛠 Step 2 — Assembly</div>
+    <p>Assembly was performed in a systematic order to ensure clean wiring and structural rigidity:</p>
+
+    <div class="step-box">
+      <h3>2.1 — Frame Assembly</h3>
+      <ul>
+        <li>Mount the four arms onto the central frame plate using M3 bolts. Identify motor positions: two front (CW),
+          two rear (CCW).</li>
+        <li>Attach the landing gear legs to the bottom plate for ground clearance.</li>
+        <li>Route motor wires through the arm channels to keep wiring clean and protected.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>2.2 — Motor &amp; ESC Mounting</h3>
+      <ul>
+        <li>Bolt each <strong>2212 920KV brushless motor</strong> to the tip of each arm using M3 screws.</li>
+        <li>Mount one 30A ESC on each arm using zip ties or velcro. Keep ESCs away from motor heat.</li>
+        <li>Connect motor phase wires (3-wire) to ESC output. Note: motor direction will be verified and corrected in
+          QGC.</li>
+        <li>Connect ESC power leads (red &amp; black) to the Power Distribution Board (PDB).</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>2.3 — Power Distribution Board (PDB)</h3>
+      <ul>
+        <li>Solder all four ESC power pairs to the PDB pads. Observe polarity — red to +, black to −.</li>
+        <li>Solder the main battery XT60 connector to the PDB input.</li>
+        <li>Take a regulated 5V BEC output from the PDB to power the Pixhawk.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>2.4 — Flight Controller Mounting</h3>
+      <ul>
+        <li>Mount <strong>Pixhawk 4</strong> in the center of the frame using anti-vibration foam pads. Arrow on Pixhawk
+          must face the drone's front.</li>
+        <li>Connect ESC signal wires (PWM) to Pixhawk's MAIN OUT ports: Motor 1 → MAIN 1, Motor 2 → MAIN 2, Motor 3 →
+          MAIN 3, Motor 4 → MAIN 4.</li>
+        <li>Connect the 5V BEC power to the Pixhawk power module port.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>2.5 — Propeller Mounting</h3>
+      <ul>
+        <li>Attach <strong>CW propellers</strong> (standard thread) on motors 1 &amp; 3 (front-right and rear-left).
+        </li>
+        <li>Attach <strong>CCW propellers</strong> (reverse thread) on motors 2 &amp; 4 (front-left and rear-right).
+        </li>
+        <li><strong>Important:</strong> Do NOT mount propellers until all ESC direction checks are completed safely in
+          QGC.</li>
+      </ul>
+    </div>
+
+    <!-- Assembly photo -->
+    <div class="image-gallery"
+      style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
+      <figure style="margin:0; text-align:center; width:60%;">
+        <img src="assets/images/projects/quadrotor_drone/IMG_20240419_132619.jpg"
+          alt="F330 frame with brushless motors and ESCs assembled"
+          style="width:100%; border-radius:10px; object-fit:cover;">
+        <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">F330 frame with brushless motors &amp; ESCs
+          mounted — Pixhawk 5X visible alongside</figcaption>
+      </figure>
+    </div>
+
+    <!-- QGC Motor Configuration -->
+    <div class="emoji-heading">⚙️ Step 3 — QGroundControl (QGC) Setup &amp; Motor Configuration</div>
+    <p>
+      <strong>QGroundControl (QGC)</strong> is the ground control station used to configure the Pixhawk, verify
+      actuators,
+      and monitor telemetry. Connect the Pixhawk to the laptop via USB and open QGC.
+    </p>
+
+    <div class="step-box">
+      <h3>3.1 — Firmware Flash</h3>
+      <ul>
+        <li>In QGC: <em>Vehicle Setup → Firmware</em>. Select <strong>ArduPilot</strong> or <strong>PX4</strong> and
+          flash the latest stable release for quadrotor.</li>
+        <li>After flashing, QGC will reboot the Pixhawk and auto-detect the frame type.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>3.2 — Airframe Selection</h3>
+      <ul>
+        <li>Go to <em>Vehicle Setup → Airframe</em>.</li>
+        <li>Select <strong>Quadrotor X</strong> configuration (X-frame layout). Apply &amp; restart.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>3.3 — Motor Test &amp; Direction Verification</h3>
+      <ul>
+        <li>Go to <em>Vehicle Setup → Motors</em> (with props OFF and battery connected).</li>
+        <li>Slide each motor slider individually and verify each physical motor spins correctly.</li>
+        <li>If a motor spins in the wrong direction, swap any two of its three ESC-to-motor phase wires to reverse it.
+        </li>
+        <li>Verify the standard ArduPilot quadrotor X spin pattern:
+          <ul>
+            <li>Motor 1 (Front-Right) — CCW</li>
+            <li>Motor 2 (Rear-Left) — CCW</li>
+            <li>Motor 3 (Front-Left) — CW</li>
+            <li>Motor 4 (Rear-Right) — CW</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>3.4 — ESC Calibration</h3>
+      <ul>
+        <li>In QGC: <em>Vehicle Setup → Power → ESC Calibration</em>.</li>
+        <li>Follow the wizard: disconnect battery, click calibrate, reconnect battery when prompted. Listen for ESC
+          tones confirming min/max throttle registration.</li>
+        <li>This ensures all ESCs respond identically to the same throttle input.</li>
+      </ul>
+    </div>
+
+    <!-- QGC screenshot -->
+    <div class="image-gallery"
+      style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
+      <figure style="margin:0; text-align:center; width:90%;">
+        <img src="assets/images/projects/quadrotor_drone/IMG_20240420_133520.jpg"
+          alt="QGroundControl Radio Setup screen showing channel calibration"
+          style="width:100%; border-radius:10px; object-fit:cover;">
+        <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">QGroundControl — Radio Setup screen with
+          FlySky FS-iA6B receiver and Pixhawk 5X connected</figcaption>
+      </figure>
+    </div>
+
+    <!-- RC Setup -->
+    <div class="emoji-heading">🎮 Step 4 — Remote Controller Setup</div>
+
+    <div class="step-box">
+      <h3>4.1 — Bind Receiver to Transmitter</h3>
+      <ul>
+        <li>For <strong>FrSky</strong>: Hold the bind button on X8R receiver, power on, then enter bind mode on Taranis.
+          Release when solid LED appears.</li>
+        <li>For <strong>FlySky</strong>: Hold BIND on FS-iA10B, power the drone, then enter bind on FS-i6X transmitter.
+        </li>
+        <li>Confirm solid LED on receiver indicating successful bind.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>4.2 — RC Calibration in QGC</h3>
+      <ul>
+        <li>Connect receiver signal to Pixhawk RC IN port (SBUS or PPM).</li>
+        <li>Go to <em>Vehicle Setup → Radio</em> in QGC. Click <strong>Calibrate</strong>.</li>
+        <li>Move all sticks and switches through their full range when prompted. QGC captures min, max, and trim values.
+        </li>
+        <li>Verify channel mapping: Ch1 = Roll, Ch2 = Pitch, Ch3 = Throttle, Ch4 = Yaw, Ch5 = Flight Mode switch.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>4.3 — Flight Mode Configuration</h3>
+      <ul>
+        <li>Go to <em>Vehicle Setup → Flight Modes</em>.</li>
+        <li>Assign at least three modes to the 3-position switch on Ch5:
+          <ul>
+            <li><strong>Stabilize</strong> — manual with self-levelling</li>
+            <li><strong>AltHold</strong> — barometer-assisted altitude hold</li>
+            <li><strong>Loiter</strong> — GPS position and altitude hold</li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <!-- RC wiring photo -->
+    <div class="image-gallery"
+      style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
+      <figure style="margin:0; text-align:center; width:75%;">
+        <img src="assets/images/projects/quadrotor_drone/IMG_20240420_133500.jpg"
+          alt="FlySky FS-iA6B receiver connected to Pixhawk 5X via PPM cable"
+          style="width:100%; border-radius:10px; object-fit:cover;">
+        <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">FlySky FS-iA6B receiver wired to Pixhawk 5X
+          RC IN port via PPM cable</figcaption>
+      </figure>
+    </div>
+
+    <!-- GPS Connection -->
+    <div class="emoji-heading">🛰️ Step 5 — GPS Connection</div>
+
+    <div class="step-box">
+      <h3>5.1 — Physical Mounting</h3>
+      <ul>
+        <li>Mount the <strong>GPS/Compass module</strong> on a raised mast at the top-rear of the drone, away from ESCs,
+          motors, and power wires to reduce magnetic interference.</li>
+        <li>Ensure the GPS arrow points forward (aligned with Pixhawk's forward arrow).</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>5.2 — Wiring</h3>
+      <ul>
+        <li>Connect GPS UART cable to Pixhawk's <strong>GPS1 port</strong>.</li>
+        <li>Connect the compass I2C cable to Pixhawk's <strong>I2C port</strong> (or it may be combined in a single
+          cable for modules like Here3).</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>5.3 — QGC GPS Verification</h3>
+      <ul>
+        <li>Go outdoors with a clear sky view. Check QGC status bar for GPS fix icon.</li>
+        <li>Wait for <strong>3D GPS lock</strong> — typically requires ≥6 satellites and HDOP &lt; 2.0.</li>
+        <li>The home position is automatically set on first GPS lock after arming.</li>
+      </ul>
+    </div>
+
+    <!-- Fully assembled drone with GPS mast -->
+    <div class="image-gallery"
+      style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
+      <figure style="margin:0; text-align:center; width:55%;">
+        <img src="assets/images/projects/quadrotor_drone/IMG_20240420_155258.jpg"
+          alt="Fully assembled quadrotor with Pixhawk 5X, GPS mast, and landing gear"
+          style="width:100%; border-radius:10px; object-fit:cover;">
+        <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">Fully assembled quadrotor — Pixhawk 5X, GPS
+          mast on top, XT60 battery connector, and landing gear fitted</figcaption>
+      </figure>
+    </div>
+
+    <!-- Calibration -->
+    <div class="emoji-heading">🧭 Step 6 — Calibration</div>
+    <p>All calibrations are performed in QGC under <em>Vehicle Setup</em>. Perform them indoors away from metal
+      structures.</p>
+
+    <div class="step-box">
+      <h3>6.1 — Accelerometer Calibration</h3>
+      <ul>
+        <li>Go to <em>Sensors → Accelerometer</em>. Click Calibrate.</li>
+        <li>Place the drone flat on each of its 6 faces (level, nose down, tail down, left side, right side, upside
+          down) when prompted by QGC. Click OK between each.</li>
+        <li>This corrects IMU offset and ensures the drone knows its true horizontal level.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>6.2 — Compass Calibration</h3>
+      <ul>
+        <li>Go to <em>Sensors → Compass</em>. Click Calibrate.</li>
+        <li>Rotate the drone slowly through all orientations — roll, pitch, and yaw — until all compass spheres fill up
+          in QGC.</li>
+        <li>Perform outdoors or in an open space, away from iron structures and electronics. Remove any magnetic tools
+          nearby.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>6.3 — Level Horizon</h3>
+      <ul>
+        <li>Place the drone on a flat, level surface.</li>
+        <li>Go to <em>Sensors → Level Horizon</em>. Click Calibrate to set the neutral pitch/roll reference.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>6.4 — Radio &amp; Battery Configuration</h3>
+      <ul>
+        <li>Set battery cell count and capacity in <em>Power</em> section. Enable low-battery failsafe (e.g., RTL below
+          20%).</li>
+        <li>Enable RC loss failsafe to trigger RTL if signal is lost for &gt;1 second.</li>
+      </ul>
+    </div>
+
+    <!-- Test Flight -->
+    <div class="emoji-heading">✈️ Step 7 — Test Flight</div>
+    <p>Before the first flight, perform a thorough pre-flight checklist:</p>
+
+    <div class="step-box">
+      <h3>7.1 — Pre-Flight Checklist</h3>
+      <ul>
+        <li>✅ All calibrations passed (no yellow/red warnings in QGC).</li>
+        <li>✅ Props securely tightened — CW and CCW correctly placed.</li>
+        <li>✅ Battery fully charged and XT60 connector firmly plugged in.</li>
+        <li>✅ RC transmitter powered and linked — all sticks respond in QGC radio screen.</li>
+        <li>✅ GPS lock acquired (≥6 sats, HDOP &lt; 2.0) shown in QGC HUD.</li>
+        <li>✅ Flight mode switch set to <strong>Stabilize</strong> for first flight.</li>
+        <li>✅ Test area is open, flat, with no people or obstacles within 20 m.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>7.2 — Arming &amp; Hover Test</h3>
+      <ul>
+        <li>Arm the drone: hold throttle-down and yaw-right for 3 seconds on the transmitter. Motors will start spinning
+          slowly.</li>
+        <li>Slowly increase throttle until the drone lifts off (~50–60% throttle for hover).</li>
+        <li>Hover at ~1 m altitude for 30 seconds. Observe stability — drone should hold roughly level without large
+          corrections needed.</li>
+        <li>Test roll, pitch, and yaw inputs gently to verify control response.</li>
+        <li>Disarm: hold throttle-down and yaw-left for 3 seconds after landing.</li>
+      </ul>
+    </div>
+
+    <div class="step-box">
+      <h3>7.3 — AltHold &amp; Loiter Test</h3>
+      <ul>
+        <li>Switch to <strong>AltHold</strong> mode. Release throttle stick to center — drone should maintain altitude
+          automatically using barometer.</li>
+        <li>Switch to <strong>Loiter</strong> mode (GPS required). Drone should hold its XY position against wind.
+          Release all sticks and observe.</li>
+        <li>Test <strong>Return-to-Launch (RTL)</strong>: trigger via flight mode switch. Drone should ascend to RTL
+          altitude, fly back to home position, and auto-land.</li>
+      </ul>
+    </div>
+
+    <!-- Outcome -->
+    <div class="emoji-heading">🎯 Deployment Outcome</div>
+    <ul>
+      <li>Successfully built and assembled a stable quadrotor from individual components.</li>
+      <li>All motors verified with correct spin direction; ESCs calibrated for uniform response.</li>
+      <li>Full sensor suite calibrated via QGroundControl — IMU, compass, RC, and battery.</li>
+      <li>GPS lock acquired reliably with 3D fix; position hold (Loiter) verified outdoors.</li>
+      <li>Test flight completed: stable hover, responsive manual control, and autonomous RTL confirmed.</li>
     </ul>
+
+    <!-- Demo video -->
+    <div class="video-container"
+      style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; margin:2rem auto;">
+      <video controls style="width:80%; border-radius:10px; margin-bottom:1rem;" preload="metadata">
+        <source src="assets/images/projects/quadrotor_drone/video_20240419_135053.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
+      <p style="color:#aaa; font-size:0.85rem; margin-top:0.4rem;">Motor test and initial hover validation — April 2024
+      </p>
+    </div>
+
+    <!-- Architecture -->
+    <div class="emoji-heading">🧩 System Architecture</div>
+    <ul>
+      <li><strong>Pixhawk 4 (ArduCopter firmware):</strong> Core autopilot — handles sensor fusion (IMU + barometer +
+        GPS + compass), motor mixing, PID control, and MAVLink telemetry.</li>
+      <li><strong>ESC + Brushless Motors:</strong> Each ESC converts PWM commands from Pixhawk into motor RPM for all
+        four propulsion units.</li>
+      <li><strong>GPS/Compass Module:</strong> Provides absolute position (lat/lon/alt) and heading for Loiter, RTL, and
+        waypoint missions.</li>
+      <li><strong>FrSky / FlySky RC System:</strong> Sends pilot commands on up to 10 channels via SBUS/PPM to Pixhawk
+        RC input.</li>
+      <li><strong>Telemetry Radio:</strong> MAVLink bidirectional link between Pixhawk and QGC on a ground laptop for
+        real-time monitoring.</li>
+      <li><strong>QGroundControl (QGC):</strong> Ground control station for firmware flashing, parameter tuning,
+        calibration, mission planning, and live HUD.</li>
+    </ul>
+
+    <!-- Future Vision -->
+    <div class="emoji-heading">🔭 Future Vision</div>
+    <p>This build establishes a strong platform for further autonomous capability development:</p>
+    <ul>
+      <li><strong>ROS2 + MAVROS Integration:</strong> Run high-level autonomy nodes on a companion Raspberry Pi,
+        bridging ROS2 topics to Pixhawk via MAVROS.</li>
+      <li><strong>Autonomous Waypoint Missions:</strong> Plan and execute multi-waypoint GPS missions via QGC Mission
+        Editor or custom ROS2 mission nodes.</li>
+      <li><strong>Vision-Based Navigation:</strong> Integrate a downward-facing camera with optical flow for GPS-denied
+        indoor position hold.</li>
+      <li><strong>Object Detection Payload:</strong> Mount a Jetson Nano with a camera for real-time YOLO-based aerial
+        surveillance and inspection tasks.</li>
+    </ul>
+
+    <h2>Conclusion</h2>
+    <p>
+      By following a structured build process — from component selection and mechanical assembly through ESC wiring, QGC
+      firmware and motor configuration,
+      RC binding, GPS integration, and full sensor calibration — the quadrotor was successfully assembled and
+      flight-tested.
+      The drone demonstrated stable hover, responsive manual control, and reliable GPS-assisted autonomous modes
+      including Loiter and RTL.
+      This project provides a solid, extensible hardware foundation ready for advanced autonomy research using ROS2,
+      computer vision, and
+      custom mission planning.
+    </p>
+
+    <!-- Buttons -->
+    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
+      <a href="https://www.youtube.com/shorts/yiogjltbTz4" target="_blank"
+        style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.4rem; background: #ff0000; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1rem; font-weight: 600;">
+        <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> Refer YouTube Video
+      </a>
+    </div>
+
+    <footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
+      <p>© 2025 Darshan K T. All rights reserved.</p>
+    </footer>
+
   </div>
-</nav>
-
-<div class="report-container">
-
-<h1>Building and Testing Quadrotor Drone</h1>
-
-<!-- Overview -->
-<div class="emoji-heading">📌 Overview</div>
-<p>
-  This project covers the complete end-to-end process of building and flight-testing a <strong>quadrotor drone from scratch</strong>.
-  Starting from selecting the right hardware components, through mechanical assembly, flight-controller firmware configuration,
-  remote controller binding, GPS setup, full sensor calibration in <strong>QGroundControl (QGC)</strong>, and finally a successful
-  outdoor test flight. The workflow follows industry-standard practices used in ArduPilot / PX4 based UAV development.
-</p>
-
-<!-- Components -->
-<div class="emoji-heading">🔩 Step 1 — Components</div>
-<p>The following hardware was selected for building a stable and responsive quadrotor capable of GPS-assisted flight:</p>
-
-<table>
-  <tr><th>Component</th><th>Specification / Model</th><th>Purpose</th></tr>
-  <tr><td>Frame</td><td>F450 / S500 Quadrotor Frame</td><td>Structural chassis, 450 mm wheelbase</td></tr>
-  <tr><td>Flight Controller</td><td>Pixhawk 4 / Cube Orange</td><td>Autopilot with IMU, barometer, MAVLink</td></tr>
-  <tr><td>Motors</td><td>2212 920KV Brushless Motors (×4)</td><td>Propulsion — CW &amp; CCW pairs</td></tr>
-  <tr><td>ESCs</td><td>30A Electronic Speed Controllers (×4)</td><td>Motor speed control via PWM</td></tr>
-  <tr><td>Propellers</td><td>1045 (10 inch, 4.5 pitch) — 2 CW + 2 CCW</td><td>Thrust generation</td></tr>
-  <tr><td>Battery</td><td>3S / 4S 5200 mAh LiPo</td><td>Power supply</td></tr>
-  <tr><td>Power Distribution Board</td><td>PDB with BEC</td><td>Distribute power to ESCs and FC</td></tr>
-  <tr><td>GPS Module</td><td>Neo-M8N / Here3 GPS + Compass</td><td>Position hold, RTL, waypoint missions</td></tr>
-  <tr><td>RC Receiver</td><td>FrSky X8R / FlySky FS-iA10B</td><td>Receive RC commands from transmitter</td></tr>
-  <tr><td>RC Transmitter</td><td>FrSky Taranis X9D / FlySky FS-i6X (10ch)</td><td>Manual pilot control</td></tr>
-  <tr><td>Telemetry Radio</td><td>SiK 915 MHz / 433 MHz (×2)</td><td>GCS ↔ drone MAVLink link</td></tr>
-  <tr><td>Companion Computer (Optional)</td><td>Raspberry Pi 4</td><td>ROS2 / onboard processing</td></tr>
-</table>
-
-<!-- Assembly -->
-<div class="emoji-heading">🛠 Step 2 — Assembly</div>
-<p>Assembly was performed in a systematic order to ensure clean wiring and structural rigidity:</p>
-
-<div class="step-box">
-  <h3>2.1 — Frame Assembly</h3>
-  <ul>
-    <li>Mount the four arms onto the central frame plate using M3 bolts. Identify motor positions: two front (CW), two rear (CCW).</li>
-    <li>Attach the landing gear legs to the bottom plate for ground clearance.</li>
-    <li>Route motor wires through the arm channels to keep wiring clean and protected.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>2.2 — Motor &amp; ESC Mounting</h3>
-  <ul>
-    <li>Bolt each <strong>2212 920KV brushless motor</strong> to the tip of each arm using M3 screws.</li>
-    <li>Mount one 30A ESC on each arm using zip ties or velcro. Keep ESCs away from motor heat.</li>
-    <li>Connect motor phase wires (3-wire) to ESC output. Note: motor direction will be verified and corrected in QGC.</li>
-    <li>Connect ESC power leads (red &amp; black) to the Power Distribution Board (PDB).</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>2.3 — Power Distribution Board (PDB)</h3>
-  <ul>
-    <li>Solder all four ESC power pairs to the PDB pads. Observe polarity — red to +, black to −.</li>
-    <li>Solder the main battery XT60 connector to the PDB input.</li>
-    <li>Take a regulated 5V BEC output from the PDB to power the Pixhawk.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>2.4 — Flight Controller Mounting</h3>
-  <ul>
-    <li>Mount <strong>Pixhawk 4</strong> in the center of the frame using anti-vibration foam pads. Arrow on Pixhawk must face the drone's front.</li>
-    <li>Connect ESC signal wires (PWM) to Pixhawk's MAIN OUT ports: Motor 1 → MAIN 1, Motor 2 → MAIN 2, Motor 3 → MAIN 3, Motor 4 → MAIN 4.</li>
-    <li>Connect the 5V BEC power to the Pixhawk power module port.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>2.5 — Propeller Mounting</h3>
-  <ul>
-    <li>Attach <strong>CW propellers</strong> (standard thread) on motors 1 &amp; 3 (front-right and rear-left).</li>
-    <li>Attach <strong>CCW propellers</strong> (reverse thread) on motors 2 &amp; 4 (front-left and rear-right).</li>
-    <li><strong>Important:</strong> Do NOT mount propellers until all ESC direction checks are completed safely in QGC.</li>
-  </ul>
-</div>
-
-<!-- Assembly photo -->
-<div class="image-gallery" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
-  <figure style="margin:0; text-align:center; width:60%;">
-    <img src="assets/images/projects/quadrotor_drone/IMG_20240419_132619.jpg"
-         alt="F330 frame with brushless motors and ESCs assembled"
-         style="width:100%; border-radius:10px; object-fit:cover;">
-    <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">F330 frame with brushless motors &amp; ESCs mounted — Pixhawk 5X visible alongside</figcaption>
-  </figure>
-</div>
-
-<!-- QGC Motor Configuration -->
-<div class="emoji-heading">⚙️ Step 3 — QGroundControl (QGC) Setup &amp; Motor Configuration</div>
-<p>
-  <strong>QGroundControl (QGC)</strong> is the ground control station used to configure the Pixhawk, verify actuators,
-  and monitor telemetry. Connect the Pixhawk to the laptop via USB and open QGC.
-</p>
-
-<div class="step-box">
-  <h3>3.1 — Firmware Flash</h3>
-  <ul>
-    <li>In QGC: <em>Vehicle Setup → Firmware</em>. Select <strong>ArduPilot</strong> or <strong>PX4</strong> and flash the latest stable release for quadrotor.</li>
-    <li>After flashing, QGC will reboot the Pixhawk and auto-detect the frame type.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>3.2 — Airframe Selection</h3>
-  <ul>
-    <li>Go to <em>Vehicle Setup → Airframe</em>.</li>
-    <li>Select <strong>Quadrotor X</strong> configuration (X-frame layout). Apply &amp; restart.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>3.3 — Motor Test &amp; Direction Verification</h3>
-  <ul>
-    <li>Go to <em>Vehicle Setup → Motors</em> (with props OFF and battery connected).</li>
-    <li>Slide each motor slider individually and verify each physical motor spins correctly.</li>
-    <li>If a motor spins in the wrong direction, swap any two of its three ESC-to-motor phase wires to reverse it.</li>
-    <li>Verify the standard ArduPilot quadrotor X spin pattern:
-      <ul>
-        <li>Motor 1 (Front-Right) — CCW</li>
-        <li>Motor 2 (Rear-Left) — CCW</li>
-        <li>Motor 3 (Front-Left) — CW</li>
-        <li>Motor 4 (Rear-Right) — CW</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>3.4 — ESC Calibration</h3>
-  <ul>
-    <li>In QGC: <em>Vehicle Setup → Power → ESC Calibration</em>.</li>
-    <li>Follow the wizard: disconnect battery, click calibrate, reconnect battery when prompted. Listen for ESC tones confirming min/max throttle registration.</li>
-    <li>This ensures all ESCs respond identically to the same throttle input.</li>
-  </ul>
-</div>
-
-<!-- QGC screenshot -->
-<div class="image-gallery" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
-  <figure style="margin:0; text-align:center; width:90%;">
-    <img src="assets/images/projects/quadrotor_drone/IMG_20240420_133520.jpg"
-         alt="QGroundControl Radio Setup screen showing channel calibration"
-         style="width:100%; border-radius:10px; object-fit:cover;">
-    <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">QGroundControl — Radio Setup screen with FlySky FS-iA6B receiver and Pixhawk 5X connected</figcaption>
-  </figure>
-</div>
-
-<!-- RC Setup -->
-<div class="emoji-heading">🎮 Step 4 — Remote Controller Setup</div>
-
-<div class="step-box">
-  <h3>4.1 — Bind Receiver to Transmitter</h3>
-  <ul>
-    <li>For <strong>FrSky</strong>: Hold the bind button on X8R receiver, power on, then enter bind mode on Taranis. Release when solid LED appears.</li>
-    <li>For <strong>FlySky</strong>: Hold BIND on FS-iA10B, power the drone, then enter bind on FS-i6X transmitter.</li>
-    <li>Confirm solid LED on receiver indicating successful bind.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>4.2 — RC Calibration in QGC</h3>
-  <ul>
-    <li>Connect receiver signal to Pixhawk RC IN port (SBUS or PPM).</li>
-    <li>Go to <em>Vehicle Setup → Radio</em> in QGC. Click <strong>Calibrate</strong>.</li>
-    <li>Move all sticks and switches through their full range when prompted. QGC captures min, max, and trim values.</li>
-    <li>Verify channel mapping: Ch1 = Roll, Ch2 = Pitch, Ch3 = Throttle, Ch4 = Yaw, Ch5 = Flight Mode switch.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>4.3 — Flight Mode Configuration</h3>
-  <ul>
-    <li>Go to <em>Vehicle Setup → Flight Modes</em>.</li>
-    <li>Assign at least three modes to the 3-position switch on Ch5:
-      <ul>
-        <li><strong>Stabilize</strong> — manual with self-levelling</li>
-        <li><strong>AltHold</strong> — barometer-assisted altitude hold</li>
-        <li><strong>Loiter</strong> — GPS position and altitude hold</li>
-      </ul>
-    </li>
-  </ul>
-</div>
-
-<!-- RC wiring photo -->
-<div class="image-gallery" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
-  <figure style="margin:0; text-align:center; width:75%;">
-    <img src="assets/images/projects/quadrotor_drone/IMG_20240420_133500.jpg"
-         alt="FlySky FS-iA6B receiver connected to Pixhawk 5X via PPM cable"
-         style="width:100%; border-radius:10px; object-fit:cover;">
-    <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">FlySky FS-iA6B receiver wired to Pixhawk 5X RC IN port via PPM cable</figcaption>
-  </figure>
-</div>
-
-<!-- GPS Connection -->
-<div class="emoji-heading">🛰️ Step 5 — GPS Connection</div>
-
-<div class="step-box">
-  <h3>5.1 — Physical Mounting</h3>
-  <ul>
-    <li>Mount the <strong>GPS/Compass module</strong> on a raised mast at the top-rear of the drone, away from ESCs, motors, and power wires to reduce magnetic interference.</li>
-    <li>Ensure the GPS arrow points forward (aligned with Pixhawk's forward arrow).</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>5.2 — Wiring</h3>
-  <ul>
-    <li>Connect GPS UART cable to Pixhawk's <strong>GPS1 port</strong>.</li>
-    <li>Connect the compass I2C cable to Pixhawk's <strong>I2C port</strong> (or it may be combined in a single cable for modules like Here3).</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>5.3 — QGC GPS Verification</h3>
-  <ul>
-    <li>Go outdoors with a clear sky view. Check QGC status bar for GPS fix icon.</li>
-    <li>Wait for <strong>3D GPS lock</strong> — typically requires ≥6 satellites and HDOP &lt; 2.0.</li>
-    <li>The home position is automatically set on first GPS lock after arming.</li>
-  </ul>
-</div>
-
-<!-- Fully assembled drone with GPS mast -->
-<div class="image-gallery" style="display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; margin-top:1.5rem;">
-  <figure style="margin:0; text-align:center; width:55%;">
-    <img src="assets/images/projects/quadrotor_drone/IMG_20240420_155258.jpg"
-         alt="Fully assembled quadrotor with Pixhawk 5X, GPS mast, and landing gear"
-         style="width:100%; border-radius:10px; object-fit:cover;">
-    <figcaption style="color:#aaa; font-size:0.8rem; margin-top:0.4rem;">Fully assembled quadrotor — Pixhawk 5X, GPS mast on top, XT60 battery connector, and landing gear fitted</figcaption>
-  </figure>
-</div>
-
-<!-- Calibration -->
-<div class="emoji-heading">🧭 Step 6 — Calibration</div>
-<p>All calibrations are performed in QGC under <em>Vehicle Setup</em>. Perform them indoors away from metal structures.</p>
-
-<div class="step-box">
-  <h3>6.1 — Accelerometer Calibration</h3>
-  <ul>
-    <li>Go to <em>Sensors → Accelerometer</em>. Click Calibrate.</li>
-    <li>Place the drone flat on each of its 6 faces (level, nose down, tail down, left side, right side, upside down) when prompted by QGC. Click OK between each.</li>
-    <li>This corrects IMU offset and ensures the drone knows its true horizontal level.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>6.2 — Compass Calibration</h3>
-  <ul>
-    <li>Go to <em>Sensors → Compass</em>. Click Calibrate.</li>
-    <li>Rotate the drone slowly through all orientations — roll, pitch, and yaw — until all compass spheres fill up in QGC.</li>
-    <li>Perform outdoors or in an open space, away from iron structures and electronics. Remove any magnetic tools nearby.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>6.3 — Level Horizon</h3>
-  <ul>
-    <li>Place the drone on a flat, level surface.</li>
-    <li>Go to <em>Sensors → Level Horizon</em>. Click Calibrate to set the neutral pitch/roll reference.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>6.4 — Radio &amp; Battery Configuration</h3>
-  <ul>
-    <li>Set battery cell count and capacity in <em>Power</em> section. Enable low-battery failsafe (e.g., RTL below 20%).</li>
-    <li>Enable RC loss failsafe to trigger RTL if signal is lost for &gt;1 second.</li>
-  </ul>
-</div>
-
-<!-- Test Flight -->
-<div class="emoji-heading">✈️ Step 7 — Test Flight</div>
-<p>Before the first flight, perform a thorough pre-flight checklist:</p>
-
-<div class="step-box">
-  <h3>7.1 — Pre-Flight Checklist</h3>
-  <ul>
-    <li>✅ All calibrations passed (no yellow/red warnings in QGC).</li>
-    <li>✅ Props securely tightened — CW and CCW correctly placed.</li>
-    <li>✅ Battery fully charged and XT60 connector firmly plugged in.</li>
-    <li>✅ RC transmitter powered and linked — all sticks respond in QGC radio screen.</li>
-    <li>✅ GPS lock acquired (≥6 sats, HDOP &lt; 2.0) shown in QGC HUD.</li>
-    <li>✅ Flight mode switch set to <strong>Stabilize</strong> for first flight.</li>
-    <li>✅ Test area is open, flat, with no people or obstacles within 20 m.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>7.2 — Arming &amp; Hover Test</h3>
-  <ul>
-    <li>Arm the drone: hold throttle-down and yaw-right for 3 seconds on the transmitter. Motors will start spinning slowly.</li>
-    <li>Slowly increase throttle until the drone lifts off (~50–60% throttle for hover).</li>
-    <li>Hover at ~1 m altitude for 30 seconds. Observe stability — drone should hold roughly level without large corrections needed.</li>
-    <li>Test roll, pitch, and yaw inputs gently to verify control response.</li>
-    <li>Disarm: hold throttle-down and yaw-left for 3 seconds after landing.</li>
-  </ul>
-</div>
-
-<div class="step-box">
-  <h3>7.3 — AltHold &amp; Loiter Test</h3>
-  <ul>
-    <li>Switch to <strong>AltHold</strong> mode. Release throttle stick to center — drone should maintain altitude automatically using barometer.</li>
-    <li>Switch to <strong>Loiter</strong> mode (GPS required). Drone should hold its XY position against wind. Release all sticks and observe.</li>
-    <li>Test <strong>Return-to-Launch (RTL)</strong>: trigger via flight mode switch. Drone should ascend to RTL altitude, fly back to home position, and auto-land.</li>
-  </ul>
-</div>
-
-<!-- Outcome -->
-<div class="emoji-heading">🎯 Deployment Outcome</div>
-<ul>
-  <li>Successfully built and assembled a stable quadrotor from individual components.</li>
-  <li>All motors verified with correct spin direction; ESCs calibrated for uniform response.</li>
-  <li>Full sensor suite calibrated via QGroundControl — IMU, compass, RC, and battery.</li>
-  <li>GPS lock acquired reliably with 3D fix; position hold (Loiter) verified outdoors.</li>
-  <li>Test flight completed: stable hover, responsive manual control, and autonomous RTL confirmed.</li>
-</ul>
-
-<!-- Demo video -->
-<div class="video-container" style="display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; margin:2rem auto;">
-  <video controls style="width:80%; border-radius:10px; margin-bottom:1rem;" preload="metadata">
-    <source src="assets/images/projects/quadrotor_drone/video_20240419_135053.mp4" type="video/mp4">
-    Your browser does not support the video tag.
-  </video>
-  <p style="color:#aaa; font-size:0.85rem; margin-top:0.4rem;">Motor test and initial hover validation — April 2024</p>
-</div>
-
-<!-- Architecture -->
-<div class="emoji-heading">🧩 System Architecture</div>
-<ul>
-  <li><strong>Pixhawk 4 (ArduCopter firmware):</strong> Core autopilot — handles sensor fusion (IMU + barometer + GPS + compass), motor mixing, PID control, and MAVLink telemetry.</li>
-  <li><strong>ESC + Brushless Motors:</strong> Each ESC converts PWM commands from Pixhawk into motor RPM for all four propulsion units.</li>
-  <li><strong>GPS/Compass Module:</strong> Provides absolute position (lat/lon/alt) and heading for Loiter, RTL, and waypoint missions.</li>
-  <li><strong>FrSky / FlySky RC System:</strong> Sends pilot commands on up to 10 channels via SBUS/PPM to Pixhawk RC input.</li>
-  <li><strong>Telemetry Radio:</strong> MAVLink bidirectional link between Pixhawk and QGC on a ground laptop for real-time monitoring.</li>
-  <li><strong>QGroundControl (QGC):</strong> Ground control station for firmware flashing, parameter tuning, calibration, mission planning, and live HUD.</li>
-</ul>
-
-<!-- Future Vision -->
-<div class="emoji-heading">🔭 Future Vision</div>
-<p>This build establishes a strong platform for further autonomous capability development:</p>
-<ul>
-  <li><strong>ROS2 + MAVROS Integration:</strong> Run high-level autonomy nodes on a companion Raspberry Pi, bridging ROS2 topics to Pixhawk via MAVROS.</li>
-  <li><strong>Autonomous Waypoint Missions:</strong> Plan and execute multi-waypoint GPS missions via QGC Mission Editor or custom ROS2 mission nodes.</li>
-  <li><strong>Vision-Based Navigation:</strong> Integrate a downward-facing camera with optical flow for GPS-denied indoor position hold.</li>
-  <li><strong>Object Detection Payload:</strong> Mount a Jetson Nano with a camera for real-time YOLO-based aerial surveillance and inspection tasks.</li>
-</ul>
-
-<h2>Conclusion</h2>
-<p>
-  By following a structured build process — from component selection and mechanical assembly through ESC wiring, QGC firmware and motor configuration,
-  RC binding, GPS integration, and full sensor calibration — the quadrotor was successfully assembled and flight-tested.
-  The drone demonstrated stable hover, responsive manual control, and reliable GPS-assisted autonomous modes including Loiter and RTL.
-  This project provides a solid, extensible hardware foundation ready for advanced autonomy research using ROS2, computer vision, and
-  custom mission planning.
-</p>
-
-<!-- Buttons -->
-<div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; margin-top: 2rem;">
-  <a href="https://github.com/darshan-kt" target="_blank"
-     style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.4rem; background: #1db954; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1rem; font-weight: 600;">
-    <i class="fas fa-code-branch" style="font-size: 1.4rem;"></i> GitHub Repository
-  </a>
-  <a href="https://www.youtube.com/shorts/yiogjltbTz4" target="_blank"
-     style="display: inline-flex; align-items: center; gap: 0.6rem; padding: 0.6rem 1.4rem; background: #ff0000; color: #fff; border-radius: 5px; text-decoration: none; font-size: 1rem; font-weight: 600;">
-    <i class="fab fa-youtube" style="font-size: 1.4rem;"></i> Refer YouTube Video
-  </a>
-</div>
-
-<footer style="text-align: center; padding: 1rem 0; background-color: #000; color: #1db954;">
-  <p>© 2025 Darshan K T. All rights reserved.</p>
-</footer>
-
-</div>
 </body>
+
 </html>
