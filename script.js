@@ -3,15 +3,21 @@
   const container = document.querySelector('.background-slideshow');
   if (!container) return;
 
-  const files = [
-    'assets/images/background/arm_robot_programming.gif',
-    'assets/images/background/autonomous_golfcart.jpg',
-    'assets/images/background/Bachelors_graduation.jpg',
-    'assets/images/background/Master_gradutaion.jpg',
-    'assets/images/background/openpose_git.gif',
-    'assets/images/background/robot_building1.jpg',
-    'assets/images/background/robot_building2.jpg',
-    'assets/images/background/turtlebot_experiment.jpg'
+  const slides = [
+    { src: 'assets/images/background/arm_robot_programming.gif', pos: 'center center' },
+    { src: 'assets/images/background/autonomous_golfcart.jpg', pos: 'center center' },
+    { src: 'assets/images/background/Bachelors_graduation.jpg', pos: 'center top' },
+    { src: 'assets/images/background/Master_gradutaion.jpg', pos: 'center top' },
+    { src: 'assets/images/background/openpose_git.gif', pos: 'center center' },
+    { src: 'assets/images/background/robot_building1.jpg', pos: 'center center' },
+    { src: 'assets/images/background/robot_building2.jpg', pos: 'center center' },
+    { src: 'assets/images/background/turtlebot_experiment.jpg', pos: 'center center' },
+    { src: 'assets/images/background/drone1.jpg', pos: 'center center' },
+    { src: 'assets/images/background/drone2.jpg', pos: 'center center' },
+    { src: 'assets/images/background/drone3.jpg', pos: 'center center' },
+    { src: 'assets/images/background/hive_with_robots.png', pos: 'center center' },
+    { src: 'assets/images/background/visit.jpeg', pos: 'center top' },
+    { src: 'assets/images/background/with_turlebot_robot.jpg', pos: 'center top' }
   ];
 
   const img = document.createElement('img');
@@ -25,13 +31,13 @@
     bottom:     '0',
     width:      '100%',
     height:     '100%',
-    objectFit:  'cover',
-    objectPosition: 'center top', // anchor top so faces/subjects stay visible
+    objectFit:  'contain',
     opacity:    '0.85',
     transition: 'opacity 1.5s ease',
     display:    'block'
   });
-  img.src = files[0];
+  img.src = slides[0].src;
+  img.style.objectPosition = slides[0].pos;
   container.appendChild(img);
 
   let current = 0;
@@ -39,8 +45,9 @@
   function changeSlide() {
     img.style.opacity = '0';
     setTimeout(() => {
-      current = (current + 1) % files.length;
-      img.src = files[current];
+      current = (current + 1) % slides.length;
+      img.src = slides[current].src;
+      img.style.objectPosition = slides[current].pos;
       img.style.opacity = '0.85';
     }, 900);
   }
